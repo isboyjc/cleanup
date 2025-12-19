@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 18 46 36" width="32" height="32">
+  <!-- Neo-Brutalism 简约橡皮擦 Favicon - 无边距最大化 -->
+  
+  <!-- 阴影 -->
+  <path d="M14 22 L38 22 L50 34 L50 46 L26 46 L14 34 Z" fill="#000000" transform="translate(3, 3)"/>
+  
+  <!-- 橡皮擦顶面 - 柠檬黄 -->
+  <path d="M14 22 L38 22 L50 34 L26 34 Z" fill="#FFE500" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- 橡皮擦正面 - 珊瑚红 -->
+  <path d="M14 22 L14 34 L26 46 L26 34 Z" fill="#FF6B6B" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- 橡皮擦侧面 - 薄荷绿 -->
+  <path d="M26 34 L50 34 L50 46 L26 46 Z" fill="#7FFFD4" stroke="#000000" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- 高光 -->
+  <path d="M16 24 L34 24 L42 30 L24 30 Z" fill="#FFFFFF" opacity="0.3"/>
+</svg>

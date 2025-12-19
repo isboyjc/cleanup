@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <!-- Apple Touch Icon - Neo-Brutalism 橡皮擦 -->
+  
+  <!-- 背景 -->
+  <rect width="180" height="180" fill="#FFFBEB" rx="20"/>
+  
+  <!-- 阴影 -->
+  <path d="M39 62 L107 62 L141 96 L141 130 L73 130 L39 96 Z" fill="#000000" transform="translate(5, 5)" opacity="0.9"/>
+  
+  <!-- 橡皮擦顶面 - 柠檬黄 -->
+  <path d="M39 62 L107 62 L141 96 L73 96 Z" fill="#FFE500" stroke="#000000" strokeWidth="5" strokeLinejoin="round"/>
+  
+  <!-- 橡皮擦正面 - 珊瑚红 -->
+  <path d="M39 62 L39 96 L73 130 L73 96 Z" fill="#FF6B6B" stroke="#000000" strokeWidth="5" strokeLinejoin="round"/>
+  
+  <!-- 橡皮擦侧面 - 薄荷绿 -->
+  <path d="M73 96 L141 96 L141 130 L73 130 Z" fill="#7FFFD4" stroke="#000000" strokeWidth="5" strokeLinejoin="round"/>
+  
+  <!-- 高光 -->
+  <path d="M44 67 L96 67 L118 85 L66 85 Z" fill="#FFFFFF" opacity="0.3"/>
+</svg>
+

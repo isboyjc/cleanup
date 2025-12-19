@@ -1,0 +1,127 @@
+{
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle": "Toggle theme"
+  },
+  "metadata": {
+    "title": "Clean PicGo - AI Image Watermark Remover",
+    "description": "Remove watermarks, text and unwanted objects from images with AI technology. Easy to use, excellent results."
+  },
+  "hero": {
+    "badge": "AI Powered · Free to Use",
+    "title": {
+      "line1": "Remove Image",
+      "line2": "",
+      "highlight": "Watermarks"
+    },
+    "description": "Easily remove watermarks, text, and unwanted objects from images using advanced AI technology.",
+    "descriptionSub": "No registration required. Processed entirely in your browser to protect your privacy.",
+    "upload": {
+      "dragging": "Drop to upload",
+      "default": "Drag & drop image here",
+      "or": "or",
+      "click": "click to select file",
+      "formats": "Supports JPG, PNG, WebP"
+    },
+    "tags": {
+      "fast": "🚀 Fast Processing",
+      "local": "🔒 Local Processing",
+      "free": "💯 Completely Free",
+      "quality": "✨ High Quality"
+    }
+  },
+  "howItWorks": {
+    "title": "How It",
+    "highlight": "Works",
+    "description": "Just a few simple steps to remove watermarks from your images",
+    "steps": {
+      "upload": {
+        "title": "Upload Image",
+        "description": "Drag & drop or click to upload the image you want to process"
+      },
+      "select": {
+        "title": "Select Area",
+        "description": "Use the eraser tool to paint over the watermark area"
+      },
+      "process": {
+        "title": "AI Processing",
+        "description": "LaMa model automatically analyzes and fills the selected area"
+      },
+      "download": {
+        "title": "Download Result",
+        "description": "Preview the result and download the processed image"
+      }
+    }
+  },
+  "features": {
+    "title": "Powerful",
+    "highlight": "Features",
+    "description": "Professional image restoration powered by LaMa deep learning model",
+    "items": {
+      "smartErase": {
+        "title": "Smart Erase",
+        "description": "Select areas to remove with the eraser tool, AI automatically fills the background"
+      },
+      "realtime": {
+        "title": "Real-time Processing",
+        "description": "WebGL-accelerated ONNX Runtime enables processing directly in your browser"
+      },
+      "privacy": {
+        "title": "Privacy First",
+        "description": "All processing happens locally, images never leave your device"
+      },
+      "mask": {
+        "title": "Mask Technology",
+        "description": "Precise mask generation ensures only selected areas are processed"
+      },
+      "compare": {
+        "title": "Live Compare",
+        "description": "Compare before and after side by side with the slider"
+      },
+      "export": {
+        "title": "HD Export",
+        "description": "Export results at original resolution, maintaining image quality"
+      }
+    }
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "and": "and AI",
+    "copyright": "Powered by LaMa model, running on ONNX Runtime Web in browser."
+  },
+  "editor": {
+    "toolbar": {
+      "reset": "Reset",
+      "download": "Download"
+    },
+    "toolPanel": {
+      "undo": "Undo",
+      "redo": "Redo",
+      "eraser": "Eraser Tool",
+      "hand": "Hand Tool",
+      "handHint": "Drag to move canvas",
+      "zoomIn": "Zoom In",
+      "zoomOut": "Zoom Out",
+      "zoomReset": "Reset Zoom",
+      "compare": "Compare",
+      "exitCompare": "Exit Compare"
+    },
+    "canvas": {
+      "loading": "Loading image...",
+      "touchHint": "Paint over the area to remove"
+    },
+    "compare": {
+      "original": "Original",
+      "processed": "Processed"
+    },
+    "modelLoading": {
+      "preparing": "Preparing AI model...",
+      "downloading": "Downloading AI model...",
+      "initializing": "Initializing model...",
+      "hint": "First load requires ~200MB download, cached for future use"
+    }
+  }
+}
+

@@ -1,0 +1,127 @@
+{
+  "theme": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "toggle": "切换主题"
+  },
+  "metadata": {
+    "title": "Clean PicGo - AI 图片去水印工具",
+    "description": "使用 AI 技术快速去除图片中的水印、文字和不需要的物体，简单易用，效果出色"
+  },
+  "hero": {
+    "badge": "AI 驱动 · 免费使用",
+    "title": {
+      "line1": "一键去除",
+      "line2": "图片",
+      "highlight": "水印"
+    },
+    "description": "使用先进的 AI 技术，轻松去除图片中的水印、文字和不需要的物体。",
+    "descriptionSub": "无需注册，完全在浏览器中处理，保护您的隐私。",
+    "upload": {
+      "dragging": "释放以上传图片",
+      "default": "拖拽图片到这里",
+      "or": "或者",
+      "click": "点击选择文件",
+      "formats": "支持 JPG、PNG、WebP 格式"
+    },
+    "tags": {
+      "fast": "🚀 秒级处理",
+      "local": "🔒 本地运行",
+      "free": "💯 完全免费",
+      "quality": "✨ 高质量输出"
+    }
+  },
+  "howItWorks": {
+    "title": "如何",
+    "highlight": "使用",
+    "description": "只需简单几步，即可完成图片去水印",
+    "steps": {
+      "upload": {
+        "title": "上传图片",
+        "description": "拖拽或点击上传需要处理的图片"
+      },
+      "select": {
+        "title": "选择区域",
+        "description": "使用橡皮擦工具涂抹需要去除的水印区域"
+      },
+      "process": {
+        "title": "AI 处理",
+        "description": "LaMa 模型自动分析并填充选中区域"
+      },
+      "download": {
+        "title": "下载结果",
+        "description": "预览效果满意后下载处理后的图片"
+      }
+    }
+  },
+  "features": {
+    "title": "强大的",
+    "highlight": "功能",
+    "description": "基于 LaMa 深度学习模型，提供专业级的图像修复能力",
+    "items": {
+      "smartErase": {
+        "title": "智能擦除",
+        "description": "使用橡皮擦工具选中需要去除的区域，AI 会自动填充背景"
+      },
+      "realtime": {
+        "title": "实时处理",
+        "description": "基于 WebGL 加速的 ONNX Runtime，在浏览器中即可完成处理"
+      },
+      "privacy": {
+        "title": "隐私安全",
+        "description": "所有处理完全在本地进行，图片不会上传到任何服务器"
+      },
+      "mask": {
+        "title": "蒙版技术",
+        "description": "精确的蒙版生成技术，确保只处理选中的区域"
+      },
+      "compare": {
+        "title": "实时对比",
+        "description": "处理完成后可以左右对比查看处理前后的效果差异"
+      },
+      "export": {
+        "title": "高清导出",
+        "description": "支持导出原始分辨率的处理结果，保持图片质量"
+      }
+    }
+  },
+  "footer": {
+    "builtWith": "使用",
+    "and": "和 AI 构建",
+    "copyright": "基于 LaMa 模型，使用 ONNX Runtime Web 在浏览器中运行。"
+  },
+  "editor": {
+    "toolbar": {
+      "reset": "重置",
+      "download": "下载"
+    },
+    "toolPanel": {
+      "undo": "撤回",
+      "redo": "取消撤回",
+      "eraser": "擦除工具",
+      "hand": "抓手工具",
+      "handHint": "拖动移动画布",
+      "zoomIn": "放大",
+      "zoomOut": "缩小",
+      "zoomReset": "重置缩放",
+      "compare": "预览对比",
+      "exitCompare": "退出预览"
+    },
+    "canvas": {
+      "loading": "加载图片中...",
+      "touchHint": "用手指涂抹需要去除的区域"
+    },
+    "compare": {
+      "original": "原图",
+      "processed": "处理后"
+    },
+    "modelLoading": {
+      "preparing": "正在准备 AI 模型...",
+      "downloading": "正在下载 AI 模型...",
+      "initializing": "正在初始化模型...",
+      "hint": "首次加载需要下载约 200MB 模型文件，后续将使用缓存"
+    }
+  }
+}
+
