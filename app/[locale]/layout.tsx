@@ -2,10 +2,14 @@ import type { Metadata } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
 import { Space_Grotesk } from "next/font/google"
+import Script from "next/script"
 import { notFound } from "next/navigation"
 import { locales, type Locale } from "@/i18n/config"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import "../globals.css"
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const CF_BEACON_TOKEN = process.env.NEXT_PUBLIC_CF_BEACON_TOKEN
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -127,21 +131,13 @@ export async function generateMetadata({
       siteName: "Clean PigGo",
       title: t.title,
       description: t.description,
-      images: [
-        {
-          url: `${siteUrl}/og-image.png`,
-          width: 1200,
-          height: 630,
-          alt: "Clean PigGo - AI Watermark Remover",
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t.title,
       description: t.description,
+      site: "@isboyjc",
       creator: "@isboyjc",
-      images: [`${siteUrl}/og-image.png`],
     },
     verification: {
       // google: "your-google-verification-code",
@@ -174,6 +170,31 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        {/* Google Analytics */}
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
+        {/* Cloudflare Web Analytics */}
+        {CF_BEACON_TOKEN && (
+          <Script
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}
+            strategy="afterInteractive"
+          />
+        )}
         {/* 防止主题闪烁的脚本 */}
         <script
           dangerouslySetInnerHTML={{
