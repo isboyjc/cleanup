@@ -20,7 +20,7 @@ export function ProductName({ size = "md", className = "" }: ProductNameProps) {
         fontWeight: 400,
       }}
     >
-      Clean PicGo
+      Clean PigGo
     </span>
   )
 }

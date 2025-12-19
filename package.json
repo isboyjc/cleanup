@@ -1,8 +1,30 @@
 {
   "name": "cleanup",
   "version": "0.1.0",
+  "description": "AI-powered image watermark remover - Clean PigGo",
   "private": true,
-  "author": "isboyjc",
+  "author": {
+    "name": "isboyjc",
+    "url": "https://github.com/isboyjc"
+  },
+  "homepage": "https://clean.picgo.studio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isboyjc/cleanup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/isboyjc/cleanup/issues"
+  },
+  "keywords": [
+    "ai",
+    "watermark-remover",
+    "image-processing",
+    "lama",
+    "onnx",
+    "nextjs",
+    "react",
+    "browser-based"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

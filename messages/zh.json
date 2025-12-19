@@ -6,8 +6,8 @@
     "toggle": "切换主题"
   },
   "metadata": {
-    "title": "Clean PicGo - AI 图片去水印工具",
-    "description": "使用 AI 技术快速去除图片中的水印、文字和不需要的物体，简单易用，效果出色"
+    "title": "Clean PigGo - 免费在线AI去水印工具 | 一键去除图片水印",
+    "description": "Clean PigGo 是一款免费的在线AI去水印工具，支持去除各类AI生成图片水印（Midjourney、Stable Diffusion、DALL-E、可灵、即梦等）、图片水印、文字水印、Logo水印。基于LaMa深度学习模型，完全在浏览器本地运行，保护隐私安全。"
   },
   "hero": {
     "badge": "AI 驱动 · 免费使用",

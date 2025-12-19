@@ -26,12 +26,83 @@ export async function generateMetadata({
   const messages = await getMessages()
   const t = messages.metadata as Record<string, string>
 
+  const siteUrl = "https://clean.picgo.studio"
+  
+  const keywordsZh = [
+    "去水印",
+    "AI去水印",
+    "图片去水印",
+    "在线去水印",
+    "免费去水印",
+    "去除水印",
+    "水印去除工具",
+    "AI水印去除",
+    "Midjourney去水印",
+    "Stable Diffusion去水印",
+    "DALL-E去水印",
+    "可灵去水印",
+    "即梦去水印",
+    "AI生成图片去水印",
+    "图片水印去除",
+    "文字水印去除",
+    "Logo水印去除",
+    "图像修复",
+    "图片处理",
+    "LaMa",
+    "智能擦除",
+    "一键去水印",
+    "批量去水印",
+    "高清去水印",
+    "无损去水印"
+  ]
+  
+  const keywordsEn = [
+    "watermark remover",
+    "AI watermark remover",
+    "remove watermark",
+    "online watermark remover",
+    "free watermark remover",
+    "watermark removal tool",
+    "AI watermark removal",
+    "Midjourney watermark remover",
+    "Stable Diffusion watermark remover",
+    "DALL-E watermark remover",
+    "Kling watermark remover",
+    "AI generated image watermark remover",
+    "remove image watermark",
+    "remove text watermark",
+    "remove logo watermark",
+    "image inpainting",
+    "image processing",
+    "LaMa",
+    "smart erase",
+    "one click watermark remover",
+    "batch watermark remover",
+    "HD watermark remover",
+    "lossless watermark removal"
+  ]
+
   return {
-    title: t.title,
+    title: {
+      default: t.title,
+      template: `%s | Clean PigGo`
+    },
     description: t.description,
-    keywords: locale === "zh" 
-      ? ["去水印", "图片处理", "AI", "图像修复", "LaMa"]
-      : ["watermark remover", "image processing", "AI", "image inpainting", "LaMa"],
+    keywords: locale === "zh" ? keywordsZh : keywordsEn,
+    authors: [{ name: "isboyjc", url: "https://github.com/isboyjc" }],
+    creator: "isboyjc",
+    publisher: "Clean PigGo",
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     icons: {
       icon: [
         { url: "/icon.svg", type: "image/svg+xml" },
@@ -40,6 +111,43 @@ export async function generateMetadata({
         { url: "/apple-icon.svg", type: "image/svg+xml" },
       ],
     },
+    metadataBase: new URL(siteUrl),
+    alternates: {
+      canonical: siteUrl,
+      languages: {
+        "zh-CN": `${siteUrl}/zh`,
+        "en-US": `${siteUrl}/en`,
+      },
+    },
+    openGraph: {
+      type: "website",
+      locale: locale === "zh" ? "zh_CN" : "en_US",
+      alternateLocale: locale === "zh" ? "en_US" : "zh_CN",
+      url: siteUrl,
+      siteName: "Clean PigGo",
+      title: t.title,
+      description: t.description,
+      images: [
+        {
+          url: `${siteUrl}/og-image.png`,
+          width: 1200,
+          height: 630,
+          alt: "Clean PigGo - AI Watermark Remover",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.title,
+      description: t.description,
+      creator: "@isboyjc",
+      images: [`${siteUrl}/og-image.png`],
+    },
+    verification: {
+      // google: "your-google-verification-code",
+      // yandex: "your-yandex-verification-code",
+    },
+    category: "technology",
   }
 }
 

@@ -11,6 +11,8 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-isboyjc-181717?style=for-the-badge&logo=github)](https://github.com/isboyjc/cleanup)
+[![X](https://img.shields.io/badge/X-@isboyjc-000000?style=for-the-badge&logo=x)](https://x.com/isboyjc)
 
 <p align="center">
   <strong>🚀 秒级处理 · 🔒 本地运行 · 💯 完全免费 · ✨ 高质量输出</strong>
@@ -65,8 +67,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/isboyjc/clean-picgo.git
-cd clean-picgo
+git clone https://github.com/isboyjc/cleanup.git
+cd cleanup
 
 # 安装依赖
 pnpm install
@@ -141,8 +143,8 @@ Visit **[clean.picgo.studio](https://clean.picgo.studio)** to try it now!
 
 ```bash
 # Clone the repository
-git clone https://github.com/isboyjc/clean-picgo.git
-cd clean-picgo
+git clone https://github.com/isboyjc/cleanup.git
+cd cleanup
 
 # Install dependencies
 pnpm install
@@ -177,6 +179,9 @@ Supports light and dark mode, can automatically switch based on system settings.
 ## 📄 License
 
 [MIT](./LICENSE) © [isboyjc](https://github.com/isboyjc)
+
+[![Follow on X](https://img.shields.io/badge/Follow_@isboyjc-000000?style=flat&logo=x)](https://x.com/isboyjc)
+[![GitHub](https://img.shields.io/github/stars/isboyjc/cleanup?style=social)](https://github.com/isboyjc/cleanup)
 
 ---
 
