@@ -1,10 +1,10 @@
-const CACHE_NAME = 'clean-piggo-v1';
+const CACHE_NAME = 'clean-piggo-v2';
 
 // 需要缓存的静态资源
 const STATIC_ASSETS = [
-  '/',
   '/icon.svg',
-  '/manifest.json',
+  '/icons/icon-192x192.png',
+  '/icons/icon-512x512.png',
 ];
 
 // 安装 Service Worker
