@@ -6,6 +6,7 @@ import Script from "next/script"
 import { notFound } from "next/navigation"
 import { locales, type Locale } from "@/i18n/config"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister"
 import "../globals.css"
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
@@ -110,10 +111,32 @@ export async function generateMetadata({
     icons: {
       icon: [
         { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+        { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
       ],
       apple: [
         { url: "/apple-icon.svg", type: "image/svg+xml" },
+        { url: "/icons/icon-152x152.png", sizes: "152x152", type: "image/png" },
+        { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
       ],
+    },
+    manifest: "/manifest.json",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: "Clean PigGo",
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    other: {
+      "mobile-web-app-capable": "yes",
+      "apple-mobile-web-app-capable": "yes",
+      "application-name": "Clean PigGo",
+      "apple-mobile-web-app-title": "Clean PigGo",
+      "msapplication-TileColor": "#667eea",
+      "msapplication-tap-highlight": "no",
+      "theme-color": "#667eea",
     },
     metadataBase: new URL(siteUrl),
     alternates: {
@@ -214,6 +237,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body className={`${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+        <ServiceWorkerRegister />
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             {children}

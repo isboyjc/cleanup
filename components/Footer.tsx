@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Twitter, Youtube, Heart } from "lucide-react"
+import { Twitter, Youtube, Heart } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Logo } from "./Logo"
 import { ProductName } from "./ProductName"
@@ -38,14 +38,6 @@ export function Footer() {
           </p>
           
           <div className="flex items-center gap-3">
-            <a 
-              href="https://github.com/isboyjc/cleanup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-10 h-10 bg-card border-2 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-colors hover:shadow-[3px_3px_0_var(--foreground)] hover:-translate-x-px hover:-translate-y-px"
-            >
-              <Github className="w-5 h-5" />
-            </a>
             <a 
               href="https://x.com/isboyjc" 
               target="_blank" 

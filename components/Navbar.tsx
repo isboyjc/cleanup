@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 import { ThemeSwitcher } from "./ThemeSwitcher"
+import { GitHubStarButton } from "./GitHubStarButton"
 import { Logo } from "./Logo"
 import { ProductName } from "./ProductName"
 
@@ -24,6 +25,7 @@ export function Navbar() {
 
           {/* 右侧操作 */}
           <div className="flex items-center gap-2">
+            <GitHubStarButton />
             <ThemeSwitcher />
             <LanguageSwitcher />
           </div>
