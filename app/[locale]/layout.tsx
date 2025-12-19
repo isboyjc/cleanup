@@ -120,7 +120,6 @@ export async function generateMetadata({
         { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
       ],
     },
-    manifest: "/manifest.json",
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
@@ -134,9 +133,8 @@ export async function generateMetadata({
       "apple-mobile-web-app-capable": "yes",
       "application-name": "Clean PigGo",
       "apple-mobile-web-app-title": "Clean PigGo",
-      "msapplication-TileColor": "#667eea",
+      "msapplication-TileColor": "#1A1A1A",
       "msapplication-tap-highlight": "no",
-      "theme-color": "#667eea",
     },
     metadataBase: new URL(siteUrl),
     alternates: {
@@ -193,6 +191,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        {/* PWA Theme Color - 支持明暗模式 */}
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffbeb" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A" />
         {/* Google Analytics */}
         {GA_MEASUREMENT_ID && (
           <>
