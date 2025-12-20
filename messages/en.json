@@ -30,6 +30,14 @@
       "local": "🔒 Local Processing",
       "free": "💯 Completely Free",
       "quality": "✨ High Quality"
+    },
+    "samples": {
+      "title": "Or try these sample images",
+      "try": "Try it",
+      "bag": "Bag",
+      "room": "Room",
+      "jacket": "Jacket",
+      "portrait": "Grayscale"
     }
   },
   "howItWorks": {
@@ -90,6 +98,20 @@
     "builtWith": "Built with",
     "and": "and AI",
     "copyright": "Powered by LaMa model, running on ONNX Runtime Web in browser."
+  },
+  "examples": {
+    "badge": "See It in Action",
+    "title": "Real",
+    "highlight": "Examples",
+    "description": "Hover to see the removal animation and witness the powerful AI restoration",
+    "hoverHint": "Hover to preview",
+    "playing": "Playing",
+    "example": "Example",
+    "showingResult": "Showing result",
+    "beforeAfter": "Before/After",
+    "original": "Original",
+    "comparison": "Comparison",
+    "footerHint": "All examples above were processed in real-time by Clean PicGo in the browser"
   },
   "editor": {
     "toolbar": {

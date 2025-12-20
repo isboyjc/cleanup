@@ -2,8 +2,27 @@
 
 import { useState, useCallback } from "react"
 import { motion } from "framer-motion"
-import { Upload, ImageIcon, Sparkles } from "lucide-react"
+import { Upload, ImageIcon, Sparkles, Wand2 } from "lucide-react"
 import { useTranslations } from "next-intl"
+
+const sampleImages = [
+  {
+    url: "https://cdn.isboyjc.com/picgo/clean/a0.png",
+    labelKey: "samples.bag",
+  },
+  {
+    url: "https://cdn.isboyjc.com/picgo/clean/b0.png",
+    labelKey: "samples.room",
+  },
+  {
+    url: "https://cdn.isboyjc.com/picgo/clean/c0.png",
+    labelKey: "samples.jacket",
+  },
+  {
+    url: "https://cdn.isboyjc.com/picgo/clean/long0.png",
+    labelKey: "samples.portrait",
+  },
+]
 
 interface HeroProps {
   onImageSelect: (file: File) => void
@@ -11,6 +30,7 @@ interface HeroProps {
 
 export function Hero({ onImageSelect }: HeroProps) {
   const [isDragging, setIsDragging] = useState(false)
+  const [loadingSample, setLoadingSample] = useState<number | null>(null)
   const t = useTranslations("hero")
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -37,6 +57,21 @@ export function Hero({ onImageSelect }: HeroProps) {
     const files = e.target.files
     if (files && files.length > 0) {
       onImageSelect(files[0])
+    }
+  }, [onImageSelect])
+
+  const handleSampleClick = useCallback(async (index: number, url: string) => {
+    setLoadingSample(index)
+    try {
+      const response = await fetch(url)
+      const blob = await response.blob()
+      const fileName = url.split('/').pop() || 'sample.png'
+      const file = new File([blob], fileName, { type: blob.type })
+      onImageSelect(file)
+    } catch (error) {
+      console.error('Failed to load sample image:', error)
+    } finally {
+      setLoadingSample(null)
     }
   }, [onImageSelect])
 
@@ -169,9 +204,86 @@ export function Hero({ onImageSelect }: HeroProps) {
         </label>
       </motion.div>
 
+      {/* 示例图片快捷入口 */}
+      <motion.div
+        className="w-full max-w-2xl mt-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.45, duration: 0.5 }}
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Wand2 className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground font-medium">
+            {t("samples.title")}
+          </span>
+        </div>
+        <div className="flex justify-center gap-4">
+          {sampleImages.map((sample, index) => (
+            <motion.button
+              key={index}
+              onClick={() => handleSampleClick(index, sample.url)}
+              disabled={loadingSample !== null}
+              className={`
+                group relative
+                w-20 h-20 md:w-24 md:h-24
+                rounded-xl overflow-hidden
+                border-3 border-foreground
+                shadow-[3px_3px_0_var(--foreground)]
+                transition-all duration-200
+                hover:shadow-[5px_5px_0_var(--foreground)]
+                hover:-translate-x-0.5 hover:-translate-y-0.5
+                active:shadow-[2px_2px_0_var(--foreground)]
+                active:translate-x-0 active:translate-y-0
+                ${loadingSample === index ? "animate-pulse" : ""}
+                disabled:opacity-50 disabled:cursor-not-allowed
+              `}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <img
+                src={sample.url}
+                alt={t(sample.labelKey)}
+                className="w-full h-full object-cover"
+              />
+              {/* 悬停遮罩 */}
+              <div className="
+                absolute inset-0 
+                bg-gradient-to-t from-black/70 via-black/20 to-transparent
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-200
+                flex items-end justify-center pb-2
+              ">
+                <span className="text-white text-xs font-bold px-2 py-0.5 bg-primary text-primary-foreground rounded-full border border-foreground">
+                  {t("samples.try")}
+                </span>
+              </div>
+              {/* 加载指示器 */}
+              {loadingSample === index && (
+                <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
+                  <div className="w-6 h-6 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+                </div>
+              )}
+              {/* 序号角标 */}
+              <div className="
+                absolute -top-1.5 -right-1.5
+                w-6 h-6
+                bg-accent text-accent-foreground
+                border-2 border-foreground
+                rounded-full
+                flex items-center justify-center
+                text-xs font-bold
+                shadow-[1px_1px_0_var(--foreground)]
+              ">
+                {index + 1}
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
+
       {/* 特性标签 */}
       <motion.div 
-        className="flex flex-wrap justify-center gap-4 mt-10"
+        className="flex flex-wrap justify-center gap-4 mt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}

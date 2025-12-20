@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Hero } from "@/components/Hero"
 import { Features } from "@/components/Features"
 import { HowItWorks } from "@/components/HowItWorks"
+import { Examples } from "@/components/Examples"
 import { Footer } from "@/components/Footer"
 import { ImageEditor } from "@/components/ImageEditor"
 import { Navbar } from "@/components/Navbar"
@@ -27,6 +28,7 @@ export default function Home() {
       <Navbar />
       <Hero onImageSelect={handleImageSelect} />
       <HowItWorks />
+      <Examples />
       <Features />
       <Footer />
       
