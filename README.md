@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="app/icon.svg" alt="Clean PigGo Logo" width="120" />
+<img src="app/icon.svg" alt="Clean PicGo Logo" width="120" />
 
-# Clean PigGo
+# Clean PicGo
 
 **AI 驱动的图片去水印工具 | AI-Powered Image Watermark Remover**
 
@@ -26,7 +26,7 @@
 
 ### ✨ 简介
 
-**Clean PigGo** 是一款基于 AI 技术的在线图片去水印工具。使用先进的 [LaMa (Large Mask Inpainting)](https://github.com/advimman/lama) 深度学习模型，可以智能地去除图片中的水印、文字和不需要的物体。
+**Clean PicGo** 是一款基于 AI 技术的在线图片去水印工具。使用先进的 [LaMa (Large Mask Inpainting)](https://github.com/advimman/lama) 深度学习模型，可以智能地去除图片中的水印、文字和不需要的物体。
 
 🌟 **核心亮点：所有处理完全在浏览器本地进行，图片不会上传到任何服务器，充分保护您的隐私！**
 
@@ -87,7 +87,7 @@ pnpm start
 
 ### 🌍 国际化
 
-Clean PigGo 支持以下语言：
+Clean PicGo 支持以下语言：
 
 - 🇨🇳 简体中文
 - 🇺🇸 English
@@ -102,7 +102,7 @@ Clean PigGo 支持以下语言：
 
 ### ✨ Introduction
 
-**Clean PigGo** is an AI-powered online image watermark removal tool. Using the advanced [LaMa (Large Mask Inpainting)](https://github.com/advimman/lama) deep learning model, it can intelligently remove watermarks, text, and unwanted objects from images.
+**Clean PicGo** is an AI-powered online image watermark removal tool. Using the advanced [LaMa (Large Mask Inpainting)](https://github.com/advimman/lama) deep learning model, it can intelligently remove watermarks, text, and unwanted objects from images.
 
 🌟 **Key Highlight: All processing is done entirely in your browser locally. Images are never uploaded to any server, fully protecting your privacy!**
 
@@ -163,7 +163,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ### 🌍 Internationalization
 
-Clean PigGo supports the following languages:
+Clean PicGo supports the following languages:
 
 - 🇨🇳 Simplified Chinese
 - 🇺🇸 English

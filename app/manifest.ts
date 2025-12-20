@@ -29,8 +29,8 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
   }
 
   return {
-    name: "Clean PigGo",
-    short_name: "Clean PigGo",
+    name: "Clean PicGo",
+    short_name: "Clean PicGo",
     description: isZh
       ? "AI 驱动的免费在线图片去水印工具"
       : "AI-powered free online watermark remover",

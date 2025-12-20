@@ -1,7 +1,7 @@
 {
   "name": "cleanup",
   "version": "0.1.0",
-  "description": "AI-powered image watermark remover - Clean PigGo",
+  "description": "AI-powered image watermark remover - Clean PicGo",
   "private": true,
   "author": {
     "name": "isboyjc",

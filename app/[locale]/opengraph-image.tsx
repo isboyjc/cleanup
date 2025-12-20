@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
 
-export const alt = "Clean PigGo - AI Watermark Remover"
+export const alt = "Clean PicGo - AI Watermark Remover"
 export const size = {
   width: 1200,
   height: 630,
@@ -82,7 +82,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             textShadow: "4px 4px 0 rgba(0,0,0,0.2)",
           }}
         >
-          Clean PigGo
+          Clean PicGo
         </div>
 
         {/* 副标题 */}

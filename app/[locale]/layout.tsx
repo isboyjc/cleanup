@@ -90,13 +90,13 @@ export async function generateMetadata({
   return {
     title: {
       default: t.title,
-      template: `%s | Clean PigGo`
+      template: `%s | Clean PicGo`
     },
     description: t.description,
     keywords: locale === "zh" ? keywordsZh : keywordsEn,
     authors: [{ name: "isboyjc", url: "https://github.com/isboyjc" }],
     creator: "isboyjc",
-    publisher: "Clean PigGo",
+    publisher: "Clean PicGo",
     robots: {
       index: true,
       follow: true,
@@ -123,7 +123,7 @@ export async function generateMetadata({
     appleWebApp: {
       capable: true,
       statusBarStyle: "default",
-      title: "Clean PigGo",
+      title: "Clean PicGo",
     },
     formatDetection: {
       telephone: false,
@@ -131,8 +131,8 @@ export async function generateMetadata({
     other: {
       "mobile-web-app-capable": "yes",
       "apple-mobile-web-app-capable": "yes",
-      "application-name": "Clean PigGo",
-      "apple-mobile-web-app-title": "Clean PigGo",
+      "application-name": "Clean PicGo",
+      "apple-mobile-web-app-title": "Clean PicGo",
       "msapplication-TileColor": "#1A1A1A",
       "msapplication-tap-highlight": "no",
     },
@@ -149,7 +149,7 @@ export async function generateMetadata({
       locale: locale === "zh" ? "zh_CN" : "en_US",
       alternateLocale: locale === "zh" ? "en_US" : "zh_CN",
       url: siteUrl,
-      siteName: "Clean PigGo",
+      siteName: "Clean PicGo",
       title: t.title,
       description: t.description,
     },

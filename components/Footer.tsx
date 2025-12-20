@@ -67,7 +67,7 @@ export function Footer() {
         
         <div className="mt-6 pt-6 border-t-2 border-foreground/20 text-center">
           <p className="text-sm text-muted-foreground" suppressHydrationWarning>
-            © {new Date().getFullYear()} Clean PigGo. {t("copyright")}
+            © {new Date().getFullYear()} Clean PicGo. {t("copyright")}
           </p>
         </div>
       </div>
