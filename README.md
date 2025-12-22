@@ -39,18 +39,31 @@
 | 功能 | 描述 |
 |------|------|
 | 🎨 **智能擦除** | 使用橡皮擦工具选中需要去除的区域，AI 会自动填充背景 |
-| ⚡ **实时处理** | 基于 WebGL 加速的 ONNX Runtime，在浏览器中即可完成处理 |
+| ⚡ **Gemini 专用模式** | 自动检测并无损去除 Gemini AI 生成图片的水印，基于反向 Alpha 混合算法 |
+| 🚀 **实时处理** | 基于 WebGL 加速的 ONNX Runtime，在浏览器中即可完成处理 |
 | 🔒 **隐私安全** | 所有处理完全在本地进行，图片不会上传到任何服务器 |
 | 🎭 **蒙版技术** | 精确的蒙版生成技术，确保只处理选中的区域 |
 | 👁️ **实时对比** | 处理完成后可以左右对比查看处理前后的效果差异 |
 | 📥 **高清导出** | 支持导出原始分辨率的处理结果，保持图片质量 |
 
+#### ⚡ Gemini 水印专用处理
+
+针对 Gemini AI 生成图片的水印，Clean PicGo 提供了专门的无损去除方案：
+
+- **自动检测**：上传图片后自动检测是否存在 Gemini 水印
+- **无损去除**：使用数学精确的反向 Alpha 混合算法，而非 AI 推理
+- **毫秒级处理**：无需加载大模型，处理速度极快
+- **可回退操作**：自动处理作为一个可回退的编辑步骤
+
+> 此功能基于 [gemini-watermark-remover](https://github.com/journey-ad/gemini-watermark-remover) 项目的算法原理实现。
+
 ### 📖 使用方法
 
 1. **上传图片** - 拖拽或点击上传需要处理的图片（支持 JPG、PNG、WebP）
-2. **选择区域** - 使用橡皮擦工具涂抹需要去除的水印区域
-3. **AI 处理** - LaMa 模型自动分析并填充选中区域
-4. **下载结果** - 预览效果满意后下载处理后的图片
+2. **自动检测** - 如果是 Gemini 图片，系统会自动检测并去除水印
+3. **选择区域** - 使用橡皮擦工具涂抹需要去除的其他水印区域
+4. **AI 处理** - LaMa 模型自动分析并填充选中区域
+5. **下载结果** - 预览效果满意后下载处理后的图片
 
 ### 🛠️ 技术栈
 
@@ -115,18 +128,31 @@ Visit **[clean.picgo.studio](https://clean.picgo.studio)** to try it now!
 | Feature | Description |
 |---------|-------------|
 | 🎨 **Smart Erase** | Select the area to remove with the eraser tool, and AI will automatically fill in the background |
-| ⚡ **Real-time Processing** | WebGL-accelerated ONNX Runtime enables processing directly in the browser |
+| ⚡ **Gemini Mode** | Auto-detect and losslessly remove watermarks from Gemini AI images using Reverse Alpha Blending |
+| 🚀 **Real-time Processing** | WebGL-accelerated ONNX Runtime enables processing directly in the browser |
 | 🔒 **Privacy Safe** | All processing is done locally, images are never uploaded to any server |
 | 🎭 **Mask Technology** | Precise mask generation ensures only selected areas are processed |
 | 👁️ **Real-time Comparison** | Compare before and after effects with a side-by-side slider |
 | 📥 **HD Export** | Export results at original resolution, maintaining image quality |
 
+#### ⚡ Gemini Watermark Removal
+
+Clean PicGo provides a dedicated lossless removal solution for Gemini AI-generated image watermarks:
+
+- **Auto Detection**: Automatically detects Gemini watermarks after image upload
+- **Lossless Removal**: Uses mathematically precise Reverse Alpha Blending algorithm instead of AI inference
+- **Instant Processing**: No large model loading required, extremely fast processing
+- **Undoable Operation**: Auto-processing is saved as an undoable editing step
+
+> This feature is based on the algorithm from [gemini-watermark-remover](https://github.com/journey-ad/gemini-watermark-remover) project.
+
 ### 📖 How to Use
 
 1. **Upload Image** - Drag and drop or click to upload an image (supports JPG, PNG, WebP)
-2. **Select Area** - Use the eraser tool to paint over the watermark area
-3. **AI Processing** - LaMa model automatically analyzes and fills the selected area
-4. **Download Result** - Preview the result and download the processed image
+2. **Auto-Detection** - If it's a Gemini image, system auto-detects and removes watermark
+3. **Select Area** - Use the eraser tool to paint over other watermark areas
+4. **AI Processing** - LaMa model automatically analyzes and fills the selected area
+5. **Download Result** - Preview the result and download the processed image
 
 ### 🛠️ Tech Stack
 

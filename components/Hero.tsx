@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Upload, ImageIcon, Sparkles, Wand2, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { isModelCached } from "@/lib/lama-processor"
+import { GeminiDetectionToggle } from "./GeminiDetectionToggle"
 
 const sampleImages = [
   {
@@ -238,6 +239,11 @@ export function Hero({ onImageSelect }: HeroProps) {
           <div className="absolute -top-3 -right-3 w-12 h-12 bg-accent text-accent-foreground border-3 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] flex items-center justify-center rotate-12">
             <Sparkles className="w-6 h-6" />
           </div>
+
+          {/* Gemini 水印开关 - 悬浮在左下角 */}
+          <div className="absolute -bottom-3 -left-3">
+            <GeminiDetectionToggle />
+          </div>
         </label>
       </motion.div>
 
@@ -246,7 +252,7 @@ export function Hero({ onImageSelect }: HeroProps) {
         className="w-full max-w-2xl mt-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.45, duration: 0.5 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
       >
         <div className="flex items-center justify-center gap-2 mb-4">
           <Wand2 className="w-4 h-4 text-muted-foreground" />
@@ -320,7 +326,7 @@ export function Hero({ onImageSelect }: HeroProps) {
 
       {/* 特性标签 */}
       <motion.div 
-        className="flex flex-wrap justify-center gap-4 mt-8"
+        className="flex flex-wrap justify-center items-center gap-3 mt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4 }}

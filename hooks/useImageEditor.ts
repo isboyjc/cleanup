@@ -25,6 +25,9 @@ export function useImageEditor(imageFile: File | null) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const maskCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
+  
+  // 保存适合视口的基准缩放值
+  const fitZoomRef = useRef<number>(1)
 
   // 加载图片
   useEffect(() => {
@@ -136,11 +139,71 @@ export function useImageEditor(imageFile: File | null) {
 
   // 设置缩放
   const setZoom = useCallback((zoom: number) => {
+    const fitZoom = fitZoomRef.current
+    // 最小缩放为 fitZoom 的 25%，最大缩放为 fitZoom 的 400%
+    const minZoom = fitZoom * 0.25
+    const maxZoom = fitZoom * 4
     setState((prev) => ({
       ...prev,
-      zoom: Math.max(0.25, Math.min(4, zoom)),
+      zoom: Math.max(minZoom, Math.min(maxZoom, zoom)),
     }))
   }, [])
+
+  // 计算适合视口的缩放值（100%视口下图片不超出可视区域）
+  const calculateFitZoom = useCallback((
+    imageWidth: number,
+    imageHeight: number,
+    containerWidth: number,
+    containerHeight: number,
+    padding: number = 48 // 留出一些边距
+  ): number => {
+    const availableWidth = containerWidth - padding * 2
+    const availableHeight = containerHeight - padding * 2
+    
+    const scaleX = availableWidth / imageWidth
+    const scaleY = availableHeight / imageHeight
+    
+    // 取较小的缩放比例，确保图片完全适应容器
+    // 但不超过 1（即不放大小图）
+    return Math.min(scaleX, scaleY, 1)
+  }, [])
+
+  // 初始化适合视口的缩放（在图片加载后调用）
+  const initializeFitZoom = useCallback(() => {
+    const container = containerRef.current
+    const image = state.image
+    
+    if (!container || !image) return
+    
+    const containerRect = container.getBoundingClientRect()
+    const fitZoom = calculateFitZoom(
+      image.width,
+      image.height,
+      containerRect.width,
+      containerRect.height
+    )
+    
+    fitZoomRef.current = fitZoom
+    
+    // 设置初始缩放和平移
+    setState((prev) => ({
+      ...prev,
+      zoom: fitZoom,
+      pan: { x: 0, y: 0 },
+    }))
+  }, [state.image, calculateFitZoom])
+
+  // 重置到适合视口的缩放
+  const resetToFitZoom = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      zoom: fitZoomRef.current,
+      pan: { x: 0, y: 0 },
+    }))
+  }, [])
+
+  // 获取当前的 fitZoom 值
+  const getFitZoom = useCallback(() => fitZoomRef.current, [])
 
   // 设置平移
   const setPan = useCallback((pan: { x: number; y: number }) => {
@@ -337,5 +400,8 @@ export function useImageEditor(imageFile: File | null) {
     redo,
     canUndo,
     canRedo,
+    initializeFitZoom,
+    resetToFitZoom,
+    getFitZoom,
   }
 }

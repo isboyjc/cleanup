@@ -11,6 +11,8 @@ import { ToolPanel, type ToolType } from "./ToolPanel"
 import { CompareSlider } from "./CompareSlider"
 import { useLamaModel } from "@/hooks/useLamaModel"
 import { ModelLoadingScreen } from "./ModelLoadingScreen"
+import { getGeminiDetectionEnabled } from "@/hooks/useGeminiDetection"
+import { detectGeminiWatermark, removeGeminiWatermark } from "@/lib/gemini-watermark"
 import type { Point } from "@/types"
 
 interface ImageEditorProps {
@@ -44,6 +46,9 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
     redo,
     canUndo,
     canRedo,
+    initializeFitZoom,
+    resetToFitZoom,
+    getFitZoom,
   } = useImageEditor(image)
 
   const { processImage, isModelLoading, loadingProgress } = useLamaModel()
@@ -54,6 +59,114 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
   const [isPanning, setIsPanning] = useState(false)
   const [isMouseInCanvas, setIsMouseInCanvas] = useState(false)
   const [isMouseOnImage, setIsMouseOnImage] = useState(false)
+  
+  // Gemini 水印检测状态
+  const [geminiToastState, setGeminiToastState] = useState<"detecting" | "processing" | "success" | "not-found" | "hidden">("hidden")
+  const geminiCheckedRef = useRef(false)
+  
+  // 跟踪 fitZoom 是否已初始化（用于防止大图闪现）
+  const [isFitZoomReady, setIsFitZoomReady] = useState(false)
+
+  // Gemini 水印自动检测和处理
+  useEffect(() => {
+    // 确保只在图片首次加载时检测一次
+    if (!state.image || geminiCheckedRef.current || !isOpen) return
+    
+    // 检查是否启用了 Gemini 检测
+    if (!getGeminiDetectionEnabled()) {
+      geminiCheckedRef.current = true
+      return
+    }
+
+    const processGeminiWatermark = async () => {
+      geminiCheckedRef.current = true
+      setGeminiToastState("detecting")
+
+      try {
+        // 从图片创建 ImageData
+        const canvas = document.createElement("canvas")
+        canvas.width = state.image!.width
+        canvas.height = state.image!.height
+        const ctx = canvas.getContext("2d")
+        if (!ctx) {
+          setGeminiToastState("hidden")
+          return
+        }
+
+        ctx.drawImage(state.image!, 0, 0)
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+        // 检测 Gemini 水印
+        const detectionResult = await detectGeminiWatermark(imageData)
+
+        if (!detectionResult.exists) {
+          // 未检测到水印，隐藏提示
+          setGeminiToastState("hidden")
+          return
+        }
+
+        // 检测到水印，开始处理
+        setGeminiToastState("processing")
+
+        // 去除水印
+        const removeResult = await removeGeminiWatermark(imageData, detectionResult)
+
+        if (removeResult.success && removeResult.imageData) {
+          // 显示成功提示（一直保持显示）
+          setGeminiToastState("success")
+          // 将处理结果应用为新的图像（作为一个可回退的步骤）
+          applyProcessedImage(removeResult.imageData)
+        } else {
+          // 处理失败，隐藏提示
+          setGeminiToastState("hidden")
+        }
+      } catch (error) {
+        console.error("Gemini 水印处理失败:", error)
+        setGeminiToastState("hidden")
+      }
+    }
+
+    // 稍微延迟执行，确保图片已完全加载
+    const timer = setTimeout(processGeminiWatermark, 500)
+    return () => clearTimeout(timer)
+  }, [state.image, isOpen, applyProcessedImage])
+
+  // 重置 geminiCheckedRef 当编辑器关闭时
+  useEffect(() => {
+    if (!isOpen) {
+      geminiCheckedRef.current = false
+      setGeminiToastState("hidden")
+    }
+  }, [isOpen])
+
+  // 图片加载后初始化适合视口的缩放
+  const fitZoomInitializedRef = useRef(false)
+  useEffect(() => {
+    // 只有在模型加载完成后、图片已加载、编辑器打开时才初始化
+    // 因为 isModelLoading 时容器还没有渲染
+    if (state.image && isOpen && !isModelLoading && !fitZoomInitializedRef.current) {
+      // 使用 setTimeout 确保 DOM 已完全渲染和布局
+      const timer = setTimeout(() => {
+        if (containerRef.current) {
+          const rect = containerRef.current.getBoundingClientRect()
+          // 确保容器有有效尺寸
+          if (rect.width > 0 && rect.height > 0) {
+            initializeFitZoom()
+            fitZoomInitializedRef.current = true
+            setIsFitZoomReady(true)
+          }
+        }
+      }, 50)
+      
+      return () => clearTimeout(timer)
+    }
+    
+    // 编辑器关闭时重置标记
+    if (!isOpen) {
+      fitZoomInitializedRef.current = false
+      setIsFitZoomReady(false)
+    }
+  }, [state.image, isOpen, isModelLoading, initializeFitZoom])
 
   // 获取客户端坐标
   const getClientPoint = useCallback((e: React.MouseEvent | React.TouchEvent): Point | null => {
@@ -73,12 +186,13 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
     const clientPoint = getClientPoint(e)
     if (!clientPoint) return null
 
-    // 考虑缩放和平移
-    const x = (clientPoint.x - rect.left - state.pan.x) / state.zoom
-    const y = (clientPoint.y - rect.top - state.pan.y) / state.zoom
+    // rect 已经是经过 CSS transform (translate + scale) 后的实际位置和尺寸
+    // 所以不需要再减去 pan，只需要除以 zoom 来还原到原始画布坐标
+    const x = (clientPoint.x - rect.left) / state.zoom
+    const y = (clientPoint.y - rect.top) / state.zoom
 
     return { x, y }
-  }, [canvasRef, state.zoom, state.pan, getClientPoint])
+  }, [canvasRef, state.zoom, getClientPoint])
 
   // 检查点是否在图片范围内
   const isPointInImage = useCallback((point: Point): boolean => {
@@ -92,14 +206,15 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
 
   // 鼠标/触摸按下
   const handlePointerDown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    if (state.isProcessing) return
-    
     // 防止触摸时页面滚动
     if ('touches' in e) {
       e.preventDefault()
     }
     
+    // 擦除工具：处理中时禁用
     if (currentTool === "eraser") {
+      if (state.isProcessing) return
+      
       const point = getCanvasPoint(e)
       if (!point) return
       
@@ -112,6 +227,7 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
       drawOnMask(point)
       lastPointRef.current = point
     } else if (currentTool === "hand") {
+      // 抓手工具：处理中时也可以使用
       const clientPoint = getClientPoint(e)
       if (!clientPoint) return
       setIsPanning(true)
@@ -121,22 +237,24 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
 
   // 鼠标/触摸移动
   const handlePointerMove = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-    if (state.isProcessing) return
-
     // 防止触摸时页面滚动
     if ('touches' in e) {
       e.preventDefault()
     }
 
-    // 更新鼠标是否在图片上的状态
-    const point = getCanvasPoint(e)
-    if (point) {
-      setIsMouseOnImage(isPointInImage(point))
-    } else {
-      setIsMouseOnImage(false)
+    // 更新鼠标是否在图片上的状态（处理中时不更新，保持当前状态）
+    if (!state.isProcessing) {
+      const point = getCanvasPoint(e)
+      if (point) {
+        setIsMouseOnImage(isPointInImage(point))
+      } else {
+        setIsMouseOnImage(false)
+      }
     }
 
-    if (currentTool === "eraser" && state.isDrawing) {
+    // 擦除工具：处理中时禁用
+    if (currentTool === "eraser" && state.isDrawing && !state.isProcessing) {
+      const point = getCanvasPoint(e)
       if (!point || !lastPointRef.current) return
       // 只在图片范围内绘制
       if (isPointInImage(point)) {
@@ -144,6 +262,7 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
       }
       lastPointRef.current = point
     } else if (currentTool === "hand" && isPanning) {
+      // 抓手工具：处理中时也可以使用
       const clientPoint = getClientPoint(e)
       if (!clientPoint || !lastPanPointRef.current) return
       
@@ -239,16 +358,16 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
   const handleReset = useCallback(() => {
     reset()
     clearMask()
-    setPan({ x: 0, y: 0 })
-    setZoom(1)
-  }, [reset, clearMask, setPan, setZoom])
+    resetToFitZoom()
+  }, [reset, clearMask, resetToFitZoom])
 
   // 滚轮缩放
   const handleWheel = useCallback((e: React.WheelEvent) => {
     e.preventDefault()
-    const delta = e.deltaY > 0 ? -0.1 : 0.1
+    const fitZoom = getFitZoom()
+    const delta = e.deltaY > 0 ? -fitZoom * 0.1 : fitZoom * 0.1
     setZoom(state.zoom + delta)
-  }, [state.zoom, setZoom])
+  }, [state.zoom, setZoom, getFitZoom])
 
   // 键盘快捷键
   useEffect(() => {
@@ -275,14 +394,13 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
           break
         case "+":
         case "=":
-          setZoom(state.zoom + 0.1)
+          setZoom(state.zoom + getFitZoom() * 0.1)
           break
         case "-":
-          setZoom(state.zoom - 0.1)
+          setZoom(state.zoom - getFitZoom() * 0.1)
           break
         case "0":
-          setZoom(1)
-          setPan({ x: 0, y: 0 })
+          resetToFitZoom()
           break
         case "c":
           if (state.processedImageData) {
@@ -316,7 +434,7 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
       window.removeEventListener("keydown", handleKeyDown)
       window.removeEventListener("keyup", handleKeyUp)
     }
-  }, [isOpen, onClose, state.zoom, state.processedImageData, setZoom, setPan, toggleComparison, canUndo, canRedo, undo, redo])
+  }, [isOpen, onClose, state.zoom, state.processedImageData, setZoom, resetToFitZoom, getFitZoom, toggleComparison, canUndo, canRedo, undo, redo])
 
   // 防止移动端 body 滚动
   useEffect(() => {
@@ -350,7 +468,7 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
         <VisuallyHidden.Root>
           <DialogTitle>Image Editor</DialogTitle>
         </VisuallyHidden.Root>
-        
+
         {/* 模型加载时显示全屏加载页面 */}
         {isModelLoading ? (
           <ModelLoadingScreen progress={loadingProgress} />
@@ -362,6 +480,7 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
             onDownload={handleDownload}
             onClose={onClose}
             hasProcessedImage={state.image !== state.originalImage && !!state.originalImage}
+            geminiState={geminiToastState}
           />
 
           {/* 画布区域 */}
@@ -387,29 +506,32 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
             onTouchCancel={handlePointerUp}
             onWheel={handleWheel}
           >
-            {state.showComparison && state.originalImage && state.image !== state.originalImage ? (
-              <CompareSlider
-                originalImage={state.originalImage}
-                currentImage={state.image}
-                position={state.comparisonPosition}
-                onPositionChange={setComparisonPosition}
-                zoom={state.zoom}
-                pan={state.pan}
-              />
-            ) : (
-              <Canvas
-                canvasRef={canvasRef}
-                maskCanvasRef={maskCanvasRef}
-                image={state.image}
-                processedImageData={state.processedImageData}
-                zoom={state.zoom}
-                pan={state.pan}
-                isProcessing={state.isProcessing}
-                brushSize={state.brushSize}
-                currentTool={currentTool}
-                isMouseOnImage={isMouseOnImage}
-              />
-            )}
+            {/* 在 fitZoom 初始化完成前隐藏画布，防止大图闪现 */}
+            <div style={{ opacity: isFitZoomReady ? 1 : 0, transition: 'opacity 0.15s ease-out' }}>
+              {state.showComparison && state.originalImage && state.image !== state.originalImage ? (
+                <CompareSlider
+                  originalImage={state.originalImage}
+                  currentImage={state.image}
+                  position={state.comparisonPosition}
+                  onPositionChange={setComparisonPosition}
+                  zoom={state.zoom}
+                  pan={state.pan}
+                />
+              ) : (
+                <Canvas
+                  canvasRef={canvasRef}
+                  maskCanvasRef={maskCanvasRef}
+                  image={state.image}
+                  processedImageData={state.processedImageData}
+                  zoom={state.zoom}
+                  pan={state.pan}
+                  isProcessing={state.isProcessing}
+                  brushSize={state.brushSize}
+                  currentTool={currentTool}
+                  isMouseOnImage={isMouseOnImage}
+                />
+              )}
+            </div>
 
             {/* 底部悬浮工具面板（包含缩放控制） */}
             <ToolPanel
@@ -418,12 +540,10 @@ export function ImageEditor({ image, isOpen, onClose }: ImageEditorProps) {
                 brushSize={state.brushSize}
                 onBrushSizeChange={setBrushSize}
                 zoom={state.zoom}
-                onZoomIn={() => setZoom(state.zoom + 0.25)}
-                onZoomOut={() => setZoom(state.zoom - 0.25)}
-                onZoomReset={() => {
-                  setZoom(1)
-                  setPan({ x: 0, y: 0 })
-                }}
+                fitZoom={getFitZoom()}
+                onZoomIn={() => setZoom(state.zoom + getFitZoom() * 0.25)}
+                onZoomOut={() => setZoom(state.zoom - getFitZoom() * 0.25)}
+                onZoomReset={resetToFitZoom}
                 onUndo={undo}
                 onRedo={redo}
                 canUndo={canUndo}

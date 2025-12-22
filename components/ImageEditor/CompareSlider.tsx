@@ -146,23 +146,50 @@ export function CompareSlider({
 
       {/* 分割线 */}
       <div
-        className="absolute top-0 bottom-0 w-1 bg-white cursor-col-resize z-10"
-        style={{ left: `${position}%`, transform: "translateX(-50%)" }}
+        className="absolute top-0 bottom-0 bg-white cursor-col-resize z-10"
+        style={{ 
+          left: `${position}%`, 
+          transform: "translateX(-50%)",
+          width: Math.max(2, 4 / zoom), // 线宽度根据缩放调整
+        }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* 拖动手柄 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white rounded-full border-2 md:border-3 border-foreground shadow-[2px_2px_0_var(--foreground)] flex items-center justify-center">
-          <GripVertical className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
+        {/* 拖动手柄 - 应用反向缩放保持固定视觉大小 */}
+        <div 
+          className="absolute top-1/2 left-1/2 bg-white rounded-full border-3 border-foreground shadow-[3px_3px_0_var(--foreground)] flex items-center justify-center"
+          style={{
+            transform: `translate(-50%, -50%) scale(${1 / zoom})`,
+            width: 44,
+            height: 44,
+          }}
+        >
+          <GripVertical className="w-5 h-5 text-foreground" />
         </div>
       </div>
 
-      {/* 标签 */}
-      <div className="absolute top-2 left-2 md:top-4 md:left-4 px-2 py-0.5 md:px-3 md:py-1 bg-foreground text-background text-xs md:text-sm font-bold rounded-lg">
+      {/* 标签 - 应用反向缩放保持固定视觉大小 */}
+      <div 
+        className="absolute bg-foreground text-background text-sm font-bold rounded-lg px-3 py-1 whitespace-nowrap"
+        style={{
+          top: 16 / zoom,
+          left: 16 / zoom,
+          transform: `scale(${1 / zoom})`,
+          transformOrigin: "top left",
+        }}
+      >
         {t("original")}
       </div>
-      <div className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-primary text-foreground text-xs md:text-sm font-bold rounded-lg border md:border-2 border-foreground">
+      <div 
+        className="absolute bg-primary text-foreground text-sm font-bold rounded-lg px-3 py-1 border-2 border-foreground whitespace-nowrap"
+        style={{
+          top: 16 / zoom,
+          right: 16 / zoom,
+          transform: `scale(${1 / zoom})`,
+          transformOrigin: "top right",
+        }}
+      >
         {t("processed")}
       </div>
     </motion.div>

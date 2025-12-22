@@ -26,6 +26,7 @@ interface ToolPanelProps {
   brushSize: number
   onBrushSizeChange: (size: number) => void
   zoom: number
+  fitZoom: number
   onZoomIn: () => void
   onZoomOut: () => void
   onZoomReset: () => void
@@ -47,6 +48,7 @@ export function ToolPanel({
   brushSize,
   onBrushSizeChange,
   zoom,
+  fitZoom,
   onZoomIn,
   onZoomOut,
   onZoomReset,
@@ -272,7 +274,7 @@ export function ToolPanel({
             variant="ghost"
             size="icon-sm"
             onClick={onZoomOut}
-            disabled={zoom <= 0.25}
+            disabled={zoom <= fitZoom * 0.25}
             className="text-foreground hover:bg-foreground/10 border-0 w-6 h-6 md:w-7 md:h-7 disabled:opacity-30"
             title={t("zoomOut")}
           >
@@ -284,14 +286,14 @@ export function ToolPanel({
             className="text-foreground font-medium text-xs w-9 md:w-10 text-center hover:bg-foreground/10 rounded py-0.5 transition-colors"
             title={t("zoomReset")}
           >
-            {Math.round(zoom * 100)}%
+            {Math.round((zoom / fitZoom) * 100)}%
           </button>
 
           <Button
             variant="ghost"
             size="icon-sm"
             onClick={onZoomIn}
-            disabled={zoom >= 4}
+            disabled={zoom >= fitZoom * 4}
             className="text-foreground hover:bg-foreground/10 border-0 w-6 h-6 md:w-7 md:h-7 disabled:opacity-30"
             title={t("zoomIn")}
           >

@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import { Hero } from "@/components/Hero"
-import { Features } from "@/components/Features"
+import { Capabilities } from "@/components/Capabilities"
 import { HowItWorks } from "@/components/HowItWorks"
 import { Examples } from "@/components/Examples"
+import { GeminiFeature } from "@/components/GeminiFeature"
+import { LamaArchitecture } from "@/components/LamaArchitecture"
+import { FAQ } from "@/components/FAQ"
 import { Footer } from "@/components/Footer"
 import { ImageEditor } from "@/components/ImageEditor"
 import { Navbar } from "@/components/Navbar"
@@ -27,9 +30,12 @@ export default function Home() {
     <main className="min-h-screen bg-background relative">
       <Navbar />
       <Hero onImageSelect={handleImageSelect} />
+      <Capabilities />
       <HowItWorks />
       <Examples />
-      <Features />
+      <LamaArchitecture />
+      <GeminiFeature />
+      <FAQ />
       <Footer />
       
       {selectedImage && (

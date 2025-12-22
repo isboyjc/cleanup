@@ -47,25 +47,175 @@
   "howItWorks": {
     "title": "How It",
     "highlight": "Works",
-    "description": "Just a few simple steps to remove watermarks from your images",
+    "description": "Core AI workflow handles all watermarks, Gemini detection is an optional enhancement",
+    "branch": {
+      "title": "Smart Routing",
+      "gemini": {
+        "title": "Gemini Fast Track",
+        "subtitle": "When Gemini detection is ON",
+        "optional": "Optional",
+        "description": "When enabled, uploaded images are auto-scanned for Gemini watermarks",
+        "features": {
+          "autoDetect": "Auto-detect Gemini watermark",
+          "instant": "Instant lossless removal",
+          "undoable": "Undoable operation"
+        },
+        "continueToMain": "Continue to core workflow after"
+      },
+      "ai": {
+        "title": "Universal AI Processing",
+        "subtitle": "For all types of watermarks"
+      }
+    },
     "steps": {
       "upload": {
         "title": "Upload Image",
-        "description": "Drag & drop or click to upload the image you want to process"
+        "description": "Drag & drop or click to upload, supports JPG, PNG, WebP"
+      },
+      "autoDetect": {
+        "title": "Auto Detect & Remove",
+        "description": "System auto-detects Gemini watermark and removes instantly"
+      },
+      "undoable": {
+        "title": "Undoable Operation",
+        "description": "Auto-processed result can be undone, supports revert to original"
+      },
+      "continueEdit": {
+        "title": "Continue Editing",
+        "description": "Need to remove other content? Continue with AI eraser tool"
       },
       "select": {
         "title": "Select Area",
-        "description": "Use the eraser tool to paint over the watermark area"
+        "description": "Use eraser tool to paint over the watermark area"
       },
       "process": {
-        "title": "AI Processing",
-        "description": "LaMa model automatically analyzes and fills the selected area"
+        "title": "AI Smart Fill",
+        "description": "LaMa model analyzes context and fills the selected area",
+        "core": "Core"
+      },
+      "compare": {
+        "title": "Preview & Compare",
+        "description": "Real-time before/after comparison, supports continuous editing"
       },
       "download": {
         "title": "Download Result",
-        "description": "Preview the result and download the processed image"
+        "description": "Download HD original when satisfied, supports lossless PNG export"
+      }
+    },
+    "legend": {
+      "coreFlow": {
+        "title": "Core Workflow",
+        "description": "All images go through this workflow"
+      },
+      "geminiExtension": {
+        "title": "Gemini Extension",
+        "description": "Optional feature for auto pre-processing Gemini watermarks"
       }
     }
+  },
+  "capabilities": {
+    "badge": "Core Capabilities",
+    "title": "Powerful",
+    "highlight": "Features",
+    "description": "Combining AI smart restoration with mathematically precise algorithms for comprehensive watermark removal",
+    "items": {
+      "aiPowered": {
+        "title": "AI Smart Restoration",
+        "description": "Powered by LaMa deep learning model for intelligent context-aware image repair"
+      },
+      "geminiOptimized": {
+        "title": "Gemini Optimized",
+        "description": "Uses Reverse Alpha Blending for instant lossless Gemini watermark removal"
+      },
+      "privacy": {
+        "title": "Privacy Safe",
+        "description": "All processing done locally in browser, images never uploaded to servers"
+      },
+      "noCost": {
+        "title": "Completely Free",
+        "description": "No registration, no payment, no limits - free forever"
+      },
+      "preciseControl": {
+        "title": "Precise Control",
+        "description": "Adjust brush size freely, precisely paint areas to remove"
+      },
+      "undoRedo": {
+        "title": "History Support",
+        "description": "Multi-step undo/redo, saves up to 30 editing history steps"
+      },
+      "multiFormat": {
+        "title": "Multi-Format",
+        "description": "Supports JPG, PNG, WebP and other common formats"
+      },
+      "crossPlatform": {
+        "title": "Cross-Platform",
+        "description": "Works on desktop and mobile browsers, use anywhere"
+      }
+    }
+  },
+  "lamaArchitecture": {
+    "badge": "Tech Architecture",
+    "title": "LaMa",
+    "highlight": "Architecture",
+    "description": "Professional image inpainting model running in browser via ONNX Runtime Web",
+    "pipeline": {
+      "title": "Processing Pipeline",
+      "input": {
+        "title": "Image Input",
+        "description": "Load and preprocess image"
+      },
+      "mask": {
+        "title": "Mask Generation",
+        "description": "Create binary mask from user painting"
+      },
+      "inference": {
+        "title": "Model Inference",
+        "description": "LaMa analyzes context and fills"
+      },
+      "output": {
+        "title": "Result Output",
+        "description": "Scale back and blend with original"
+      }
+    },
+    "lama": {
+      "title": "LaMa Model",
+      "subtitle": "Large Mask Inpainting",
+      "description": "LaMa is a large mask inpainting model by Samsung AI Research, designed for handling large missing regions with high-quality, semantically coherent results.",
+      "features": {
+        "fourier": "Fast Fourier Convolutions - Expanded receptive field",
+        "attention": "Global Attention - Understanding image context",
+        "perceptual": "Perceptual Loss - Natural texture generation"
+      }
+    },
+    "runtime": {
+      "title": "ONNX Runtime Web",
+      "subtitle": "Browser-based AI Inference Engine"
+    },
+    "tech": {
+      "onnx": {
+        "title": "ONNX Format",
+        "description": "Cross-framework standard"
+      },
+      "worker": {
+        "title": "Web Worker",
+        "description": "Background thread, non-blocking"
+      },
+      "wasm": {
+        "title": "WASM Runtime",
+        "description": "High-performance local compute"
+      },
+      "cache": {
+        "title": "Browser Cache",
+        "description": "Local model storage"
+      }
+    },
+    "stats": {
+      "modelSize": "Model Size",
+      "inputSize": "Internal Size",
+      "inferenceTime": "Inference Time",
+      "clientSide": "Client-side"
+    },
+    "note": "Supports any image size - auto-scaled for processing, restored to original resolution"
   },
   "features": {
     "title": "Powerful",
@@ -101,7 +251,9 @@
   "footer": {
     "builtWith": "Built with",
     "and": "and AI",
-    "copyright": "Powered by LaMa model, running on ONNX Runtime Web in browser."
+    "copyright": "Powered by LaMa model, running on ONNX Runtime Web in browser.",
+    "changelog": "Changelog",
+    "friendLinks": "Resources"
   },
   "examples": {
     "badge": "See It in Action",
@@ -116,6 +268,128 @@
     "original": "Original",
     "comparison": "Comparison",
     "footerHint": "All examples above were processed in real-time by Clean PicGo in the browser"
+  },
+  "geminiDetection": {
+    "label": "Gemini Watermark",
+    "tooltip": "Gemini Detection · Reverse Alpha Blending · Instant Lossless",
+    "statusOn": "ON",
+    "statusOff": "OFF",
+    "detecting": "Detecting Gemini watermark...",
+    "processing": "Watermark detected, removing...",
+    "success": "Gemini watermark removed",
+    "notFound": "No Gemini watermark detected"
+  },
+  "geminiFeature": {
+    "badge": "Gemini Optimized",
+    "title": "Instant Lossless for",
+    "highlight": "Gemini",
+    "description": "For Gemini AI-generated watermarks, we use mathematically precise Reverse Alpha Blending algorithm for instant lossless removal",
+    "items": {
+      "autoDetect": {
+        "title": "Smart Auto-Detection",
+        "description": "Automatically detects Gemini watermarks after upload, no manual operation needed"
+      },
+      "instant": {
+        "title": "Instant Processing",
+        "description": "No large AI model loading required, pure math calculation, extremely fast"
+      },
+      "lossless": {
+        "title": "Mathematically Lossless",
+        "description": "Based on Reverse Alpha Blending, 100% original pixel restoration, zero quality loss"
+      },
+      "undoable": {
+        "title": "Undoable Operation",
+        "description": "Auto-processing saved as editing step, supports undo, can continue manual editing"
+      }
+    },
+    "algorithm": {
+      "title": "Reverse Alpha Blending",
+      "subtitle": "Mathematical Precision",
+      "watermarkFormula": "Gemini watermark formula:",
+      "reverseFormula": "Reverse formula to remove:",
+      "description": "Using pre-captured watermark Alpha maps, we can precisely calculate each pixel's original value for lossless recovery.",
+      "credit": "Algorithm based on"
+    }
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked",
+    "highlight": "Questions",
+    "description": "Learn more about Clean PicGo's technical details and usage",
+    "moreQuestions": "Have more questions? Feel free to ask on",
+    "items": {
+      "howItWorks": {
+        "question": "How does Clean PicGo work?",
+        "answer": "Clean PicGo uses two technologies to remove watermarks:\n\n1. **LaMa AI Model**: Works for all types of watermarks and unwanted objects, using deep learning to intelligently fill selected areas\n\n2. **Gemini-specific Algorithm**: For Gemini AI image watermarks, uses mathematically precise Reverse Alpha Blending for lossless pixel recovery\n\nAll processing is done locally in your browser - images are never uploaded to any server."
+      },
+      "geminiOptimization": {
+        "question": "What optimizations are made for Gemini watermark removal?",
+        "answer": "Compared to the original gemini-watermark-remover project, we've made these improvements:\n\n• **Watermark Detection**: Pre-checks if Gemini watermark actually exists before processing\n• **Numerical Stability**: Added Alpha ceiling protection to prevent division-by-zero pixel anomalies\n• **Automated Integration**: No manual mode switching needed, auto-detects and processes on upload\n• **Undoable Design**: Processing result saved as editing step, supports undo, can continue with AI model for other areas"
+      },
+      "lamaOptimization": {
+        "question": "What optimizations are made for LaMa model processing?",
+        "answer": "We've optimized LaMa model usage in several ways:\n\n• **Web Worker Background Processing**: Model inference runs in a separate thread, main thread stays completely responsive during processing\n• **Browser Caching**: Model files auto-cached after download, no re-downloading needed\n• **Progressive Editing**: Supports continuous editing, each result becomes the base for next edit\n• **Smart Masking**: Only processes user-painted areas, keeps everything else intact\n• **History Support**: Multi-step undo/redo, saves up to 30 history steps"
+      },
+      "privacy": {
+        "question": "Are my images safe?",
+        "answer": "Absolutely! All Clean PicGo processing happens locally in your browser:\n\n• Images never uploaded to any server\n• AI model runs in browser\n• We don't collect any user data\n• All data cleared when you close the page\n\nThat's why we say \"Processed entirely in your browser to protect your privacy.\""
+      },
+      "formats": {
+        "question": "What image formats are supported?",
+        "answer": "Clean PicGo supports common image formats:\n\n• **JPG/JPEG**: Most common photo format\n• **PNG**: Images with transparency support\n• **WebP**: Modern image format by Google\n\nProcessed images are exported as PNG by default for best quality."
+      },
+      "modelSize": {
+        "question": "Why does the first load require a model download?",
+        "answer": "LaMa is a professional deep learning model for image inpainting, with ~200MB model file.\n\n• **First use**: Download from CDN required, may take 1-2 minutes\n• **Subsequent use**: Model cached in browser, no re-download needed\n• **Gemini mode**: No model download needed, uses pure math algorithm\n\nDownload progress is shown in real-time."
+      },
+      "limitations": {
+        "question": "Are there any limitations?",
+        "answer": "Clean PicGo has some technical limitations:\n\n• **Image size**: LaMa model internally processes at 512×512, larger images are auto-scaled\n• **Gemini watermark**: Only removes visible semi-transparent watermarks, cannot remove SynthID or other steganographic watermarks\n• **Browser support**: Requires modern browser with WebGL (Chrome 90+, Firefox 88+, Safari 14+)\n• **Processing time**: Depends on device performance, mobile devices may be slower"
+      },
+      "geminiSaveMethod": {
+        "question": "Why does Gemini watermark removal fail for some images?",
+        "answer": "This is usually related to how the image was saved:\n\n**Correct method**: After generating an image on Gemini / Nano Banana Pro, click the \"Download\" button to save. This preserves the original watermark information.\n\n**Incorrect method**: Using right-click \"Save As\" or \"Save Image\" may cause the browser to re-encode the image, altering or losing watermark characteristics.\n\n**Solutions**:\n• Regenerate the image and use the download button\n• If right-click saved images fail detection, try the universal AI eraser mode instead\n\nNote: This is due to how browsers process images, not a limitation of this tool."
+      }
+    }
+  },
+  "changelog": {
+    "title": "Change",
+    "highlight": "Log",
+    "description": "Track Clean PicGo version updates and new features",
+    "back": "Back to Home",
+    "types": {
+      "major": "Major Update",
+      "minor": "Feature Update",
+      "patch": "Bug Fix"
+    },
+    "moreUpdates": "View more updates on",
+    "versions": {
+      "v1_1_0": {
+        "changes": [
+          { "type": "feature", "text": "Add Gemini watermark auto-detection and lossless removal" },
+          { "type": "feature", "text": "Support Gemini detection toggle on homepage" },
+          { "type": "feature", "text": "Web Worker background thread for model inference, non-blocking main thread" },
+          { "type": "improvement", "text": "Optimize homepage layout with core capabilities, FAQ sections" },
+          { "type": "improvement", "text": "Optimize large image display, auto-fit viewport at 100% zoom" },
+          { "type": "improvement", "text": "Optimize Gemini watermark notification, lightweight display in navbar" },
+          { "type": "improvement", "text": "Support zoom and pan during image processing" },
+          { "type": "improvement", "text": "Add PWA support indicator" },
+          { "type": "fix", "text": "Fix model cache status detection issue" },
+          { "type": "fix", "text": "Fix eraser area detection offset after moving image with hand tool" },
+          { "type": "fix", "text": "Fix compare slider controls too small on large images" }
+        ]
+      },
+      "v1_0_0": {
+        "changes": [
+          { "type": "feature", "text": "Smart image inpainting based on LaMa model" },
+          { "type": "feature", "text": "Runs entirely in browser for privacy protection" },
+          { "type": "feature", "text": "Support JPG, PNG, WebP formats" },
+          { "type": "feature", "text": "Multi-step undo/redo, up to 30 history steps" },
+          { "type": "feature", "text": "Real-time preview comparison" },
+          { "type": "feature", "text": "Local model caching, no re-download needed" }
+        ]
+      }
+    }
   },
   "editor": {
     "toolbar": {

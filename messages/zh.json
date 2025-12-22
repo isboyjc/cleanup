@@ -47,25 +47,175 @@
   "howItWorks": {
     "title": "如何",
     "highlight": "使用",
-    "description": "只需简单几步，即可完成图片去水印",
+    "description": "核心 AI 流程处理各类水印，Gemini 检测为可选增强功能",
+    "branch": {
+      "title": "智能分流",
+      "gemini": {
+        "title": "Gemini 极速通道",
+        "subtitle": "开启 Gemini 检测时",
+        "optional": "可选增强",
+        "description": "开启 Gemini 检测后，上传图片会自动检测并处理 Gemini 水印",
+        "features": {
+          "autoDetect": "自动检测 Gemini 水印",
+          "instant": "毫秒级无损去除",
+          "undoable": "可撤销回退"
+        },
+        "continueToMain": "处理完成后继续核心流程"
+      },
+      "ai": {
+        "title": "通用 AI 处理",
+        "subtitle": "适用于各类水印"
+      }
+    },
     "steps": {
       "upload": {
         "title": "上传图片",
-        "description": "拖拽或点击上传需要处理的图片"
+        "description": "拖拽或点击上传，支持 JPG、PNG、WebP 格式"
+      },
+      "autoDetect": {
+        "title": "自动检测去除",
+        "description": "系统自动检测 Gemini 水印并立即去除，毫秒级完成"
+      },
+      "undoable": {
+        "title": "可回退操作",
+        "description": "自动处理结果可撤销，支持回退到原图"
+      },
+      "continueEdit": {
+        "title": "继续编辑",
+        "description": "如需去除其他内容，可继续使用 AI 擦除工具"
       },
       "select": {
         "title": "选择区域",
         "description": "使用橡皮擦工具涂抹需要去除的水印区域"
       },
       "process": {
-        "title": "AI 处理",
-        "description": "LaMa 模型自动分析并填充选中区域"
+        "title": "AI 智能修复",
+        "description": "LaMa 模型分析上下文，智能填充选中区域",
+        "core": "核心"
+      },
+      "compare": {
+        "title": "预览对比",
+        "description": "实时对比处理前后效果，支持连续多次编辑"
       },
       "download": {
         "title": "下载结果",
-        "description": "预览效果满意后下载处理后的图片"
+        "description": "满意后下载高清原图，支持 PNG 无损导出"
+      }
+    },
+    "legend": {
+      "coreFlow": {
+        "title": "核心流程",
+        "description": "所有图片都会经过此流程处理"
+      },
+      "geminiExtension": {
+        "title": "Gemini 扩展",
+        "description": "可选功能，开启后自动预处理 Gemini 水印"
       }
     }
+  },
+  "capabilities": {
+    "badge": "核心能力",
+    "title": "强大的",
+    "highlight": "功能",
+    "description": "集 AI 智能修复与数学精确算法于一体，为您提供全方位的水印去除解决方案",
+    "items": {
+      "aiPowered": {
+        "title": "AI 智能修复",
+        "description": "基于 LaMa 深度学习模型，智能分析图像上下文进行修复"
+      },
+      "geminiOptimized": {
+        "title": "Gemini 专属优化",
+        "description": "针对 Gemini 图片使用反向 Alpha 混合算法，毫秒级无损去除"
+      },
+      "privacy": {
+        "title": "隐私安全",
+        "description": "所有处理在浏览器本地完成，图片永不上传服务器"
+      },
+      "noCost": {
+        "title": "完全免费",
+        "description": "无需注册、无需付费、无使用限制，永久免费使用"
+      },
+      "preciseControl": {
+        "title": "精确控制",
+        "description": "自由调整笔刷大小，精确涂抹需要去除的区域"
+      },
+      "undoRedo": {
+        "title": "历史记录",
+        "description": "支持多步撤销/重做，最多保存 30 步编辑历史"
+      },
+      "multiFormat": {
+        "title": "多格式支持",
+        "description": "支持 JPG、PNG、WebP 等常见图片格式"
+      },
+      "crossPlatform": {
+        "title": "跨平台使用",
+        "description": "支持桌面端和移动端浏览器，随时随地使用"
+      }
+    }
+  },
+  "lamaArchitecture": {
+    "badge": "技术架构",
+    "title": "LaMa",
+    "highlight": "技术架构",
+    "description": "基于 ONNX Runtime Web 在浏览器中运行专业级图像修复模型",
+    "pipeline": {
+      "title": "处理流水线",
+      "input": {
+        "title": "图像输入",
+        "description": "加载原图并进行预处理"
+      },
+      "mask": {
+        "title": "蒙版生成",
+        "description": "根据用户涂抹生成二值蒙版"
+      },
+      "inference": {
+        "title": "模型推理",
+        "description": "LaMa 模型分析上下文填充"
+      },
+      "output": {
+        "title": "结果输出",
+        "description": "还原至原图尺寸并融合"
+      }
+    },
+    "lama": {
+      "title": "LaMa 模型",
+      "subtitle": "Large Mask Inpainting",
+      "description": "LaMa 是由三星 AI 研究院开发的大蒙版图像修复模型，专为处理大面积缺失区域而设计，能够生成高质量、语义连贯的填充内容。",
+      "features": {
+        "fourier": "快速傅里叶卷积 - 扩大感受野",
+        "attention": "全局注意力机制 - 理解图像上下文",
+        "perceptual": "感知损失训练 - 生成自然纹理"
+      }
+    },
+    "runtime": {
+      "title": "ONNX Runtime Web",
+      "subtitle": "浏览器端 AI 推理引擎"
+    },
+    "tech": {
+      "onnx": {
+        "title": "ONNX 格式",
+        "description": "跨框架模型标准"
+      },
+      "worker": {
+        "title": "Web Worker",
+        "description": "后台线程处理不阻塞"
+      },
+      "wasm": {
+        "title": "WASM 运行",
+        "description": "高性能本地计算"
+      },
+      "cache": {
+        "title": "浏览器缓存",
+        "description": "模型文件本地存储"
+      }
+    },
+    "stats": {
+      "modelSize": "模型大小",
+      "inputSize": "模型内部尺寸",
+      "inferenceTime": "推理时间",
+      "clientSide": "本地处理"
+    },
+    "note": "支持任意尺寸图片，系统自动缩放处理后还原至原始分辨率"
   },
   "features": {
     "title": "强大的",
@@ -101,7 +251,9 @@
   "footer": {
     "builtWith": "使用",
     "and": "和 AI 构建",
-    "copyright": "基于 LaMa 模型，使用 ONNX Runtime Web 在浏览器中运行。"
+    "copyright": "基于 LaMa 模型，使用 ONNX Runtime Web 在浏览器中运行。",
+    "changelog": "更新日志",
+    "friendLinks": "相关资源"
   },
   "examples": {
     "badge": "效果展示",
@@ -116,6 +268,128 @@
     "original": "原图",
     "comparison": "效果对比",
     "footerHint": "以上案例均由 Clean PicGo 在浏览器中实时处理生成"
+  },
+  "geminiDetection": {
+    "label": "Gemini 水印",
+    "tooltip": "Gemini 水印检测 · 反向 Alpha 混合 · 极速无损",
+    "statusOn": "已开启",
+    "statusOff": "已关闭",
+    "detecting": "正在检测 Gemini 水印...",
+    "processing": "检测到水印，正在去除...",
+    "success": "已自动去除 Gemini 水印",
+    "notFound": "未检测到 Gemini 水印"
+  },
+  "geminiFeature": {
+    "badge": "Gemini 专属优化",
+    "title": "针对 Gemini",
+    "highlight": "极速无损",
+    "description": "针对 Gemini AI 生成图片的水印，我们采用数学精确的反向 Alpha 混合算法，实现毫秒级无损去除",
+    "items": {
+      "autoDetect": {
+        "title": "智能自动检测",
+        "description": "上传图片后自动识别是否存在 Gemini 水印，无需手动操作"
+      },
+      "instant": {
+        "title": "毫秒级处理",
+        "description": "无需加载大型 AI 模型，纯数学计算，处理速度极快"
+      },
+      "lossless": {
+        "title": "数学精确无损",
+        "description": "基于反向 Alpha 混合算法，100% 还原原始像素，零质量损失"
+      },
+      "undoable": {
+        "title": "可回退操作",
+        "description": "自动处理作为编辑步骤保存，支持撤销回退，可继续手动编辑"
+      }
+    },
+    "algorithm": {
+      "title": "反向 Alpha 混合",
+      "subtitle": "Reverse Alpha Blending",
+      "watermarkFormula": "Gemini 水印添加公式：",
+      "reverseFormula": "反向解算去除水印：",
+      "description": "通过预先捕获的水印 Alpha 贴图，我们可以精确计算出每个像素的原始值，实现无损恢复。",
+      "credit": "算法原理参考自"
+    }
+  },
+  "faq": {
+    "badge": "常见问题",
+    "title": "常见",
+    "highlight": "问题",
+    "description": "了解更多关于 Clean PicGo 的技术细节和使用方法",
+    "moreQuestions": "还有其他问题？欢迎在",
+    "items": {
+      "howItWorks": {
+        "question": "Clean PicGo 是如何工作的？",
+        "answer": "Clean PicGo 使用两种技术去除水印：\n\n1. **LaMa AI 模型**：适用于各种类型的水印和不需要的物体，使用深度学习模型智能填充被选中的区域\n\n2. **Gemini 专用算法**：针对 Gemini AI 图片的水印，使用数学精确的反向 Alpha 混合算法，无损恢复原始像素\n\n所有处理都在您的浏览器本地完成，图片不会上传到任何服务器。"
+      },
+      "geminiOptimization": {
+        "question": "Gemini 水印去除有哪些优化？",
+        "answer": "相比原始的 gemini-watermark-remover 项目，我们做了以下优化：\n\n• **水印存在性检测**：在处理前先检测是否真的存在 Gemini 水印，避免误处理\n• **数值稳定性优化**：添加 Alpha 上限保护，防止除零错误导致的像素异常\n• **自动化流程集成**：无需手动切换模式，上传图片后自动检测并处理\n• **可回退设计**：处理结果作为编辑步骤保存，支持撤销，可继续使用 AI 模型处理其他区域"
+      },
+      "lamaOptimization": {
+        "question": "LaMa 模型处理有哪些优化？",
+        "answer": "我们对 LaMa 模型的使用进行了多项优化：\n\n• **Web Worker 后台处理**：模型推理在独立线程运行，主线程完全不阻塞，处理期间可自由缩放平移\n• **浏览器缓存**：模型文件下载后自动缓存，后续使用无需重复下载\n• **渐进式处理**：支持连续编辑，每次处理结果可作为下一次编辑的基础\n• **智能蒙版**：只处理用户涂抹的区域，保持其他区域原样\n• **历史记录**：支持多步撤销/重做，最多保存 30 步历史"
+      },
+      "privacy": {
+        "question": "我的图片安全吗？",
+        "answer": "绝对安全！Clean PicGo 的所有处理都在您的浏览器本地完成：\n\n• 图片不会上传到任何服务器\n• AI 模型在浏览器中运行\n• 我们不收集任何用户数据\n• 关闭页面后所有数据自动清除\n\n这就是为什么我们说「完全在浏览器中处理，保护您的隐私」。"
+      },
+      "formats": {
+        "question": "支持哪些图片格式？",
+        "answer": "Clean PicGo 支持常见的图片格式：\n\n• **JPG/JPEG**：最常用的照片格式\n• **PNG**：支持透明背景的图片\n• **WebP**：Google 开发的现代图片格式\n\n处理后的图片默认以 PNG 格式导出，保证最佳质量。"
+      },
+      "modelSize": {
+        "question": "为什么首次加载需要下载模型？",
+        "answer": "LaMa 是一个专业的图像修复深度学习模型，模型文件约 200MB。\n\n• **首次使用**：需要从 CDN 下载模型文件，可能需要 1-2 分钟\n• **后续使用**：模型会缓存在浏览器中，无需重复下载\n• **Gemini 模式**：不需要下载模型，使用纯数学算法\n\n下载进度会实时显示，请耐心等待。"
+      },
+      "limitations": {
+        "question": "有什么使用限制吗？",
+        "answer": "Clean PicGo 有一些技术限制：\n\n• **图片尺寸**：LaMa 模型内部处理尺寸限制为 512×512，大图会自动缩放处理后还原\n• **Gemini 水印**：只能去除可见的半透明水印，无法去除 SynthID 等隐写水印\n• **浏览器兼容**：需要支持 WebGL 的现代浏览器（Chrome 90+、Firefox 88+、Safari 14+）\n• **处理时间**：取决于设备性能，移动设备可能较慢"
+      },
+      "geminiSaveMethod": {
+        "question": "为什么有些 Gemini 图片去除水印不成功？",
+        "answer": "这通常与图片的保存方式有关：\n\n**正确方式**：在 Gemini / Nano Banana Pro 等平台生成图片后，请点击「下载」按钮保存图片，这样可以获得带有原始水印信息的完整图片。\n\n**错误方式**：如果使用右键「另存为」或「保存图片」，浏览器可能会保存经过重新编码的图片，导致水印特征发生变化或丢失。\n\n**解决方案**：\n• 重新生成图片并使用下载按钮保存\n• 如果右键保存的图片检测失败，可以尝试使用通用 AI 擦除模式手动处理\n\n注意：这是由于浏览器处理图片的方式导致的，并非本工具的问题。"
+      }
+    }
+  },
+  "changelog": {
+    "title": "更新",
+    "highlight": "日志",
+    "description": "了解 Clean PicGo 的版本迭代和功能更新",
+    "back": "返回首页",
+    "types": {
+      "major": "重大更新",
+      "minor": "功能更新",
+      "patch": "问题修复"
+    },
+    "moreUpdates": "查看更多更新记录：",
+    "versions": {
+      "v1_1_0": {
+        "changes": [
+          { "type": "feature", "text": "新增 Gemini 水印自动检测与无损去除功能" },
+          { "type": "feature", "text": "支持 Gemini 检测开关，可在首页控制是否启用" },
+          { "type": "feature", "text": "使用 Web Worker 后台线程处理模型推理，主线程完全不阻塞" },
+          { "type": "improvement", "text": "优化首页布局，新增核心能力、FAQ 等模块" },
+          { "type": "improvement", "text": "优化大图显示，100% 视口下自动适配可视区域" },
+          { "type": "improvement", "text": "优化 Gemini 水印提示，改为导航栏内轻量显示" },
+          { "type": "improvement", "text": "图片处理期间支持滚轮缩放和抓手平移" },
+          { "type": "improvement", "text": "新增 PWA 支持标识" },
+          { "type": "fix", "text": "修复模型缓存状态检测问题" },
+          { "type": "fix", "text": "修复抓手工具移动图片后，擦除区域检测错位的问题" },
+          { "type": "fix", "text": "修复预览对比模式下大图控件过小的问题" }
+        ]
+      },
+      "v1_0_0": {
+        "changes": [
+          { "type": "feature", "text": "基于 LaMa 模型的智能图像修复" },
+          { "type": "feature", "text": "完全在浏览器本地运行，保护隐私" },
+          { "type": "feature", "text": "支持 JPG、PNG、WebP 格式" },
+          { "type": "feature", "text": "支持多步撤销/重做，最多 30 步历史" },
+          { "type": "feature", "text": "支持实时预览对比功能" },
+          { "type": "feature", "text": "模型文件本地缓存，无需重复下载" }
+        ]
+      }
+    }
   },
   "editor": {
     "toolbar": {
