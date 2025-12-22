@@ -38,6 +38,10 @@
       "room": "室内",
       "jacket": "夹克",
       "portrait": "灰度"
+    },
+    "modelStatus": {
+      "ready": "模型已就绪",
+      "notReady": "首次使用需下载模型"
     }
   },
   "howItWorks": {

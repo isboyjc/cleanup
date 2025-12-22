@@ -443,3 +443,19 @@ export async function clearModelCache(): Promise<void> {
     }
   }
 }
+
+// 检查模型缓存是否存在
+export async function isModelCached(): Promise<boolean> {
+  if (typeof window === "undefined" || !("caches" in window)) {
+    return false
+  }
+  
+  try {
+    const cache = await caches.open(CACHE_NAME)
+    const cachedResponse = await cache.match(MODEL_URL)
+    return cachedResponse !== undefined
+  } catch (e) {
+    console.warn("检查缓存失败:", e)
+    return false
+  }
+}

@@ -38,6 +38,10 @@
       "room": "Room",
       "jacket": "Jacket",
       "portrait": "Grayscale"
+    },
+    "modelStatus": {
+      "ready": "Model Ready",
+      "notReady": "Model download required"
     }
   },
   "howItWorks": {

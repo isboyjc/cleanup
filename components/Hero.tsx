@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useCallback } from "react"
-import { motion } from "framer-motion"
-import { Upload, ImageIcon, Sparkles, Wand2 } from "lucide-react"
+import { useState, useCallback, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Upload, ImageIcon, Sparkles, Wand2, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { isModelCached } from "@/lib/lama-processor"
 
 const sampleImages = [
   {
@@ -31,7 +32,13 @@ interface HeroProps {
 export function Hero({ onImageSelect }: HeroProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [loadingSample, setLoadingSample] = useState<number | null>(null)
+  const [modelReady, setModelReady] = useState<boolean | null>(null)
   const t = useTranslations("hero")
+
+  // 检查模型缓存状态
+  useEffect(() => {
+    isModelCached().then(setModelReady)
+  }, [])
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -102,15 +109,45 @@ export function Hero({ onImageSelect }: HeroProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <motion.div 
-          className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground border-3 border-foreground rounded-full shadow-[3px_3px_0_var(--foreground)] mb-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-        >
-          <Sparkles className="w-4 h-4" />
-          <span className="text-sm font-bold">{t("badge")}</span>
-        </motion.div>
+        <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
+          <motion.div 
+            className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground border-3 border-foreground rounded-full shadow-[3px_3px_0_var(--foreground)]"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            <Sparkles className="w-4 h-4" />
+            <span className="text-sm font-bold">{t("badge")}</span>
+          </motion.div>
+          
+          {/* 模型状态标识 */}
+          <AnimatePresence mode="wait">
+            {modelReady !== null && (
+              <motion.div
+                key={modelReady ? "ready" : "not-ready"}
+                initial={{ opacity: 0, scale: 0.8, x: -10 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+                className={`
+                  inline-flex items-center gap-2 px-4 py-2
+                  border-3 border-foreground rounded-full
+                  shadow-[3px_3px_0_var(--foreground)]
+                  text-sm font-bold
+                  ${modelReady 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted text-muted-foreground"
+                  }
+                `}
+              >
+                <Zap className={`w-4 h-4 ${modelReady ? "fill-current" : ""}`} />
+                <span>
+                  {modelReady ? t("modelStatus.ready") : t("modelStatus.notReady")}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           <span className="block">{t("title.line1")}</span>
