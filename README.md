@@ -7,16 +7,17 @@
 **AI 驱动的图片去水印工具 | AI-Powered Image Watermark Remover**
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-clean.picgo.studio-blue?style=for-the-badge)](https://clean.picgo.studio)
+[![Version](https://img.shields.io/badge/Version-1.1.0-orange?style=for-the-badge)](https://github.com/isboyjc/cleanup/releases)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-isboyjc-181717?style=for-the-badge&logo=github)](https://github.com/isboyjc/cleanup)
-[![X](https://img.shields.io/badge/X-@isboyjc-000000?style=for-the-badge&logo=x)](https://x.com/isboyjc)
 
 <p align="center">
   <strong>🚀 秒级处理 · 🔒 本地运行 · 💯 完全免费 · ✨ 高质量输出</strong>
 </p>
+
+[![GitHub](https://img.shields.io/badge/GitHub-isboyjc-181717?style=flat&logo=github)](https://github.com/isboyjc/cleanup)
+[![X](https://img.shields.io/badge/X-@isboyjc-000000?style=flat&logo=x)](https://x.com/isboyjc)
 
 [English](#english) | [简体中文](#简体中文)
 
@@ -40,11 +41,12 @@
 |------|------|
 | 🎨 **智能擦除** | 使用橡皮擦工具选中需要去除的区域，AI 会自动填充背景 |
 | ⚡ **Gemini 专用模式** | 自动检测并无损去除 Gemini AI 生成图片的水印，基于反向 Alpha 混合算法 |
-| 🚀 **实时处理** | 基于 WebGL 加速的 ONNX Runtime，在浏览器中即可完成处理 |
+| 🧵 **Web Worker 后台处理** | 模型推理在独立线程运行，主线程完全不阻塞，处理期间可自由操作 |
 | 🔒 **隐私安全** | 所有处理完全在本地进行，图片不会上传到任何服务器 |
 | 🎭 **蒙版技术** | 精确的蒙版生成技术，确保只处理选中的区域 |
 | 👁️ **实时对比** | 处理完成后可以左右对比查看处理前后的效果差异 |
 | 📥 **高清导出** | 支持导出原始分辨率的处理结果，保持图片质量 |
+| 📱 **PWA 支持** | 可安装为桌面应用，支持离线使用 |
 
 #### ⚡ Gemini 水印专用处理
 
@@ -67,14 +69,16 @@
 
 ### 🛠️ 技术栈
 
-- **框架**: [Next.js 16](https://nextjs.org/) + [React 19](https://react.dev/)
-- **语言**: [TypeScript 5](https://www.typescriptlang.org/)
-- **样式**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **AI 推理**: [ONNX Runtime Web](https://onnxruntime.ai/)
-- **AI 模型**: [LaMa](https://github.com/advimman/lama) (Large Mask Inpainting)
-- **动画**: [Framer Motion](https://www.framer.com/motion/)
-- **国际化**: [next-intl](https://next-intl-docs.vercel.app/)
-- **UI 组件**: [Radix UI](https://www.radix-ui.com/)
+| 类别 | 技术 |
+|------|------|
+| **框架** | [Next.js 16](https://nextjs.org/) + [React 19](https://react.dev/) |
+| **语言** | [TypeScript 5](https://www.typescriptlang.org/) |
+| **样式** | [Tailwind CSS 4](https://tailwindcss.com/) |
+| **AI 推理** | [ONNX Runtime Web](https://onnxruntime.ai/) + Web Worker |
+| **AI 模型** | [LaMa](https://github.com/advimman/lama) (Large Mask Inpainting) |
+| **动画** | [Framer Motion](https://www.framer.com/motion/) |
+| **国际化** | [next-intl](https://next-intl-docs.vercel.app/) |
+| **UI 组件** | [Radix UI](https://www.radix-ui.com/) |
 
 ### 📦 本地开发
 
@@ -129,11 +133,12 @@ Visit **[clean.picgo.studio](https://clean.picgo.studio)** to try it now!
 |---------|-------------|
 | 🎨 **Smart Erase** | Select the area to remove with the eraser tool, and AI will automatically fill in the background |
 | ⚡ **Gemini Mode** | Auto-detect and losslessly remove watermarks from Gemini AI images using Reverse Alpha Blending |
-| 🚀 **Real-time Processing** | WebGL-accelerated ONNX Runtime enables processing directly in the browser |
+| 🧵 **Web Worker Processing** | Model inference runs in a separate thread, keeping the main thread responsive during processing |
 | 🔒 **Privacy Safe** | All processing is done locally, images are never uploaded to any server |
 | 🎭 **Mask Technology** | Precise mask generation ensures only selected areas are processed |
 | 👁️ **Real-time Comparison** | Compare before and after effects with a side-by-side slider |
 | 📥 **HD Export** | Export results at original resolution, maintaining image quality |
+| 📱 **PWA Support** | Install as a desktop app with offline support |
 
 #### ⚡ Gemini Watermark Removal
 
@@ -156,14 +161,16 @@ Clean PicGo provides a dedicated lossless removal solution for Gemini AI-generat
 
 ### 🛠️ Tech Stack
 
-- **Framework**: [Next.js 16](https://nextjs.org/) + [React 19](https://react.dev/)
-- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
-- **AI Inference**: [ONNX Runtime Web](https://onnxruntime.ai/)
-- **AI Model**: [LaMa](https://github.com/advimman/lama) (Large Mask Inpainting)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/)
-- **i18n**: [next-intl](https://next-intl-docs.vercel.app/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/)
+| Category | Technology |
+|----------|------------|
+| **Framework** | [Next.js 16](https://nextjs.org/) + [React 19](https://react.dev/) |
+| **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS 4](https://tailwindcss.com/) |
+| **AI Inference** | [ONNX Runtime Web](https://onnxruntime.ai/) + Web Worker |
+| **AI Model** | [LaMa](https://github.com/advimman/lama) (Large Mask Inpainting) |
+| **Animation** | [Framer Motion](https://www.framer.com/motion/) |
+| **i18n** | [next-intl](https://next-intl-docs.vercel.app/) |
+| **UI Components** | [Radix UI](https://www.radix-ui.com/) |
 
 ### 📦 Local Development
 
