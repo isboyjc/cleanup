@@ -81,7 +81,7 @@ export function GeminiDetectionToggle({ className = "" }: GeminiDetectionToggleP
 
       {/* 悬浮提示卡片 - 显示在右上方 */}
       <div className="
-        absolute bottom-[calc(100%-15px)] left-1/2
+        absolute bottom-[calc(100%-10px)] left-1/2
         px-3 py-2 
         bg-card border-2 border-foreground rounded-lg
         shadow-[2px_2px_0_var(--foreground)]
