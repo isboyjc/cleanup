@@ -17,13 +17,13 @@ interface VersionMeta {
 const versionsMeta: VersionMeta[] = [
   {
     version: "1.1.0",
-    date: "2025-01-15",
+    date: "2025-12-23",
     type: "minor",
     translationKey: "v1_1_0"
   },
   {
     version: "1.0.0",
-    date: "2025-01-01",
+    date: "2025-12-20",
     type: "major",
     translationKey: "v1_0_0"
   }
