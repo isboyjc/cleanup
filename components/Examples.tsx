@@ -1,25 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { motion } from "framer-motion"
 import { Sparkles, MousePointer2 } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
+import Script from "next/script"
 
 const examples = [
   {
     original: "https://cdn.isboyjc.com/picgo/clean/a0.png",
     result: "https://cdn.isboyjc.com/picgo/clean/a1.png",
     gif: "https://cdn.isboyjc.com/picgo/clean/a1.gif",
+    altKey: "bag",
   },
   {
     original: "https://cdn.isboyjc.com/picgo/clean/b0.png",
     result: "https://cdn.isboyjc.com/picgo/clean/b1.png",
     gif: "https://cdn.isboyjc.com/picgo/clean/b1.gif",
+    altKey: "room",
   },
   {
     original: "https://cdn.isboyjc.com/picgo/clean/c0.png",
     result: "https://cdn.isboyjc.com/picgo/clean/c1.png",
     gif: "https://cdn.isboyjc.com/picgo/clean/c1.gif",
+    altKey: "jacket",
   },
 ]
 
@@ -49,6 +53,15 @@ const itemVariants = {
 function ExampleCard({ example, index }: { example: typeof examples[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
   const t = useTranslations("examples")
+  const locale = useLocale()
+  
+  // 生成更具描述性的 alt 文本
+  const altOriginal = locale === "zh" 
+    ? `AI去水印示例${index + 1} - ${example.altKey}图片处理前` 
+    : `AI watermark removal example ${index + 1} - ${example.altKey} image before processing`
+  const altComparison = locale === "zh"
+    ? `AI去水印示例${index + 1} - ${example.altKey}图片处理效果对比动画`
+    : `AI watermark removal example ${index + 1} - ${example.altKey} image comparison animation`
 
   return (
     <motion.div
@@ -70,7 +83,8 @@ function ExampleCard({ example, index }: { example: typeof examples[0]; index: n
           {/* 原图 - 默认显示 */}
           <img
             src={example.original}
-            alt={`${t("original")} ${index + 1}`}
+            alt={altOriginal}
+            loading="lazy"
             className={`
               absolute inset-0 w-full h-full object-cover
               transition-opacity duration-300
@@ -81,7 +95,8 @@ function ExampleCard({ example, index }: { example: typeof examples[0]; index: n
           {/* GIF 动画 - 悬停时显示 */}
           <img
             src={example.gif}
-            alt={`${t("comparison")} ${index + 1}`}
+            alt={altComparison}
+            loading="lazy"
             className={`
               absolute inset-0 w-full h-full object-cover
               transition-opacity duration-300
@@ -162,9 +177,37 @@ function ExampleCard({ example, index }: { example: typeof examples[0]; index: n
 
 export function Examples() {
   const t = useTranslations("examples")
+  const locale = useLocale()
+
+  // ImageGallery 结构化数据
+  const imageGalleryJsonLd = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": locale === "zh" ? "AI去水印效果展示" : "AI Watermark Removal Examples",
+    "description": t("description"),
+    "url": "https://clean.picgo.studio#examples",
+    "image": examples.map((example, index) => ({
+      "@type": "ImageObject",
+      "name": locale === "zh" 
+        ? `AI去水印示例 ${index + 1}` 
+        : `AI Watermark Removal Example ${index + 1}`,
+      "contentUrl": example.result,
+      "thumbnailUrl": example.original,
+      "description": locale === "zh"
+        ? `使用Clean PicGo AI去水印工具处理的${example.altKey}图片效果展示`
+        : `${example.altKey} image processed with Clean PicGo AI watermark remover`
+    }))
+  }), [t, locale])
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
+    <>
+      {/* ImageGallery JSON-LD */}
+      <Script
+        id="image-gallery-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGalleryJsonLd) }}
+      />
+      <section className="py-20 px-4 relative overflow-hidden">
       {/* 背景装饰 */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-10 right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
@@ -228,6 +271,7 @@ export function Examples() {
         </motion.p>
       </div>
     </section>
+    </>
   )
 }
 

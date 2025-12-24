@@ -254,16 +254,8 @@ textarea,
 
 /* Neo-Brutalism 工具类 */
 @layer utilities {
-  .brutal-border {
-    border: 3px solid var(--foreground);
-  }
-  
   .brutal-border-2 {
     border: 2px solid var(--foreground);
-  }
-  
-  .brutal-border-4 {
-    border: 4px solid var(--foreground);
   }
   
   .brutal-shadow {
@@ -272,14 +264,6 @@ textarea,
   
   .brutal-shadow-sm {
     box-shadow: var(--shadow-brutal-sm);
-  }
-  
-  .brutal-shadow-lg {
-    box-shadow: var(--shadow-brutal-lg);
-  }
-  
-  .brutal-shadow-xl {
-    box-shadow: var(--shadow-brutal-xl);
   }
   
   .brutal-hover {
@@ -295,43 +279,5 @@ textarea,
     transform: translate(0, 0);
     box-shadow: var(--shadow-brutal-sm);
   }
-  
-  /* 呼吸动画 - 用于处理中状态 */
-  @keyframes breathing {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.7;
-      transform: scale(0.98);
-    }
-  }
-  
-  .animate-breathing {
-    animation: breathing 1.5s ease-in-out infinite;
-  }
-  
-  /* 脉冲边框动画 */
-  @keyframes pulse-border {
-    0%, 100% {
-      border-color: var(--primary);
-    }
-    50% {
-      border-color: var(--secondary);
-    }
-  }
-  
-  .animate-pulse-border {
-    animation: pulse-border 2s ease-in-out infinite;
-  }
-  
-  /* 编辑器画布点状背景 */
-  .canvas-dotted-bg {
-    background-color: var(--canvas-bg);
-    background-image: radial-gradient(var(--canvas-dot) 1px, transparent 1px);
-    background-size: 16px 16px;
-  }
-
 }
 

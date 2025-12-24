@@ -1,13 +1,74 @@
 "use client"
 
+import { useMemo } from "react"
 import { motion } from "framer-motion"
 import { Upload, MousePointerClick, Wand2, Download, Zap, Undo2, Eye } from "lucide-react"
 import { useTranslations } from "next-intl"
+import Script from "next/script"
 
 export function HowItWorks() {
   const t = useTranslations("howItWorks")
 
+  // HowTo 结构化数据
+  const howToJsonLd = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": t("title") + " " + t("highlight"),
+    "description": t("description"),
+    "totalTime": "PT2M",
+    "tool": [
+      {
+        "@type": "HowToTool",
+        "name": "Clean PicGo"
+      }
+    ],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": t("steps.upload.title"),
+        "text": t("steps.upload.description"),
+        "url": "https://clean.picgo.studio#upload"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": t("steps.select.title"),
+        "text": t("steps.select.description"),
+        "url": "https://clean.picgo.studio#select"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": t("steps.process.title"),
+        "text": t("steps.process.description"),
+        "url": "https://clean.picgo.studio#process"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": t("steps.compare.title"),
+        "text": t("steps.compare.description"),
+        "url": "https://clean.picgo.studio#compare"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": t("steps.download.title"),
+        "text": t("steps.download.description"),
+        "url": "https://clean.picgo.studio#download"
+      }
+    ]
+  }), [t])
+
   return (
+    <>
+      {/* HowTo JSON-LD */}
+      <Script
+        id="howto-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
     <section className="py-20 px-4 relative">
       <div className="max-w-6xl mx-auto">
         <motion.div 
@@ -200,5 +261,6 @@ export function HowItWorks() {
         </div>
       </div>
     </section>
+    </>
   )
 }

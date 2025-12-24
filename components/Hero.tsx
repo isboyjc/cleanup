@@ -285,7 +285,8 @@ export function Hero({ onImageSelect }: HeroProps) {
             >
               <img
                 src={sample.url}
-                alt={t(sample.labelKey)}
+                alt={`${t("samples.title")} - ${t(sample.labelKey)}`}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
               {/* 悬停遮罩 */}

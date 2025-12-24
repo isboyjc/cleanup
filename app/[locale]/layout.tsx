@@ -171,6 +171,10 @@ export async function generateMetadata({
     },
     verification: {
       google: "_CvOg3BEbVhWAo6RtzmbLyEAkUD18obxJRXoe_JO1YU",
+      yandex: "9cd39a330c743807",
+      other: {
+        "msvalidate.01": "245A3684B14E9358CC55A271164D378E",
+      },
     },
     category: "technology",
   }
@@ -273,6 +277,13 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        {/* 预连接关键域名 */}
+        <link rel="dns-prefetch" href="https://cdn.isboyjc.com" />
+        <link rel="preconnect" href="https://cdn.isboyjc.com" crossOrigin="anonymous" />
+        {/* Google Fonts 预连接 - 需要同时连接 fonts.googleapis.com 和 fonts.gstatic.com */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         {/* PWA Theme Color - 支持明暗模式 */}
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffbeb" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A" />
