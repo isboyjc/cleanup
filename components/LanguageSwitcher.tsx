@@ -15,14 +15,18 @@ export function LanguageSwitcher() {
     router.replace(pathname, { locale: newLocale })
   }
 
+  const targetLanguage = locale === "zh" ? "English" : "中文"
+  
   return (
     <Button
       variant="outline"
       size="sm"
       onClick={toggleLocale}
       className="brutal-border-2 brutal-shadow-sm brutal-hover"
+      aria-label={`Switch language to ${targetLanguage}`}
+      lang={locale === "zh" ? "en" : "zh"}
     >
-      <Globe className="w-4 h-4 mr-1.5" />
+      <Globe className="w-4 h-4 mr-1.5" aria-hidden="true" />
       {locale === "zh" ? "EN" : "中文"}
     </Button>
   )

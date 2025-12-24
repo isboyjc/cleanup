@@ -279,5 +279,48 @@ textarea,
     transform: translate(0, 0);
     box-shadow: var(--shadow-brutal-sm);
   }
+  
+  /* 无障碍：屏幕阅读器专用类 */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* 聚焦时显示跳过链接 */
+  .sr-only.focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: revert;
+    margin: revert;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* 焦点可见性样式 - 增强键盘导航 */
+  :focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+  
+  /* 减少动画（无障碍偏好） */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 

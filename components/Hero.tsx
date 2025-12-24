@@ -203,6 +203,8 @@ export function Hero({ onImageSelect }: HeroProps) {
             accept="image/*"
             onChange={handleFileChange}
             className="hidden"
+            aria-label={t("upload.default")}
+            aria-describedby="upload-formats"
           />
           
           <motion.div
@@ -230,13 +232,13 @@ export function Hero({ onImageSelect }: HeroProps) {
             <p className="text-muted-foreground">
               {t("upload.or")} <span className="text-primary font-bold underline">{t("upload.click")}</span>
             </p>
-            <p className="text-sm text-muted-foreground mt-4">
+            <p id="upload-formats" className="text-sm text-muted-foreground mt-4">
               {t("upload.formats")}
             </p>
           </motion.div>
 
           {/* 装饰角标 */}
-          <div className="absolute -top-3 -right-3 w-12 h-12 bg-accent text-accent-foreground border-3 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] flex items-center justify-center rotate-12">
+          <div className="absolute -top-3 -right-3 w-12 h-12 bg-accent text-accent-foreground border-3 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] flex items-center justify-center rotate-12" aria-hidden="true">
             <Sparkles className="w-6 h-6" />
           </div>
 

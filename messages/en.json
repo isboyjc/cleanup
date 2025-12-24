@@ -422,6 +422,24 @@
       "initializing": "Initializing model...",
       "hint": "First load requires ~200MB download, cached for future use"
     }
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "toggleTheme": "Toggle theme",
+    "switchLanguage": "Switch language",
+    "uploadImage": "Upload image",
+    "selectFile": "Select file to upload",
+    "sampleImage": "Sample image",
+    "tryThisSample": "Try this sample image",
+    "brushSize": "Brush size",
+    "zoomLevel": "Zoom level",
+    "undoAction": "Undo last action",
+    "redoAction": "Redo action",
+    "downloadResult": "Download processed image",
+    "closeEditor": "Close editor",
+    "compareImages": "Compare before and after"
   }
 }
 

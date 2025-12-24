@@ -76,7 +76,7 @@ export function Toolbar({
   }[geminiState]
   
   return (
-    <div className="flex items-center justify-between px-4 md:px-6 h-14 md:h-16 bg-card border-b-2 border-border/20">
+    <div className="flex items-center justify-between px-4 md:px-6 h-14 md:h-16 bg-card border-b-2 border-border/20" role="toolbar" aria-label="Editor toolbar">
       {/* 左侧：关闭按钮 + Logo */}
       <div className="flex items-center gap-2 md:gap-4">
         <Button
@@ -84,18 +84,19 @@ export function Toolbar({
           size="icon-sm"
           onClick={onClose}
           className="text-foreground hover:bg-foreground/10 border-0"
+          aria-label={t("close") || "Close editor"}
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5" aria-hidden="true" />
         </Button>
         
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2" aria-hidden="true">
           <Logo size={36} />
           <ProductName className="text-primary-foreground" size="sm" />
         </div>
       </div>
 
       {/* 右侧：Gemini 状态 + 操作按钮 */}
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-2 md:gap-3" role="group" aria-label="Editor actions">
         {/* Gemini 检测状态 */}
         <AnimatePresence mode="wait">
           {geminiConfig && (
@@ -106,10 +107,13 @@ export function Toolbar({
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.15 }}
               className="flex items-center gap-1.5 text-xs text-foreground/70"
+              role="status"
+              aria-live="polite"
+              aria-label={geminiConfig.text}
             >
-              <GeminiLogo className="w-4 h-4" />
+              <GeminiLogo className="w-4 h-4" aria-hidden="true" />
               {geminiConfig.showLoader && (
-                <Loader2 className="w-3 h-3 animate-spin" />
+                <Loader2 className="w-3 h-3 animate-spin" aria-hidden="true" />
               )}
               <span className="whitespace-nowrap hidden sm:inline">{geminiConfig.text}</span>
             </motion.div>
@@ -118,7 +122,7 @@ export function Toolbar({
 
         {/* 分隔线 */}
         {geminiConfig && (
-          <div className="w-px h-5 bg-border/50 hidden sm:block" />
+          <div className="w-px h-5 bg-border/50 hidden sm:block" aria-hidden="true" />
         )}
 
         <Button
@@ -127,8 +131,9 @@ export function Toolbar({
           onClick={onReset}
           className="text-foreground hover:bg-foreground/10 border-0 md:hidden"
           title={t("reset")}
+          aria-label={t("reset")}
         >
-          <RotateCcw className="w-4 h-4" />
+          <RotateCcw className="w-4 h-4" aria-hidden="true" />
         </Button>
         
         <Button
@@ -136,8 +141,9 @@ export function Toolbar({
           size="sm"
           onClick={onReset}
           className="hidden md:flex"
+          aria-label={t("reset")}
         >
-          <RotateCcw className="w-4 h-4 mr-2" />
+          <RotateCcw className="w-4 h-4 mr-2" aria-hidden="true" />
           {t("reset")}
         </Button>
 
@@ -146,8 +152,9 @@ export function Toolbar({
             variant="accent"
             size="sm"
             onClick={onDownload}
+            aria-label={t("download")}
           >
-            <Download className="w-4 h-4 md:mr-2" />
+            <Download className="w-4 h-4 md:mr-2" aria-hidden="true" />
             <span className="hidden md:inline">{t("download")}</span>
           </Button>
         )}

@@ -422,6 +422,24 @@
       "initializing": "正在初始化模型...",
       "hint": "首次加载需要下载约 200MB 模型文件，后续将使用缓存"
     }
+  },
+  "accessibility": {
+    "skipToContent": "跳转到主要内容",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "toggleTheme": "切换主题",
+    "switchLanguage": "切换语言",
+    "uploadImage": "上传图片",
+    "selectFile": "选择要上传的文件",
+    "sampleImage": "示例图片",
+    "tryThisSample": "尝试此示例图片",
+    "brushSize": "画笔大小",
+    "zoomLevel": "缩放级别",
+    "undoAction": "撤销上一步操作",
+    "redoAction": "重做操作",
+    "downloadResult": "下载处理后的图片",
+    "closeEditor": "关闭编辑器",
+    "compareImages": "对比处理前后效果"
   }
 }
 

@@ -47,8 +47,10 @@ export function ThemeSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         className="brutal-border-2 brutal-shadow-sm brutal-hover"
         aria-label={t("toggle")}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
       >
-        <CurrentIcon className="w-4 h-4" />
+        <CurrentIcon className="w-4 h-4" aria-hidden="true" />
       </Button>
 
       <AnimatePresence>
@@ -59,6 +61,8 @@ export function ThemeSwitcher() {
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
             className="absolute right-0 mt-2 py-1 w-36 bg-card brutal-border-2 brutal-shadow rounded-lg z-50"
+            role="menu"
+            aria-label={t("toggle")}
           >
             {themes.map(({ value, icon: Icon, label }) => (
               <button
@@ -72,11 +76,13 @@ export function ThemeSwitcher() {
                   transition-colors hover:bg-muted
                   ${theme === value ? "text-primary" : "text-foreground"}
                 `}
+                role="menuitem"
+                aria-current={theme === value ? "true" : undefined}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4" aria-hidden="true" />
                 <span>{label}</span>
                 {theme === value && (
-                  <span className="ml-auto w-2 h-2 rounded-full bg-primary" />
+                  <span className="ml-auto w-2 h-2 rounded-full bg-primary" aria-hidden="true" />
                 )}
               </button>
             ))}
