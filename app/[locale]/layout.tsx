@@ -170,8 +170,7 @@ export async function generateMetadata({
       creator: "@isboyjc",
     },
     verification: {
-      // google: "your-google-verification-code",
-      // yandex: "your-yandex-verification-code",
+      google: "_CvOg3BEbVhWAo6RtzmbLyEAkUD18obxJRXoe_JO1YU",
     },
     category: "technology",
   }
