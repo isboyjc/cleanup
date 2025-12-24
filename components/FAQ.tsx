@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, HelpCircle } from "lucide-react"
 import { useTranslations } from "next-intl"
+import Script from "next/script"
 
 interface FAQItemProps {
   question: string
@@ -84,7 +85,28 @@ export function FAQ() {
     { questionKey: "items.limitations.question", answerKey: "items.limitations.answer" },
   ]
 
+  // FAQPage 结构化数据
+  const faqJsonLd = useMemo(() => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": t(faq.questionKey),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t(faq.answerKey).replace(/\*\*(.*?)\*\*/g, "$1")
+      }
+    }))
+  }), [t])
+
   return (
+    <>
+      {/* FAQPage JSON-LD */}
+      <Script
+        id="faq-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
     <section className="py-20 px-4 bg-muted/30 relative">
       {/* 装饰背景 */}
       <div className="absolute top-0 left-0 right-0 h-3 bg-foreground" />
@@ -156,6 +178,7 @@ export function FAQ() {
         </motion.div>
       </div>
     </section>
+    </>
   )
 }
 

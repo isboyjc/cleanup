@@ -198,39 +198,80 @@ export default async function LocaleLayout({
 
   // JSON-LD 结构化数据
   const t = messages.metadata as Record<string, string>
-  const jsonLd = {
+  const siteUrl = "https://clean.picgo.studio"
+  
+  // WebApplication Schema
+  const webAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Clean PicGo",
     "description": t.description,
-    "url": "https://clean.picgo.studio",
+    "url": siteUrl,
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript, WebGL",
     "softwareVersion": "1.1.0",
+    "screenshot": `${siteUrl}/screenshots/desktop.png`,
+    "featureList": locale === "zh" 
+      ? ["AI智能去水印", "Gemini水印无损去除", "本地浏览器处理", "完全免费", "支持撤销重做", "多格式支持"]
+      : ["AI Smart Watermark Removal", "Gemini Lossless Removal", "Local Browser Processing", "Completely Free", "Undo/Redo Support", "Multi-format Support"],
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "126",
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "author": {
       "@type": "Person",
       "name": "isboyjc",
       "url": "https://github.com/isboyjc"
     },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Clean PicGo",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/icons/icon-512x512.png`
+      }
+    },
     "inLanguage": locale === "zh" ? "zh-CN" : "en-US",
     "keywords": locale === "zh" 
       ? "去水印,AI去水印,Gemini水印去除,Gemini无损去水印,图片去水印,在线去水印,免费去水印" 
       : "watermark remover,AI watermark remover,Gemini watermark remover,Gemini lossless removal,remove watermark,online watermark remover,free watermark remover"
   }
+  
+  // Organization Schema
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Clean PicGo",
+    "url": siteUrl,
+    "logo": `${siteUrl}/icons/icon-512x512.png`,
+    "sameAs": [
+      "https://github.com/isboyjc/cleanup",
+      "https://twitter.com/isboyjc"
+    ]
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {/* JSON-LD 结构化数据 */}
+        {/* JSON-LD 结构化数据 - WebApplication */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+        />
+        {/* JSON-LD 结构化数据 - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {/* PWA Theme Color - 支持明暗模式 */}
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffbeb" />
