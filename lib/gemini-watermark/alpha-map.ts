@@ -141,10 +141,3 @@ function generateFallbackAlphaMap(size: WatermarkSize): Float32Array {
   return alphaMap
 }
 
-/**
- * 清除 Alpha 贴图缓存
- */
-export function clearAlphaMapCache(): void {
-  alphaMapCache.clear()
-}
-

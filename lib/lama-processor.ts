@@ -135,29 +135,6 @@ export function isModelLoaded(): boolean {
   return isModelLoadedInWorker
 }
 
-// 卸载模型
-export function unloadModel(): void {
-  if (worker) {
-    worker.terminate()
-    worker = null
-  }
-  isModelLoadedInWorker = false
-  isWorkerLoading = false
-}
-
-// 清除模型缓存
-export async function clearModelCache(): Promise<void> {
-  const CACHE_NAME = "lama-model-cache-v1"
-  if ("caches" in window) {
-    try {
-      await caches.delete(CACHE_NAME)
-      console.log("模型缓存已清除")
-    } catch (e) {
-      console.warn("清除缓存失败:", e)
-    }
-  }
-}
-
 // 检查模型缓存是否存在
 export async function isModelCached(): Promise<boolean> {
   const MODEL_URL = "https://cdn.isboyjc.com/models/lama/lama_fp32.onnx"

@@ -36,6 +36,10 @@ export async function generateMetadata({
   const keywordsZh = [
     "去水印",
     "AI去水印",
+    "Gemini去水印",
+    "Gemini水印去除",
+    "Gemini水印无损去除",
+    "反向Alpha混合",
     "图片去水印",
     "在线去水印",
     "免费去水印",
@@ -64,6 +68,10 @@ export async function generateMetadata({
   const keywordsEn = [
     "watermark remover",
     "AI watermark remover",
+    "Gemini watermark remover",
+    "Gemini watermark removal",
+    "Gemini watermark lossless removal",
+    "Reverse Alpha Blending",
     "remove watermark",
     "online watermark remover",
     "free watermark remover",
@@ -138,10 +146,11 @@ export async function generateMetadata({
     },
     metadataBase: new URL(siteUrl),
     alternates: {
-      canonical: siteUrl,
+      canonical: `${siteUrl}/${locale}`,
       languages: {
         "zh-CN": `${siteUrl}/zh`,
         "en-US": `${siteUrl}/en`,
+        "x-default": `${siteUrl}/en`,
       },
     },
     openGraph: {
@@ -188,9 +197,42 @@ export default async function LocaleLayout({
   // 获取消息
   const messages = await getMessages()
 
+  // JSON-LD 结构化数据
+  const t = messages.metadata as Record<string, string>
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Clean PicGo",
+    "description": t.description,
+    "url": "https://clean.picgo.studio",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript, WebGL",
+    "softwareVersion": "1.1.0",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "isboyjc",
+      "url": "https://github.com/isboyjc"
+    },
+    "inLanguage": locale === "zh" ? "zh-CN" : "en-US",
+    "keywords": locale === "zh" 
+      ? "去水印,AI去水印,Gemini水印去除,Gemini无损去水印,图片去水印,在线去水印,免费去水印" 
+      : "watermark remover,AI watermark remover,Gemini watermark remover,Gemini lossless removal,remove watermark,online watermark remover,free watermark remover"
+  }
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        {/* JSON-LD 结构化数据 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* PWA Theme Color - 支持明暗模式 */}
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fffbeb" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1A1A" />

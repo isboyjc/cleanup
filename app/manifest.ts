@@ -32,8 +32,8 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     name: "Clean PicGo",
     short_name: "Clean PicGo",
     description: isZh
-      ? "AI 驱动的免费在线图片去水印工具"
-      : "AI-powered free online watermark remover",
+      ? "AI去水印 · 图片擦除 · Gemini水印无损去除"
+      : "AI Watermark Remover · Image Eraser · Gemini Lossless",
     start_url: "/",
     id: "/",
     display: "standalone",

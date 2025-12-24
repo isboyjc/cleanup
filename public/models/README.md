@@ -17,10 +17,7 @@
 
 ## 清除缓存
 
-如需清除缓存，可以：
-
-1. 在浏览器开发者工具 → Application → Cache Storage 中删除 `lama-model-cache-v1`
-2. 或在代码中调用 `clearModelCache()` 函数
+如需清除缓存，可以在浏览器开发者工具 → Application → Cache Storage 中删除 `lama-model-cache-v1`
 
 ## 模型信息
 

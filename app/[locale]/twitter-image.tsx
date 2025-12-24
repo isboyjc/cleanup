@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 
 export const runtime = "edge"
 
-export const alt = "Clean PicGo - AI Watermark Remover"
+export const alt = "Clean PicGo - AI Watermark Remover | Gemini Lossless"
 export const size = {
   width: 1200,
   height: 630,
@@ -94,7 +94,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             marginBottom: 40,
           }}
         >
-          {isZh ? "AI 驱动的图片去水印工具" : "AI-Powered Image Watermark Remover"}
+          {isZh ? "AI去水印 · 图片擦除 · Gemini无损" : "AI Watermark Remover · Image Eraser · Gemini Lossless"}
         </div>
 
         {/* 特性标签 */}
