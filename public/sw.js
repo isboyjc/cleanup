@@ -1,8 +1,7 @@
 const CACHE_NAME = 'clean-piggo-v2';
 
-// 需要缓存的静态资源
+// 需要缓存的静态资源（统一使用 /icons/ 目录）
 const STATIC_ASSETS = [
-  '/icon.svg',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png',
 ];
