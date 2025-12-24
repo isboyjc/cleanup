@@ -6,30 +6,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   // 生成所有语言的主页
-  const homePages = locales.map((locale) => ({
+  const homePages: MetadataRoute.Sitemap = locales.map((locale) => ({
     url: `${baseUrl}/${locale}`,
     lastModified,
-    changeFrequency: "weekly" as const,
+    changeFrequency: "weekly",
     priority: 1,
-    alternates: {
-      languages: Object.fromEntries(
-        locales.map((l) => [l === 'zh' ? 'zh-CN' : l === 'en' ? 'en-US' : l === 'ja' ? 'ja-JP' : l === 'ko' ? 'ko-KR' : 'ru-RU', `${baseUrl}/${l}`])
-      ),
-    },
   }))
 
   // 生成所有语言的更新日志页面
-  const changelogPages = locales.map((locale) => ({
+  const changelogPages: MetadataRoute.Sitemap = locales.map((locale) => ({
     url: `${baseUrl}/${locale}/changelog`,
     lastModified,
-    changeFrequency: "monthly" as const,
+    changeFrequency: "monthly",
     priority: 0.5,
-    alternates: {
-      languages: Object.fromEntries(
-        locales.map((l) => [l === 'zh' ? 'zh-CN' : l === 'en' ? 'en-US' : l === 'ja' ? 'ja-JP' : l === 'ko' ? 'ko-KR' : 'ru-RU', `${baseUrl}/${l}/changelog`])
-      ),
-    },
   }))
 
   return [...homePages, ...changelogPages]
 }
+
