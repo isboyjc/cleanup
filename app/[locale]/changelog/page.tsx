@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 import Script from "next/script"
+import type { Locale } from "@/i18n/config"
 
 interface VersionMeta {
   version: string
@@ -29,6 +30,15 @@ const versionsMeta: VersionMeta[] = [
     translationKey: "v1_0_0"
   }
 ]
+
+// 各语言的更新日志标题（用于结构化数据）
+const changelogNames: Record<Locale, string> = {
+  zh: "更新日志",
+  en: "Changelog",
+  ja: "更新履歴",
+  ko: "변경 로그",
+  ru: "Журнал изменений"
+}
 
 function getChangeIcon(type: string) {
   switch (type) {
@@ -69,7 +79,7 @@ function getVersionColor(type: string) {
 
 export default function ChangelogPage() {
   const t = useTranslations("changelog")
-  const locale = useLocale()
+  const locale = useLocale() as Locale
   const siteUrl = "https://clean.picgo.studio"
   
   // BreadcrumbList 结构化数据
@@ -86,7 +96,7 @@ export default function ChangelogPage() {
       {
         "@type": "ListItem",
         "position": 2,
-        "name": locale === "zh" ? "更新日志" : "Changelog",
+        "name": changelogNames[locale],
         "item": `${siteUrl}/${locale}/changelog`
       }
     ]

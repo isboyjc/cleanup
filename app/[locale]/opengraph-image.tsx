@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og"
+import type { Locale } from "@/i18n/config"
 
 export const runtime = "edge"
 
@@ -9,8 +10,28 @@ export const size = {
 }
 export const contentType = "image/png"
 
+// 各语言的副标题
+const subtitles: Record<Locale, string> = {
+  zh: "AI去水印 · 图片擦除 · Gemini无损",
+  en: "AI Watermark Remover · Image Eraser · Gemini Lossless",
+  ja: "AI透かし除去 · 画像消しゴム · Geminiロスレス",
+  ko: "AI 워터마크 제거 · 이미지 지우개 · Gemini 무손실",
+  ru: "AI удаление водяных знаков · Ластик · Gemini без потерь"
+}
+
+// 各语言的标签
+const tags: Record<Locale, string[]> = {
+  zh: ["🚀 秒级处理", "🔒 本地运行", "💯 完全免费", "✨ 高质量"],
+  en: ["🚀 Fast", "🔒 Local", "💯 Free", "✨ HD"],
+  ja: ["🚀 高速処理", "🔒 ローカル", "💯 無料", "✨ 高品質"],
+  ko: ["🚀 빠른 처리", "🔒 로컬", "💯 무료", "✨ 고품질"],
+  ru: ["🚀 Быстро", "🔒 Локально", "💯 Бесплатно", "✨ HD"]
+}
+
 export default async function Image({ params }: { params: { locale: string } }) {
-  const isZh = params.locale === "zh"
+  const locale = (params.locale as Locale) || "en"
+  const subtitle = subtitles[locale] || subtitles.en
+  const localeTags = tags[locale] || tags.en
   
   return new ImageResponse(
     (
@@ -94,7 +115,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             marginBottom: 40,
           }}
         >
-          {isZh ? "AI去水印 · 图片擦除 · Gemini无损" : "AI Watermark Remover · Image Eraser · Gemini Lossless"}
+          {subtitle}
         </div>
 
         {/* 特性标签 */}
@@ -104,10 +125,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             gap: 20,
           }}
         >
-          {(isZh 
-            ? ["🚀 秒级处理", "🔒 本地运行", "💯 完全免费", "✨ 高质量"] 
-            : ["🚀 Fast", "🔒 Local", "💯 Free", "✨ HD"]
-          ).map((tag, i) => (
+          {localeTags.map((tag, i) => (
             <div
               key={i}
               style={{

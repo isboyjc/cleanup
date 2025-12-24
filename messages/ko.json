@@ -1,0 +1,445 @@
+{
+  "theme": {
+    "light": "라이트",
+    "dark": "다크",
+    "system": "시스템",
+    "toggle": "테마 전환"
+  },
+  "metadata": {
+    "title": "Clean PicGo - AI 워터마크 제거기 | Gemini 무손실 제거",
+    "description": "무료 온라인 AI 워터마크 제거 및 이미지 지우개 도구. Gemini 워터마크를 역 알파 블렌딩 알고리즘으로 무손실 제거. Midjourney, Stable Diffusion, DALL-E, 可灵 AI 워터마크 지원. LaMa 모델 기반, 브라우저 내 처리로 프라이버시 보호."
+  },
+  "hero": {
+    "badge": "AI 기반 · 무료 사용",
+    "title": {
+      "line1": "이미지",
+      "line2": "",
+      "highlight": "워터마크 제거"
+    },
+    "description": "고급 AI 기술을 사용하여 이미지에서 워터마크, 텍스트 및 원치 않는 객체를 쉽게 제거합니다.",
+    "descriptionSub": "가입 불필요. 브라우저 내에서 완전히 처리되어 프라이버시를 보호합니다.",
+    "upload": {
+      "dragging": "놓아서 업로드",
+      "default": "이미지를 여기에 드래그 앤 드롭",
+      "or": "또는",
+      "click": "클릭하여 파일 선택",
+      "formats": "JPG, PNG, WebP 지원"
+    },
+    "tags": {
+      "fast": "🚀 빠른 처리",
+      "local": "🔒 로컬 처리",
+      "free": "💯 완전 무료",
+      "quality": "✨ 고품질"
+    },
+    "samples": {
+      "title": "또는 샘플 이미지 시도",
+      "try": "시도",
+      "bag": "가방",
+      "room": "방",
+      "jacket": "재킷",
+      "portrait": "그레이스케일"
+    },
+    "modelStatus": {
+      "ready": "모델 준비 완료",
+      "notReady": "모델 다운로드 필요"
+    }
+  },
+  "howItWorks": {
+    "title": "사용",
+    "highlight": "방법",
+    "description": "핵심 AI 워크플로우가 모든 워터마크를 처리, Gemini 감지는 선택적 향상 기능",
+    "branch": {
+      "title": "스마트 라우팅",
+      "gemini": {
+        "title": "Gemini 고속 트랙",
+        "subtitle": "Gemini 감지가 켜져 있을 때",
+        "optional": "선택 사항",
+        "description": "활성화하면 업로드된 이미지가 Gemini 워터마크를 자동으로 스캔",
+        "features": {
+          "autoDetect": "Gemini 워터마크 자동 감지",
+          "instant": "즉시 무손실 제거",
+          "undoable": "되돌릴 수 있는 작업"
+        },
+        "continueToMain": "이후 핵심 워크플로우로 계속"
+      },
+      "ai": {
+        "title": "범용 AI 처리",
+        "subtitle": "모든 종류의 워터마크에 적용"
+      }
+    },
+    "steps": {
+      "upload": {
+        "title": "이미지 업로드",
+        "description": "드래그 앤 드롭 또는 클릭, JPG, PNG, WebP 지원"
+      },
+      "autoDetect": {
+        "title": "자동 감지 및 제거",
+        "description": "시스템이 Gemini 워터마크를 자동 감지하고 즉시 제거"
+      },
+      "undoable": {
+        "title": "되돌릴 수 있는 작업",
+        "description": "자동 처리 결과를 되돌릴 수 있으며, 원본으로 복원 가능"
+      },
+      "continueEdit": {
+        "title": "계속 편집",
+        "description": "다른 콘텐츠도 제거하려면 AI 지우개 도구로 계속"
+      },
+      "select": {
+        "title": "영역 선택",
+        "description": "지우개 도구로 워터마크 영역을 칠하기"
+      },
+      "process": {
+        "title": "AI 스마트 채우기",
+        "description": "LaMa 모델이 컨텍스트를 분석하고 선택 영역을 채움",
+        "core": "핵심"
+      },
+      "compare": {
+        "title": "미리보기 및 비교",
+        "description": "실시간 전후 비교, 연속 편집 지원"
+      },
+      "download": {
+        "title": "결과 다운로드",
+        "description": "만족하면 HD 원본 다운로드, 무손실 PNG 내보내기 지원"
+      }
+    },
+    "legend": {
+      "coreFlow": {
+        "title": "핵심 워크플로우",
+        "description": "모든 이미지가 이 워크플로우를 거침"
+      },
+      "geminiExtension": {
+        "title": "Gemini 확장",
+        "description": "Gemini 워터마크 자동 전처리용 선택적 기능"
+      }
+    }
+  },
+  "capabilities": {
+    "badge": "핵심 기능",
+    "title": "강력한",
+    "highlight": "기능",
+    "description": "AI 스마트 복원과 수학적 정밀도 알고리즘을 결합한 포괄적인 워터마크 제거 솔루션",
+    "items": {
+      "aiPowered": {
+        "title": "AI 스마트 복원",
+        "description": "LaMa 딥러닝 모델을 활용한 지능적인 컨텍스트 인식 이미지 복원"
+      },
+      "geminiOptimized": {
+        "title": "Gemini 최적화",
+        "description": "역 알파 블렌딩으로 Gemini 워터마크를 즉시 무손실 제거"
+      },
+      "privacy": {
+        "title": "프라이버시 보호",
+        "description": "모든 처리는 브라우저 내 로컬에서 수행, 이미지는 서버에 업로드되지 않음"
+      },
+      "noCost": {
+        "title": "완전 무료",
+        "description": "가입 불필요, 결제 불필요, 제한 없음 - 영원히 무료"
+      },
+      "preciseControl": {
+        "title": "정밀 제어",
+        "description": "브러시 크기를 자유롭게 조절, 제거할 영역을 정밀하게 칠하기"
+      },
+      "undoRedo": {
+        "title": "기록 지원",
+        "description": "다단계 실행 취소/다시 실행, 최대 30단계 편집 기록 저장"
+      },
+      "multiFormat": {
+        "title": "다중 포맷",
+        "description": "JPG, PNG, WebP 등 일반적인 포맷 지원"
+      },
+      "crossPlatform": {
+        "title": "크로스 플랫폼",
+        "description": "데스크톱 및 모바일 브라우저에서 작동, 어디서나 사용 가능"
+      }
+    }
+  },
+  "lamaArchitecture": {
+    "badge": "기술 아키텍처",
+    "title": "LaMa",
+    "highlight": "아키텍처",
+    "description": "ONNX Runtime Web을 통해 브라우저에서 실행되는 전문 이미지 인페인팅 모델",
+    "pipeline": {
+      "title": "처리 파이프라인",
+      "input": {
+        "title": "이미지 입력",
+        "description": "이미지 로드 및 전처리"
+      },
+      "mask": {
+        "title": "마스크 생성",
+        "description": "사용자 그림에서 바이너리 마스크 생성"
+      },
+      "inference": {
+        "title": "모델 추론",
+        "description": "LaMa가 컨텍스트를 분석하고 채움"
+      },
+      "output": {
+        "title": "결과 출력",
+        "description": "원래 크기로 복원하고 원본과 블렌드"
+      }
+    },
+    "lama": {
+      "title": "LaMa 모델",
+      "subtitle": "Large Mask Inpainting",
+      "description": "LaMa는 Samsung AI Research에서 개발한 대형 마스크 인페인팅 모델로, 대규모 결손 영역을 고품질의 의미론적으로 일관된 결과로 처리하도록 설계되었습니다.",
+      "features": {
+        "fourier": "빠른 푸리에 합성곱 - 수용 영역 확장",
+        "attention": "전역 어텐션 - 이미지 컨텍스트 이해",
+        "perceptual": "지각 손실 - 자연스러운 텍스처 생성"
+      }
+    },
+    "runtime": {
+      "title": "ONNX Runtime Web",
+      "subtitle": "브라우저 기반 AI 추론 엔진"
+    },
+    "tech": {
+      "onnx": {
+        "title": "ONNX 포맷",
+        "description": "크로스 프레임워크 표준"
+      },
+      "worker": {
+        "title": "Web Worker",
+        "description": "백그라운드 스레드, 논블로킹"
+      },
+      "wasm": {
+        "title": "WASM 런타임",
+        "description": "고성능 로컬 컴퓨팅"
+      },
+      "cache": {
+        "title": "브라우저 캐시",
+        "description": "로컬 모델 저장"
+      }
+    },
+    "stats": {
+      "modelSize": "모델 크기",
+      "inputSize": "내부 크기",
+      "inferenceTime": "추론 시간",
+      "clientSide": "클라이언트 사이드"
+    },
+    "note": "모든 크기의 이미지 지원 - 처리를 위해 자동 스케일, 원본 해상도로 복원"
+  },
+  "features": {
+    "title": "강력한",
+    "highlight": "기능",
+    "description": "LaMa 딥러닝 모델로 구동되는 전문적인 이미지 복원",
+    "items": {
+      "smartErase": {
+        "title": "스마트 지우기",
+        "description": "지우개 도구로 제거할 영역을 선택, AI가 자동으로 배경 채움"
+      },
+      "realtime": {
+        "title": "실시간 처리",
+        "description": "WebGL 가속 ONNX Runtime으로 브라우저에서 직접 처리"
+      },
+      "privacy": {
+        "title": "프라이버시 우선",
+        "description": "모든 처리는 로컬에서 수행, 이미지는 기기를 떠나지 않음"
+      },
+      "mask": {
+        "title": "마스크 기술",
+        "description": "정밀한 마스크 생성으로 선택한 영역만 처리"
+      },
+      "compare": {
+        "title": "라이브 비교",
+        "description": "슬라이더로 전후를 나란히 비교"
+      },
+      "export": {
+        "title": "HD 내보내기",
+        "description": "원본 해상도로 결과 내보내기, 이미지 품질 유지"
+      }
+    }
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "and": "and AI",
+    "copyright": "LaMa 모델 기반, ONNX Runtime Web으로 브라우저에서 실행.",
+    "changelog": "변경 로그",
+    "friendLinks": "리소스"
+  },
+  "examples": {
+    "badge": "실제 예시",
+    "title": "실제",
+    "highlight": "예시",
+    "description": "호버하여 제거 애니메이션을 보고 강력한 AI 복원을 목격하세요",
+    "hoverHint": "호버하여 미리보기",
+    "playing": "재생 중",
+    "example": "예시",
+    "showingResult": "결과 표시",
+    "beforeAfter": "전후 비교",
+    "original": "원본",
+    "comparison": "비교",
+    "footerHint": "위의 모든 예시는 Clean PicGo에 의해 브라우저에서 실시간으로 처리되었습니다"
+  },
+  "geminiDetection": {
+    "label": "Gemini 워터마크",
+    "tooltip": "Gemini 감지 · 역 알파 블렌딩 · 즉시 무손실",
+    "statusOn": "켜짐",
+    "statusOff": "꺼짐",
+    "detecting": "Gemini 워터마크 감지 중...",
+    "processing": "워터마크 감지됨, 제거 중...",
+    "success": "Gemini 워터마크 제거됨",
+    "notFound": "Gemini 워터마크가 감지되지 않음"
+  },
+  "geminiFeature": {
+    "badge": "Gemini 최적화",
+    "title": "즉시 무손실",
+    "highlight": "Gemini",
+    "description": "Gemini AI 생성 워터마크에는 수학적으로 정밀한 역 알파 블렌딩 알고리즘을 사용하여 즉시 무손실 제거",
+    "items": {
+      "autoDetect": {
+        "title": "스마트 자동 감지",
+        "description": "업로드 후 Gemini 워터마크를 자동 감지, 수동 작업 불필요"
+      },
+      "instant": {
+        "title": "즉시 처리",
+        "description": "대형 AI 모델 로딩 불필요, 순수 수학 계산, 매우 빠름"
+      },
+      "lossless": {
+        "title": "수학적 무손실",
+        "description": "역 알파 블렌딩 기반, 100% 원본 픽셀 복원, 품질 손실 제로"
+      },
+      "undoable": {
+        "title": "되돌릴 수 있는 작업",
+        "description": "자동 처리는 편집 단계로 저장, 되돌릴 수 있음, 수동 편집 계속 가능"
+      }
+    },
+    "algorithm": {
+      "title": "역 알파 블렌딩",
+      "subtitle": "수학적 정밀도",
+      "watermarkFormula": "Gemini 워터마크 공식:",
+      "reverseFormula": "제거를 위한 역공식:",
+      "description": "사전에 캡처한 워터마크 알파 맵을 사용하여 각 픽셀의 원본 값을 정확하게 계산하여 무손실 복구.",
+      "credit": "알고리즘 기반"
+    }
+  },
+  "faq": {
+    "badge": "자주 묻는 질문",
+    "title": "자주 묻는",
+    "highlight": "질문",
+    "description": "Clean PicGo의 기술 세부 사항과 사용 방법에 대해 자세히 알아보기",
+    "moreQuestions": "더 궁금한 점이 있나요? 여기에서 질문하세요",
+    "items": {
+      "howItWorks": {
+        "question": "Clean PicGo는 어떻게 작동하나요?",
+        "answer": "Clean PicGo는 두 가지 기술을 사용하여 워터마크를 제거합니다:\n\n1. **LaMa AI 모델**: 모든 종류의 워터마크와 원치 않는 객체에 적용, 딥러닝으로 선택한 영역을 지능적으로 채움\n\n2. **Gemini 전용 알고리즘**: Gemini AI 이미지 워터마크에는 수학적으로 정밀한 역 알파 블렌딩으로 무손실 픽셀 복구\n\n모든 처리는 브라우저 내 로컬에서 수행 - 이미지는 서버에 업로드되지 않습니다."
+      },
+      "geminiOptimization": {
+        "question": "Gemini 워터마크 제거에는 어떤 최적화가 있나요?",
+        "answer": "원본 gemini-watermark-remover 프로젝트와 비교하여 다음과 같은 개선을 했습니다:\n\n• **워터마크 감지**: 처리 전에 Gemini 워터마크가 실제로 존재하는지 사전 확인\n• **수치 안정성**: 0으로 나누기 픽셀 이상을 방지하기 위해 알파 상한 보호 추가\n• **자동화 통합**: 수동 모드 전환 불필요, 업로드 시 자동 감지 및 처리\n• **되돌릴 수 있는 디자인**: 처리 결과는 편집 단계로 저장, 되돌릴 수 있음, 다른 영역에서 AI 모델 계속 사용 가능"
+      },
+      "lamaOptimization": {
+        "question": "LaMa 모델 처리에는 어떤 최적화가 있나요?",
+        "answer": "LaMa 모델 사용에 있어 여러 가지 최적화를 했습니다:\n\n• **Web Worker 백그라운드 처리**: 모델 추론은 별도 스레드에서 실행, 처리 중에도 메인 스레드는 완전히 반응\n• **브라우저 캐시**: 모델 파일은 다운로드 후 자동 캐시, 재다운로드 불필요\n• **점진적 편집**: 연속 편집 지원, 각 결과가 다음 편집의 기반이 됨\n• **스마트 마스킹**: 사용자가 칠한 영역만 처리, 나머지는 모두 원본 유지\n• **기록 지원**: 다단계 실행 취소/다시 실행, 최대 30단계 기록 저장"
+      },
+      "privacy": {
+        "question": "내 이미지는 안전한가요?",
+        "answer": "절대적으로 안전합니다! Clean PicGo의 모든 처리는 브라우저 내 로컬에서 수행됩니다:\n\n• 이미지는 어떤 서버에도 업로드되지 않음\n• AI 모델은 브라우저에서 실행\n• 사용자 데이터를 수집하지 않음\n• 페이지를 닫으면 모든 데이터가 지워짐\n\n그래서 「브라우저 내에서 완전히 처리되어 프라이버시를 보호합니다」라고 말합니다."
+      },
+      "formats": {
+        "question": "어떤 이미지 포맷을 지원하나요?",
+        "answer": "Clean PicGo는 일반적인 이미지 포맷을 지원합니다:\n\n• **JPG/JPEG**: 가장 일반적인 사진 포맷\n• **PNG**: 투명도 지원 이미지\n• **WebP**: Google의 현대적인 이미지 포맷\n\n처리된 이미지는 기본적으로 PNG 포맷으로 내보내어 최고 품질 보장."
+      },
+      "modelSize": {
+        "question": "왜 처음 로드할 때 모델 다운로드가 필요한가요?",
+        "answer": "LaMa는 이미지 인페인팅을 위한 전문 딥러닝 모델로, 모델 파일은 약 200MB입니다.\n\n• **첫 사용**: CDN에서 다운로드 필요, 1-2분 소요될 수 있음\n• **이후 사용**: 모델이 브라우저에 캐시됨, 재다운로드 불필요\n• **Gemini 모드**: 모델 다운로드 불필요, 순수 수학 알고리즘 사용\n\n다운로드 진행 상황이 실시간으로 표시됩니다."
+      },
+      "limitations": {
+        "question": "어떤 제한이 있나요?",
+        "answer": "Clean PicGo에는 몇 가지 기술적 제한이 있습니다:\n\n• **이미지 크기**: LaMa 모델은 내부적으로 512×512로 처리, 큰 이미지는 자동 스케일\n• **Gemini 워터마크**: 가시적인 반투명 워터마크만 제거 가능, SynthID 등 스테가노그래픽 워터마크는 제거 불가\n• **브라우저 지원**: WebGL을 지원하는 현대적인 브라우저 필요 (Chrome 90+, Firefox 88+, Safari 14+)\n• **처리 시간**: 기기 성능에 따라 다름, 모바일 기기는 더 느릴 수 있음"
+      },
+      "geminiSaveMethod": {
+        "question": "왜 일부 Gemini 이미지에서 워터마크 제거가 실패하나요?",
+        "answer": "이것은 보통 이미지 저장 방법과 관련이 있습니다:\n\n**올바른 방법**: Gemini / Nano Banana Pro에서 이미지를 생성한 후 「다운로드」 버튼을 클릭하여 저장. 이렇게 하면 원본 워터마크 정보가 유지됩니다.\n\n**잘못된 방법**: 우클릭 「다른 이름으로 저장」 또는 「이미지 저장」을 사용하면 브라우저가 이미지를 재인코딩하여 워터마크 특성이 변경되거나 손실될 수 있습니다.\n\n**해결책**:\n• 이미지를 다시 생성하고 다운로드 버튼으로 저장\n• 우클릭 저장한 이미지에서 감지가 실패하면, 대신 범용 AI 지우개 모드를 시도\n\n참고: 이것은 브라우저가 이미지를 처리하는 방식 때문이지, 이 도구의 제한이 아닙니다."
+      }
+    }
+  },
+  "changelog": {
+    "title": "변경",
+    "highlight": "로그",
+    "description": "Clean PicGo 버전 업데이트와 새로운 기능 추적",
+    "back": "홈으로 돌아가기",
+    "types": {
+      "major": "메이저 업데이트",
+      "minor": "기능 업데이트",
+      "patch": "버그 수정"
+    },
+    "moreUpdates": "더 많은 업데이트 보기",
+    "versions": {
+      "v1_1_0": {
+        "changes": [
+          { "type": "feature", "text": "Gemini 워터마크 자동 감지 및 무손실 제거 추가" },
+          { "type": "feature", "text": "홈페이지에서 Gemini 감지 토글 지원" },
+          { "type": "feature", "text": "Web Worker 백그라운드 스레드로 모델 추론, 메인 스레드 블로킹 없음" },
+          { "type": "improvement", "text": "홈페이지 레이아웃 최적화, 핵심 기능, FAQ 섹션 추가" },
+          { "type": "improvement", "text": "큰 이미지 표시 최적화, 100% 줌에서 뷰포트에 자동 맞춤" },
+          { "type": "improvement", "text": "Gemini 워터마크 알림 최적화, 네비게이션 바에서 경량 표시" },
+          { "type": "improvement", "text": "이미지 처리 중 줌 및 팬 지원" },
+          { "type": "improvement", "text": "PWA 지원 표시기 추가" },
+          { "type": "fix", "text": "모델 캐시 상태 감지 문제 수정" },
+          { "type": "fix", "text": "핸드 도구로 이미지 이동 후 지우개 영역 감지 오프셋 수정" },
+          { "type": "fix", "text": "큰 이미지에서 비교 슬라이더 컨트롤이 너무 작은 문제 수정" }
+        ]
+      },
+      "v1_0_0": {
+        "changes": [
+          { "type": "feature", "text": "LaMa 모델 기반 스마트 이미지 인페인팅" },
+          { "type": "feature", "text": "프라이버시 보호를 위해 브라우저에서 완전히 실행" },
+          { "type": "feature", "text": "JPG, PNG, WebP 포맷 지원" },
+          { "type": "feature", "text": "다단계 실행 취소/다시 실행, 최대 30단계 기록" },
+          { "type": "feature", "text": "실시간 미리보기 비교" },
+          { "type": "feature", "text": "로컬 모델 캐시, 재다운로드 불필요" }
+        ]
+      }
+    }
+  },
+  "editor": {
+    "toolbar": {
+      "reset": "초기화",
+      "download": "다운로드"
+    },
+    "toolPanel": {
+      "undo": "실행 취소",
+      "redo": "다시 실행",
+      "eraser": "지우개 도구",
+      "hand": "핸드 도구",
+      "handHint": "드래그하여 캔버스 이동",
+      "zoomIn": "확대",
+      "zoomOut": "축소",
+      "zoomReset": "줌 초기화",
+      "compare": "비교",
+      "exitCompare": "비교 종료"
+    },
+    "canvas": {
+      "loading": "이미지 로딩 중...",
+      "touchHint": "제거할 영역을 칠하기"
+    },
+    "compare": {
+      "original": "원본",
+      "processed": "처리됨"
+    },
+    "modelLoading": {
+      "preparing": "AI 모델 준비 중...",
+      "downloading": "AI 모델 다운로드 중...",
+      "initializing": "모델 초기화 중...",
+      "hint": "처음 로드할 때 약 200MB 다운로드 필요, 향후 사용을 위해 캐시됨"
+    }
+  },
+  "accessibility": {
+    "skipToContent": "메인 콘텐츠로 건너뛰기",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "toggleTheme": "테마 전환",
+    "switchLanguage": "언어 전환",
+    "uploadImage": "이미지 업로드",
+    "selectFile": "업로드할 파일 선택",
+    "sampleImage": "샘플 이미지",
+    "tryThisSample": "이 샘플 이미지 시도",
+    "brushSize": "브러시 크기",
+    "zoomLevel": "줌 레벨",
+    "undoAction": "마지막 작업 실행 취소",
+    "redoAction": "작업 다시 실행",
+    "downloadResult": "처리된 이미지 다운로드",
+    "closeEditor": "에디터 닫기",
+    "compareImages": "전후 비교"
+  }
+}
+

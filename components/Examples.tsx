@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Sparkles, MousePointer2 } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
 import Script from "next/script"
+import type { Locale } from "@/i18n/config"
 
 const examples = [
   {
@@ -26,6 +27,57 @@ const examples = [
     altKey: "jacket",
   },
 ]
+
+// 各语言的 alt 文本模板
+const altTextTemplates: Record<Locale, { original: string; comparison: string }> = {
+  zh: {
+    original: "AI去水印示例{index} - {altKey}图片处理前",
+    comparison: "AI去水印示例{index} - {altKey}图片处理效果对比动画"
+  },
+  en: {
+    original: "AI watermark removal example {index} - {altKey} image before processing",
+    comparison: "AI watermark removal example {index} - {altKey} image comparison animation"
+  },
+  ja: {
+    original: "AI透かし除去例{index} - {altKey}画像処理前",
+    comparison: "AI透かし除去例{index} - {altKey}画像比較アニメーション"
+  },
+  ko: {
+    original: "AI 워터마크 제거 예시 {index} - {altKey} 이미지 처리 전",
+    comparison: "AI 워터마크 제거 예시 {index} - {altKey} 이미지 비교 애니메이션"
+  },
+  ru: {
+    original: "AI удаление водяных знаков пример {index} - изображение {altKey} до обработки",
+    comparison: "AI удаление водяных знаков пример {index} - анимация сравнения {altKey}"
+  }
+}
+
+// 各语言的图库名称
+const galleryNames: Record<Locale, string> = {
+  zh: "AI去水印效果展示",
+  en: "AI Watermark Removal Examples",
+  ja: "AI透かし除去効果展示",
+  ko: "AI 워터마크 제거 효과 전시",
+  ru: "Примеры AI удаления водяных знаков"
+}
+
+// 各语言的图片示例名称
+const exampleNames: Record<Locale, string> = {
+  zh: "AI去水印示例",
+  en: "AI Watermark Removal Example",
+  ja: "AI透かし除去例",
+  ko: "AI 워터마크 제거 예시",
+  ru: "Пример AI удаления водяных знаков"
+}
+
+// 各语言的图片描述模板
+const descriptionTemplates: Record<Locale, string> = {
+  zh: "使用Clean PicGo AI去水印工具处理的{altKey}图片效果展示",
+  en: "{altKey} image processed with Clean PicGo AI watermark remover",
+  ja: "Clean PicGo AI透かし除去ツールで処理した{altKey}画像の効果展示",
+  ko: "Clean PicGo AI 워터마크 제거 도구로 처리된 {altKey} 이미지 효과 전시",
+  ru: "Изображение {altKey}, обработанное с помощью Clean PicGo AI"
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -53,15 +105,16 @@ const itemVariants = {
 function ExampleCard({ example, index }: { example: typeof examples[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
   const t = useTranslations("examples")
-  const locale = useLocale()
+  const locale = useLocale() as Locale
   
   // 生成更具描述性的 alt 文本
-  const altOriginal = locale === "zh" 
-    ? `AI去水印示例${index + 1} - ${example.altKey}图片处理前` 
-    : `AI watermark removal example ${index + 1} - ${example.altKey} image before processing`
-  const altComparison = locale === "zh"
-    ? `AI去水印示例${index + 1} - ${example.altKey}图片处理效果对比动画`
-    : `AI watermark removal example ${index + 1} - ${example.altKey} image comparison animation`
+  const templates = altTextTemplates[locale] || altTextTemplates.en
+  const altOriginal = templates.original
+    .replace("{index}", String(index + 1))
+    .replace("{altKey}", example.altKey)
+  const altComparison = templates.comparison
+    .replace("{index}", String(index + 1))
+    .replace("{altKey}", example.altKey)
 
   return (
     <motion.div
@@ -177,25 +230,22 @@ function ExampleCard({ example, index }: { example: typeof examples[0]; index: n
 
 export function Examples() {
   const t = useTranslations("examples")
-  const locale = useLocale()
+  const locale = useLocale() as Locale
 
   // ImageGallery 结构化数据
   const imageGalleryJsonLd = useMemo(() => ({
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    "name": locale === "zh" ? "AI去水印效果展示" : "AI Watermark Removal Examples",
+    "name": galleryNames[locale] || galleryNames.en,
     "description": t("description"),
     "url": "https://clean.picgo.studio#examples",
     "image": examples.map((example, index) => ({
       "@type": "ImageObject",
-      "name": locale === "zh" 
-        ? `AI去水印示例 ${index + 1}` 
-        : `AI Watermark Removal Example ${index + 1}`,
+      "name": `${exampleNames[locale] || exampleNames.en} ${index + 1}`,
       "contentUrl": example.result,
       "thumbnailUrl": example.original,
-      "description": locale === "zh"
-        ? `使用Clean PicGo AI去水印工具处理的${example.altKey}图片效果展示`
-        : `${example.altKey} image processed with Clean PicGo AI watermark remover`
+      "description": (descriptionTemplates[locale] || descriptionTemplates.en)
+        .replace("{altKey}", example.altKey)
     }))
   }), [t, locale])
 
@@ -274,4 +324,3 @@ export function Examples() {
     </>
   )
 }
-

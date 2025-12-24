@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
-import { Space_Grotesk } from "next/font/google"
+import { Space_Grotesk, Noto_Sans_JP, Noto_Sans_KR } from "next/font/google"
 import Script from "next/script"
 import { notFound } from "next/navigation"
 import { locales, type Locale } from "@/i18n/config"
@@ -18,22 +18,25 @@ const spaceGrotesk = Space_Grotesk({
   weight: ["400", "500", "600", "700"],
 })
 
+const notoSansJP = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+})
+
+const notoSansKR = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+})
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}): Promise<Metadata> {
-  const { locale } = await params
-  const messages = await getMessages()
-  const t = messages.metadata as Record<string, string>
-
-  const siteUrl = "https://clean.picgo.studio"
-  
-  const keywordsZh = [
+// 各语言的关键词
+const keywordsByLocale: Record<Locale, string[]> = {
+  zh: [
     "去水印",
     "AI去水印",
     "Gemini去水印",
@@ -63,9 +66,8 @@ export async function generateMetadata({
     "批量去水印",
     "高清去水印",
     "无损去水印"
-  ]
-  
-  const keywordsEn = [
+  ],
+  en: [
     "watermark remover",
     "AI watermark remover",
     "Gemini watermark remover",
@@ -93,7 +95,130 @@ export async function generateMetadata({
     "batch watermark remover",
     "HD watermark remover",
     "lossless watermark removal"
+  ],
+  ja: [
+    "透かし除去",
+    "AI透かし除去",
+    "Gemini透かし除去",
+    "Gemini透かし削除",
+    "Gemini透かしロスレス除去",
+    "逆アルファブレンド",
+    "透かしを消す",
+    "オンライン透かし除去",
+    "無料透かし除去",
+    "透かし除去ツール",
+    "AI透かし削除",
+    "Midjourney透かし除去",
+    "Stable Diffusion透かし除去",
+    "DALL-E透かし除去",
+    "AI生成画像透かし除去",
+    "画像透かし除去",
+    "テキスト透かし除去",
+    "ロゴ透かし除去",
+    "画像インペインティング",
+    "画像処理",
+    "LaMa",
+    "スマート消去",
+    "ワンクリック透かし除去",
+    "HD透かし除去",
+    "ロスレス透かし除去"
+  ],
+  ko: [
+    "워터마크 제거",
+    "AI 워터마크 제거",
+    "Gemini 워터마크 제거",
+    "Gemini 워터마크 삭제",
+    "Gemini 워터마크 무손실 제거",
+    "역 알파 블렌딩",
+    "워터마크 지우기",
+    "온라인 워터마크 제거",
+    "무료 워터마크 제거",
+    "워터마크 제거 도구",
+    "AI 워터마크 삭제",
+    "Midjourney 워터마크 제거",
+    "Stable Diffusion 워터마크 제거",
+    "DALL-E 워터마크 제거",
+    "AI 생성 이미지 워터마크 제거",
+    "이미지 워터마크 제거",
+    "텍스트 워터마크 제거",
+    "로고 워터마크 제거",
+    "이미지 인페인팅",
+    "이미지 처리",
+    "LaMa",
+    "스마트 지우기",
+    "원클릭 워터마크 제거",
+    "HD 워터마크 제거",
+    "무손실 워터마크 제거"
+  ],
+  ru: [
+    "удаление водяных знаков",
+    "AI удаление водяных знаков",
+    "Gemini удаление водяных знаков",
+    "удалить водяной знак Gemini",
+    "Gemini без потерь",
+    "обратное альфа смешивание",
+    "убрать водяной знак",
+    "онлайн удаление водяных знаков",
+    "бесплатное удаление водяных знаков",
+    "инструмент удаления водяных знаков",
+    "AI удалить водяной знак",
+    "Midjourney удалить водяной знак",
+    "Stable Diffusion удалить водяной знак",
+    "DALL-E удалить водяной знак",
+    "удалить водяной знак AI изображения",
+    "удалить водяной знак с фото",
+    "удалить текстовый водяной знак",
+    "удалить логотип водяной знак",
+    "восстановление изображений",
+    "обработка изображений",
+    "LaMa",
+    "умное стирание",
+    "удаление водяных знаков в один клик",
+    "HD удаление водяных знаков",
+    "удаление водяных знаков без потерь"
   ]
+}
+
+// 语言代码映射
+const localeToLanguageCode: Record<Locale, string> = {
+  zh: "zh-CN",
+  en: "en-US",
+  ja: "ja-JP",
+  ko: "ko-KR",
+  ru: "ru-RU"
+}
+
+// OpenGraph locale 映射
+const localeToOGLocale: Record<Locale, string> = {
+  zh: "zh_CN",
+  en: "en_US",
+  ja: "ja_JP",
+  ko: "ko_KR",
+  ru: "ru_RU"
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const messages = await getMessages()
+  const t = messages.metadata as Record<string, string>
+
+  const siteUrl = "https://clean.picgo.studio"
+  const currentLocale = locale as Locale
+
+  // 生成 alternates languages
+  const alternateLanguages = Object.fromEntries(
+    locales.map((l) => [localeToLanguageCode[l], `${siteUrl}/${l}`])
+  )
+  alternateLanguages["x-default"] = `${siteUrl}/en`
+
+  // 生成 alternateLocales for OpenGraph
+  const alternateOGLocales = locales
+    .filter((l) => l !== currentLocale)
+    .map((l) => localeToOGLocale[l])
 
   return {
     title: {
@@ -101,7 +226,7 @@ export async function generateMetadata({
       template: `%s | Clean PicGo`
     },
     description: t.description,
-    keywords: locale === "zh" ? keywordsZh : keywordsEn,
+    keywords: keywordsByLocale[currentLocale],
     authors: [{ name: "isboyjc", url: "https://github.com/isboyjc" }],
     creator: "isboyjc",
     publisher: "Clean PicGo",
@@ -147,16 +272,12 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl),
     alternates: {
       canonical: `${siteUrl}/${locale}`,
-      languages: {
-        "zh-CN": `${siteUrl}/zh`,
-        "en-US": `${siteUrl}/en`,
-        "x-default": `${siteUrl}/en`,
-      },
+      languages: alternateLanguages,
     },
     openGraph: {
       type: "website",
-      locale: locale === "zh" ? "zh_CN" : "en_US",
-      alternateLocale: locale === "zh" ? "en_US" : "zh_CN",
+      locale: localeToOGLocale[currentLocale],
+      alternateLocale: alternateOGLocales,
       url: siteUrl,
       siteName: "Clean PicGo",
       title: t.title,
@@ -180,6 +301,30 @@ export async function generateMetadata({
   }
 }
 
+// 获取语言对应的特性列表
+function getFeatureList(locale: Locale): string[] {
+  const featureLists: Record<Locale, string[]> = {
+    zh: ["AI智能去水印", "Gemini水印无损去除", "本地浏览器处理", "完全免费", "支持撤销重做", "多格式支持"],
+    en: ["AI Smart Watermark Removal", "Gemini Lossless Removal", "Local Browser Processing", "Completely Free", "Undo/Redo Support", "Multi-format Support"],
+    ja: ["AIスマート透かし除去", "Geminiロスレス除去", "ローカルブラウザ処理", "完全無料", "元に戻す/やり直しサポート", "マルチフォーマットサポート"],
+    ko: ["AI 스마트 워터마크 제거", "Gemini 무손실 제거", "로컬 브라우저 처리", "완전 무료", "실행 취소/다시 실행 지원", "다중 포맷 지원"],
+    ru: ["AI умное удаление водяных знаков", "Gemini без потерь", "Локальная обработка в браузере", "Полностью бесплатно", "Поддержка отмены/повтора", "Мульти-формат поддержка"]
+  }
+  return featureLists[locale]
+}
+
+// 获取语言对应的关键词字符串
+function getKeywordsString(locale: Locale): string {
+  const keywordsStrings: Record<Locale, string> = {
+    zh: "去水印,AI去水印,Gemini水印去除,Gemini无损去水印,图片去水印,在线去水印,免费去水印",
+    en: "watermark remover,AI watermark remover,Gemini watermark remover,Gemini lossless removal,remove watermark,online watermark remover,free watermark remover",
+    ja: "透かし除去,AI透かし除去,Gemini透かし除去,Geminiロスレス除去,オンライン透かし除去,無料透かし除去",
+    ko: "워터마크 제거,AI 워터마크 제거,Gemini 워터마크 제거,Gemini 무손실 제거,온라인 워터마크 제거,무료 워터마크 제거",
+    ru: "удаление водяных знаков,AI удаление водяных знаков,Gemini удаление водяных знаков,Gemini без потерь,онлайн удаление водяных знаков"
+  }
+  return keywordsStrings[locale]
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -193,6 +338,8 @@ export default async function LocaleLayout({
   if (!locales.includes(locale as Locale)) {
     notFound()
   }
+
+  const currentLocale = locale as Locale
 
   // 启用静态渲染
   setRequestLocale(locale)
@@ -216,9 +363,7 @@ export default async function LocaleLayout({
     "browserRequirements": "Requires JavaScript, WebGL",
     "softwareVersion": "1.1.0",
     "screenshot": `${siteUrl}/screenshots/desktop.png`,
-    "featureList": locale === "zh" 
-      ? ["AI智能去水印", "Gemini水印无损去除", "本地浏览器处理", "完全免费", "支持撤销重做", "多格式支持"]
-      : ["AI Smart Watermark Removal", "Gemini Lossless Removal", "Local Browser Processing", "Completely Free", "Undo/Redo Support", "Multi-format Support"],
+    "featureList": getFeatureList(currentLocale),
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -245,10 +390,8 @@ export default async function LocaleLayout({
         "url": `${siteUrl}/icons/icon-512x512.png`
       }
     },
-    "inLanguage": locale === "zh" ? "zh-CN" : "en-US",
-    "keywords": locale === "zh" 
-      ? "去水印,AI去水印,Gemini水印去除,Gemini无损去水印,图片去水印,在线去水印,免费去水印" 
-      : "watermark remover,AI watermark remover,Gemini watermark remover,Gemini lossless removal,remove watermark,online watermark remover,free watermark remover"
+    "inLanguage": localeToLanguageCode[currentLocale],
+    "keywords": getKeywordsString(currentLocale)
   }
   
   // Organization Schema
@@ -263,6 +406,9 @@ export default async function LocaleLayout({
       "https://twitter.com/isboyjc"
     ]
   }
+
+  // 根据语言选择合适的字体类
+  const fontClasses = `${spaceGrotesk.variable} ${notoSansJP.variable} ${notoSansKR.variable}`
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -330,7 +476,7 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className={`${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+      <body className={`${fontClasses} antialiased`} suppressHydrationWarning>
         <ServiceWorkerRegister />
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>

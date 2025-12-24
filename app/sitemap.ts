@@ -1,38 +1,35 @@
 import type { MetadataRoute } from "next"
+import { locales } from "@/i18n/config"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://clean.picgo.studio"
   const lastModified = new Date()
 
-  return [
-    // 主页 - 英文
-    {
-      url: `${baseUrl}/en`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
+  // 生成所有语言的主页
+  const homePages = locales.map((locale) => ({
+    url: `${baseUrl}/${locale}`,
+    lastModified,
+    changeFrequency: "weekly" as const,
+    priority: 1,
+    alternates: {
+      languages: Object.fromEntries(
+        locales.map((l) => [l === 'zh' ? 'zh-CN' : l === 'en' ? 'en-US' : l === 'ja' ? 'ja-JP' : l === 'ko' ? 'ko-KR' : 'ru-RU', `${baseUrl}/${l}`])
+      ),
     },
-    // 主页 - 中文
-    {
-      url: `${baseUrl}/zh`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    // Changelog - 英文
-    {
-      url: `${baseUrl}/en/changelog`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    // Changelog - 中文
-    {
-      url: `${baseUrl}/zh/changelog`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-  ]
-}
+  }))
 
+  // 生成所有语言的更新日志页面
+  const changelogPages = locales.map((locale) => ({
+    url: `${baseUrl}/${locale}/changelog`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+    alternates: {
+      languages: Object.fromEntries(
+        locales.map((l) => [l === 'zh' ? 'zh-CN' : l === 'en' ? 'en-US' : l === 'ja' ? 'ja-JP' : l === 'ko' ? 'ko-KR' : 'ru-RU', `${baseUrl}/${l}/changelog`])
+      ),
+    },
+  }))
+
+  return [...homePages, ...changelogPages]
+}

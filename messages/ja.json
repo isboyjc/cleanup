@@ -1,0 +1,445 @@
+{
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム",
+    "toggle": "テーマを切り替え"
+  },
+  "metadata": {
+    "title": "Clean PicGo - AI透かし除去 | Geminiロスレス除去",
+    "description": "無料オンラインAI透かし除去・画像消しゴムツール。Gemini透かしをロスレス除去、逆アルファブレンドアルゴリズムで瞬時に復元。Midjourney、Stable Diffusion、DALL-E、可灵などのAI透かしに対応。LaMaモデル採用、ブラウザ内で完結、プライバシー保護。"
+  },
+  "hero": {
+    "badge": "AI搭載 · 無料",
+    "title": {
+      "line1": "画像の",
+      "line2": "",
+      "highlight": "透かしを除去"
+    },
+    "description": "AIの先端技術を使って、画像から透かし、テキスト、不要なオブジェクトを簡単に除去します。",
+    "descriptionSub": "登録不要、ブラウザ内で完結処理、プライバシーを保護します。",
+    "upload": {
+      "dragging": "ドロップしてアップロード",
+      "default": "画像をここにドラッグ＆ドロップ",
+      "or": "または",
+      "click": "クリックして選択",
+      "formats": "JPG、PNG、WebPに対応"
+    },
+    "tags": {
+      "fast": "🚀 高速処理",
+      "local": "🔒 ローカル処理",
+      "free": "💯 完全無料",
+      "quality": "✨ 高品質"
+    },
+    "samples": {
+      "title": "またはサンプル画像を試す",
+      "try": "試す",
+      "bag": "バッグ",
+      "room": "部屋",
+      "jacket": "ジャケット",
+      "portrait": "グレースケール"
+    },
+    "modelStatus": {
+      "ready": "モデル準備完了",
+      "notReady": "モデルのダウンロードが必要"
+    }
+  },
+  "howItWorks": {
+    "title": "使い方",
+    "highlight": "ガイド",
+    "description": "コアAIワークフローがすべての透かしを処理、Gemini検出はオプション強化機能",
+    "branch": {
+      "title": "スマートルーティング",
+      "gemini": {
+        "title": "Gemini高速トラック",
+        "subtitle": "Gemini検出がONの場合",
+        "optional": "オプション",
+        "description": "有効にすると、アップロードした画像は自動的にGemini透かしをスキャン",
+        "features": {
+          "autoDetect": "Gemini透かしを自動検出",
+          "instant": "瞬時にロスレス除去",
+          "undoable": "元に戻せる操作"
+        },
+        "continueToMain": "その後コアワークフローに続く"
+      },
+      "ai": {
+        "title": "汎用AI処理",
+        "subtitle": "すべての種類の透かしに対応"
+      }
+    },
+    "steps": {
+      "upload": {
+        "title": "画像をアップロード",
+        "description": "ドラッグ＆ドロップまたはクリック、JPG、PNG、WebPに対応"
+      },
+      "autoDetect": {
+        "title": "自動検出と除去",
+        "description": "システムがGemini透かしを自動検出して即座に除去"
+      },
+      "undoable": {
+        "title": "元に戻せる操作",
+        "description": "自動処理結果は元に戻せる、オリジナルに戻すことが可能"
+      },
+      "continueEdit": {
+        "title": "編集を続ける",
+        "description": "他のコンテンツも除去したい場合はAI消しゴムツールを使用"
+      },
+      "select": {
+        "title": "領域を選択",
+        "description": "消しゴムツールで透かし部分を塗りつぶす"
+      },
+      "process": {
+        "title": "AIスマートフィル",
+        "description": "LaMaモデルがコンテキストを分析して選択領域を埋める",
+        "core": "コア"
+      },
+      "compare": {
+        "title": "プレビューと比較",
+        "description": "リアルタイムで前後を比較、連続編集に対応"
+      },
+      "download": {
+        "title": "結果をダウンロード",
+        "description": "満足したらHDオリジナルをダウンロード、ロスレスPNGエクスポートに対応"
+      }
+    },
+    "legend": {
+      "coreFlow": {
+        "title": "コアワークフロー",
+        "description": "すべての画像がこのワークフローを通過"
+      },
+      "geminiExtension": {
+        "title": "Gemini拡張",
+        "description": "Gemini透かしの自動前処理用オプション機能"
+      }
+    }
+  },
+  "capabilities": {
+    "badge": "コア機能",
+    "title": "強力な",
+    "highlight": "機能",
+    "description": "AIスマート修復と数学的精度アルゴリズムを組み合わせた包括的な透かし除去ソリューション",
+    "items": {
+      "aiPowered": {
+        "title": "AIスマート修復",
+        "description": "LaMaディープラーニングモデルを活用した、インテリジェントなコンテキスト対応画像修復"
+      },
+      "geminiOptimized": {
+        "title": "Gemini最適化",
+        "description": "逆アルファブレンドで瞬時にGemini透かしをロスレス除去"
+      },
+      "privacy": {
+        "title": "プライバシー保護",
+        "description": "すべての処理はブラウザ内でローカル実行、画像はサーバーにアップロードされません"
+      },
+      "noCost": {
+        "title": "完全無料",
+        "description": "登録不要、支払い不要、制限なし - 永久無料"
+      },
+      "preciseControl": {
+        "title": "精密制御",
+        "description": "ブラシサイズを自由に調整、除去したい領域を正確に塗る"
+      },
+      "undoRedo": {
+        "title": "履歴サポート",
+        "description": "複数ステップの元に戻す/やり直し、最大30ステップの編集履歴を保存"
+      },
+      "multiFormat": {
+        "title": "マルチフォーマット",
+        "description": "JPG、PNG、WebPなどの一般的なフォーマットに対応"
+      },
+      "crossPlatform": {
+        "title": "クロスプラットフォーム",
+        "description": "デスクトップおよびモバイルブラウザで動作、どこでも使用可能"
+      }
+    }
+  },
+  "lamaArchitecture": {
+    "badge": "技術アーキテクチャ",
+    "title": "LaMa",
+    "highlight": "アーキテクチャ",
+    "description": "ONNX Runtime Webでブラウザ内で実行されるプロフェッショナルな画像インペインティングモデル",
+    "pipeline": {
+      "title": "処理パイプライン",
+      "input": {
+        "title": "画像入力",
+        "description": "画像の読み込みと前処理"
+      },
+      "mask": {
+        "title": "マスク生成",
+        "description": "ユーザーの描画からバイナリマスクを作成"
+      },
+      "inference": {
+        "title": "モデル推論",
+        "description": "LaMaがコンテキストを分析して埋める"
+      },
+      "output": {
+        "title": "結果出力",
+        "description": "元のサイズに戻してオリジナルとブレンド"
+      }
+    },
+    "lama": {
+      "title": "LaMaモデル",
+      "subtitle": "Large Mask Inpainting",
+      "description": "LaMaはSamsung AI Researchが開発した大規模マスクインペインティングモデルで、大きな欠損領域を高品質でセマンティックに一貫性のある結果で処理するように設計されています。",
+      "features": {
+        "fourier": "高速フーリエ畳み込み - 受容野を拡張",
+        "attention": "グローバルアテンション - 画像コンテキストを理解",
+        "perceptual": "知覚損失 - 自然なテクスチャを生成"
+      }
+    },
+    "runtime": {
+      "title": "ONNX Runtime Web",
+      "subtitle": "ブラウザベースAI推論エンジン"
+    },
+    "tech": {
+      "onnx": {
+        "title": "ONNXフォーマット",
+        "description": "クロスフレームワーク標準"
+      },
+      "worker": {
+        "title": "Web Worker",
+        "description": "バックグラウンドスレッド、ノンブロッキング"
+      },
+      "wasm": {
+        "title": "WASMランタイム",
+        "description": "高性能ローカル計算"
+      },
+      "cache": {
+        "title": "ブラウザキャッシュ",
+        "description": "ローカルモデルストレージ"
+      }
+    },
+    "stats": {
+      "modelSize": "モデルサイズ",
+      "inputSize": "内部サイズ",
+      "inferenceTime": "推論時間",
+      "clientSide": "クライアントサイド"
+    },
+    "note": "任意のサイズの画像に対応 - 処理のために自動スケール、元の解像度に復元"
+  },
+  "features": {
+    "title": "強力な",
+    "highlight": "機能",
+    "description": "LaMaディープラーニングモデルによるプロフェッショナルな画像修復",
+    "items": {
+      "smartErase": {
+        "title": "スマート消去",
+        "description": "消しゴムツールで除去したい領域を選択、AIが自動的に背景を埋める"
+      },
+      "realtime": {
+        "title": "リアルタイム処理",
+        "description": "WebGL加速ONNX Runtimeでブラウザ内で直接処理"
+      },
+      "privacy": {
+        "title": "プライバシー優先",
+        "description": "すべての処理はローカルで実行、画像はデバイスから離れない"
+      },
+      "mask": {
+        "title": "マスク技術",
+        "description": "精密なマスク生成で選択した領域のみを処理"
+      },
+      "compare": {
+        "title": "ライブ比較",
+        "description": "スライダーで前後を並べて比較"
+      },
+      "export": {
+        "title": "HDエクスポート",
+        "description": "元の解像度で結果をエクスポート、画質を維持"
+      }
+    }
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "and": "and AI",
+    "copyright": "LaMaモデルを搭載、ONNX Runtime Webでブラウザ内で実行。",
+    "changelog": "更新履歴",
+    "friendLinks": "リソース"
+  },
+  "examples": {
+    "badge": "実際の例",
+    "title": "実際の",
+    "highlight": "例",
+    "description": "ホバーして除去アニメーションを見て、強力なAI修復を目撃",
+    "hoverHint": "ホバーでプレビュー",
+    "playing": "再生中",
+    "example": "例",
+    "showingResult": "結果を表示",
+    "beforeAfter": "前後比較",
+    "original": "オリジナル",
+    "comparison": "比較",
+    "footerHint": "上記のすべての例はClean PicGoによってブラウザ内でリアルタイムで処理されました"
+  },
+  "geminiDetection": {
+    "label": "Gemini透かし",
+    "tooltip": "Gemini検出 · 逆アルファブレンド · 瞬時ロスレス",
+    "statusOn": "オン",
+    "statusOff": "オフ",
+    "detecting": "Gemini透かしを検出中...",
+    "processing": "透かしを検出、除去中...",
+    "success": "Gemini透かしを除去しました",
+    "notFound": "Gemini透かしは検出されませんでした"
+  },
+  "geminiFeature": {
+    "badge": "Gemini最適化",
+    "title": "瞬時ロスレス",
+    "highlight": "Gemini",
+    "description": "Gemini AI生成の透かしには、数学的に正確な逆アルファブレンドアルゴリズムを使用して瞬時にロスレス除去",
+    "items": {
+      "autoDetect": {
+        "title": "スマート自動検出",
+        "description": "アップロード後にGemini透かしを自動検出、手動操作不要"
+      },
+      "instant": {
+        "title": "瞬時処理",
+        "description": "大型AIモデルの読み込み不要、純粋な数学計算、非常に高速"
+      },
+      "lossless": {
+        "title": "数学的ロスレス",
+        "description": "逆アルファブレンドに基づく、100%オリジナルピクセル復元、品質損失ゼロ"
+      },
+      "undoable": {
+        "title": "元に戻せる操作",
+        "description": "自動処理は編集ステップとして保存、元に戻せる、手動編集を続行可能"
+      }
+    },
+    "algorithm": {
+      "title": "逆アルファブレンド",
+      "subtitle": "数学的精度",
+      "watermarkFormula": "Gemini透かし公式：",
+      "reverseFormula": "除去のための逆公式：",
+      "description": "事前にキャプチャした透かしアルファマップを使用して、各ピクセルの元の値を正確に計算してロスレス復元。",
+      "credit": "アルゴリズムの基"
+    }
+  },
+  "faq": {
+    "badge": "よくある質問",
+    "title": "よくある",
+    "highlight": "質問",
+    "description": "Clean PicGoの技術詳細と使用方法についてもっと学ぶ",
+    "moreQuestions": "他に質問がありますか？お気軽に",
+    "items": {
+      "howItWorks": {
+        "question": "Clean PicGoはどのように動作しますか？",
+        "answer": "Clean PicGoは2つの技術を使用して透かしを除去します：\n\n1. **LaMa AIモデル**：あらゆる種類の透かしや不要なオブジェクトに対応、ディープラーニングで選択した領域をインテリジェントに埋める\n\n2. **Gemini専用アルゴリズム**：Gemini AI画像の透かしには、数学的に正確な逆アルファブレンドでロスレスピクセル復元\n\nすべての処理はブラウザ内でローカルで実行 - 画像はサーバーにアップロードされません。"
+      },
+      "geminiOptimization": {
+        "question": "Gemini透かし除去にはどのような最適化がありますか？",
+        "answer": "オリジナルのgemini-watermark-removerプロジェクトと比較して、以下の改善を行いました：\n\n• **透かし検出**：処理前にGemini透かしが実際に存在するかを事前チェック\n• **数値安定性**：ゼロ除算ピクセル異常を防ぐためにアルファ上限保護を追加\n• **自動化統合**：手動モード切り替え不要、アップロード時に自動検出・処理\n• **元に戻せるデザイン**：処理結果は編集ステップとして保存、元に戻せる、他の領域でAIモデルを続行可能"
+      },
+      "lamaOptimization": {
+        "question": "LaMaモデル処理にはどのような最適化がありますか？",
+        "answer": "LaMaモデルの使用においていくつかの最適化を行いました：\n\n• **Web Workerバックグラウンド処理**：モデル推論は別スレッドで実行、処理中もメインスレッドは完全に応答\n• **ブラウザキャッシュ**：モデルファイルはダウンロード後自動キャッシュ、再ダウンロード不要\n• **プログレッシブ編集**：連続編集に対応、各結果が次の編集のベースに\n• **スマートマスキング**：ユーザーが塗った領域のみを処理、他はすべて元のまま\n• **履歴サポート**：複数ステップの元に戻す/やり直し、最大30ステップの履歴を保存"
+      },
+      "privacy": {
+        "question": "私の画像は安全ですか？",
+        "answer": "絶対に安全です！Clean PicGoのすべての処理はブラウザ内でローカルで実行されます：\n\n• 画像はどのサーバーにもアップロードされません\n• AIモデルはブラウザ内で実行\n• ユーザーデータは一切収集しません\n• ページを閉じるとすべてのデータがクリア\n\nそのため「ブラウザ内で完結処理、プライバシーを保護します」と言っています。"
+      },
+      "formats": {
+        "question": "どの画像フォーマットに対応していますか？",
+        "answer": "Clean PicGoは一般的な画像フォーマットに対応しています：\n\n• **JPG/JPEG**：最も一般的な写真フォーマット\n• **PNG**：透明度対応の画像\n• **WebP**：Googleの現代的な画像フォーマット\n\n処理済み画像はデフォルトでPNG形式でエクスポート、最高品質を確保。"
+      },
+      "modelSize": {
+        "question": "なぜ初回読み込みでモデルのダウンロードが必要なのですか？",
+        "answer": "LaMaは画像インペインティング用のプロフェッショナルなディープラーニングモデルで、モデルファイルは約200MBです。\n\n• **初回使用**：CDNからのダウンロードが必要、1-2分かかる場合があります\n• **その後の使用**：モデルはブラウザにキャッシュ、再ダウンロード不要\n• **Geminiモード**：モデルのダウンロード不要、純粋な数学アルゴリズムを使用\n\nダウンロード進行状況はリアルタイムで表示されます。"
+      },
+      "limitations": {
+        "question": "何か制限はありますか？",
+        "answer": "Clean PicGoにはいくつかの技術的制限があります：\n\n• **画像サイズ**：LaMaモデルは内部で512×512で処理、大きな画像は自動スケール\n• **Gemini透かし**：可視の半透明透かしのみ除去可能、SynthIDなどのステガノグラフィック透かしは除去不可\n• **ブラウザサポート**：WebGL対応の現代的なブラウザが必要（Chrome 90+、Firefox 88+、Safari 14+）\n• **処理時間**：デバイスの性能に依存、モバイルデバイスは遅い場合があります"
+      },
+      "geminiSaveMethod": {
+        "question": "なぜ一部のGemini画像で透かし除去が失敗するのですか？",
+        "answer": "これは通常、画像の保存方法に関係しています：\n\n**正しい方法**：Gemini / Nano Banana Proで画像を生成した後、「ダウンロード」ボタンをクリックして保存。これにより元の透かし情報が保持されます。\n\n**誤った方法**：右クリック「名前を付けて保存」または「画像を保存」を使用すると、ブラウザが画像を再エンコードして透かしの特性が変化または失われる可能性があります。\n\n**解決策**：\n• 画像を再生成してダウンロードボタンで保存\n• 右クリック保存した画像で検出が失敗した場合、代わりに汎用AI消しゴムモードを試す\n\n注意：これはブラウザが画像を処理する方法によるもので、このツールの制限ではありません。"
+      }
+    }
+  },
+  "changelog": {
+    "title": "更新",
+    "highlight": "履歴",
+    "description": "Clean PicGoのバージョン更新と新機能を追跡",
+    "back": "ホームに戻る",
+    "types": {
+      "major": "メジャーアップデート",
+      "minor": "機能アップデート",
+      "patch": "バグ修正"
+    },
+    "moreUpdates": "もっと更新を見る",
+    "versions": {
+      "v1_1_0": {
+        "changes": [
+          { "type": "feature", "text": "Gemini透かしの自動検出とロスレス除去を追加" },
+          { "type": "feature", "text": "ホームページでGemini検出トグルをサポート" },
+          { "type": "feature", "text": "Web Workerバックグラウンドスレッドでモデル推論、メインスレッドをブロックしない" },
+          { "type": "improvement", "text": "ホームページレイアウトを最適化、コア機能、FAQセクションを追加" },
+          { "type": "improvement", "text": "大きな画像の表示を最適化、100%ズームで自動的にビューポートに適合" },
+          { "type": "improvement", "text": "Gemini透かし通知を最適化、ナビバー内で軽量表示" },
+          { "type": "improvement", "text": "画像処理中のズームとパンをサポート" },
+          { "type": "improvement", "text": "PWAサポートインジケーターを追加" },
+          { "type": "fix", "text": "モデルキャッシュ状態検出の問題を修正" },
+          { "type": "fix", "text": "ハンドツールで画像を移動した後の消しゴム領域検出オフセットを修正" },
+          { "type": "fix", "text": "大きな画像での比較スライダーコントロールが小さすぎる問題を修正" }
+        ]
+      },
+      "v1_0_0": {
+        "changes": [
+          { "type": "feature", "text": "LaMaモデルベースのスマート画像インペインティング" },
+          { "type": "feature", "text": "プライバシー保護のためブラウザ内で完全に実行" },
+          { "type": "feature", "text": "JPG、PNG、WebPフォーマットをサポート" },
+          { "type": "feature", "text": "複数ステップの元に戻す/やり直し、最大30ステップの履歴" },
+          { "type": "feature", "text": "リアルタイムプレビュー比較" },
+          { "type": "feature", "text": "ローカルモデルキャッシュ、再ダウンロード不要" }
+        ]
+      }
+    }
+  },
+  "editor": {
+    "toolbar": {
+      "reset": "リセット",
+      "download": "ダウンロード"
+    },
+    "toolPanel": {
+      "undo": "元に戻す",
+      "redo": "やり直し",
+      "eraser": "消しゴムツール",
+      "hand": "ハンドツール",
+      "handHint": "ドラッグしてキャンバスを移動",
+      "zoomIn": "拡大",
+      "zoomOut": "縮小",
+      "zoomReset": "ズームをリセット",
+      "compare": "比較",
+      "exitCompare": "比較を終了"
+    },
+    "canvas": {
+      "loading": "画像を読み込み中...",
+      "touchHint": "除去したい領域を塗りつぶす"
+    },
+    "compare": {
+      "original": "オリジナル",
+      "processed": "処理済み"
+    },
+    "modelLoading": {
+      "preparing": "AIモデルを準備中...",
+      "downloading": "AIモデルをダウンロード中...",
+      "initializing": "モデルを初期化中...",
+      "hint": "初回読み込みには約200MBのダウンロードが必要、将来の使用のためにキャッシュ"
+    }
+  },
+  "accessibility": {
+    "skipToContent": "メインコンテンツへスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "toggleTheme": "テーマを切り替え",
+    "switchLanguage": "言語を切り替え",
+    "uploadImage": "画像をアップロード",
+    "selectFile": "アップロードするファイルを選択",
+    "sampleImage": "サンプル画像",
+    "tryThisSample": "このサンプル画像を試す",
+    "brushSize": "ブラシサイズ",
+    "zoomLevel": "ズームレベル",
+    "undoAction": "最後のアクションを元に戻す",
+    "redoAction": "アクションをやり直す",
+    "downloadResult": "処理済み画像をダウンロード",
+    "closeEditor": "エディタを閉じる",
+    "compareImages": "前後を比較"
+  }
+}
+
