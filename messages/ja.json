@@ -394,9 +394,12 @@
   "editor": {
     "toolbar": {
       "reset": "リセット",
-      "download": "ダウンロード"
+      "download": "ダウンロード",
+      "close": "エディタを閉じる"
     },
     "toolPanel": {
+      "tools": "編集ツール",
+      "brushSize": "ブラシサイズ",
       "undo": "元に戻す",
       "redo": "やり直し",
       "eraser": "消しゴムツール",

@@ -28,8 +28,9 @@ const tags: Record<Locale, string[]> = {
   ru: ["🚀 Быстро", "🔒 Локально", "💯 Бесплатно", "✨ HD"]
 }
 
-export default async function Image({ params }: { params: { locale: string } }) {
-  const locale = (params.locale as Locale) || "en"
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: localeParam } = await params
+  const locale = (localeParam as Locale) || "en"
   const subtitle = subtitles[locale] || subtitles.en
   const localeTags = tags[locale] || tags.en
   

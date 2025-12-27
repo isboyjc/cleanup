@@ -394,9 +394,12 @@
   "editor": {
     "toolbar": {
       "reset": "초기화",
-      "download": "다운로드"
+      "download": "다운로드",
+      "close": "편집기 닫기"
     },
     "toolPanel": {
+      "tools": "편집 도구",
+      "brushSize": "브러시 크기",
       "undo": "실행 취소",
       "redo": "다시 실행",
       "eraser": "지우개 도구",

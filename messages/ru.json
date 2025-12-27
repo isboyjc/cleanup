@@ -394,9 +394,12 @@
   "editor": {
     "toolbar": {
       "reset": "Сброс",
-      "download": "Скачать"
+      "download": "Скачать",
+      "close": "Закрыть редактор"
     },
     "toolPanel": {
+      "tools": "Инструменты редактора",
+      "brushSize": "Размер кисти",
       "undo": "Отменить",
       "redo": "Повторить",
       "eraser": "Ластик",

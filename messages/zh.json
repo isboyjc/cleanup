@@ -394,9 +394,12 @@
   "editor": {
     "toolbar": {
       "reset": "重置",
-      "download": "下载"
+      "download": "下载",
+      "close": "关闭编辑器"
     },
     "toolPanel": {
+      "tools": "编辑工具",
+      "brushSize": "画笔大小",
       "undo": "撤回",
       "redo": "取消撤回",
       "eraser": "擦除工具",

@@ -394,9 +394,12 @@
   "editor": {
     "toolbar": {
       "reset": "Reset",
-      "download": "Download"
+      "download": "Download",
+      "close": "Close editor"
     },
     "toolPanel": {
+      "tools": "Editor tools",
+      "brushSize": "Brush size",
       "undo": "Undo",
       "redo": "Redo",
       "eraser": "Eraser Tool",
