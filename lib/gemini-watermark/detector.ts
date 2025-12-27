@@ -42,8 +42,8 @@ export async function detectGeminiWatermark(
   // 计算与 Alpha 贴图的相似度
   const confidence = calculateSimilarity(watermarkRegion, alphaMap, config.size)
   
-  // 置信度阈值判断
-  const CONFIDENCE_THRESHOLD = 0.65
+  // 置信度阈值判断（提高阈值以减少误报）
+  const CONFIDENCE_THRESHOLD = 0.75
   const exists = confidence >= CONFIDENCE_THRESHOLD
   
   return {
@@ -85,21 +85,27 @@ function extractRegion(
 /**
  * 计算图像区域与 Alpha 贴图的相似度
  * 
- * Gemini 水印是半透明白色叠加，所以检测时：
- * 1. 在有水印的区域，像素值会被"提亮"
- * 2. Alpha 值越高的地方，像素被提亮得越多
- * 3. 我们检测这种"提亮模式"是否与 Alpha 贴图匹配
+ * 检测思路：
+ * 1. 将水印区域的像素按 alpha 值分组（高alpha区和低alpha区）
+ * 2. 如果存在水印，高alpha区的亮度应该比低alpha区明显更高
+ * 3. 计算两组之间的亮度差异，与预期的水印特征进行匹配
+ * 4. 同时检测亮度分布是否符合星形水印的特征模式
  */
 function calculateSimilarity(
   region: Uint8ClampedArray,
   alphaMap: Float32Array,
   size: number
 ): number {
-  let matchCount = 0
-  let totalChecked = 0
+  // 收集高alpha区域和背景区域的亮度样本
+  const highAlphaPixels: { brightness: number; alpha: number }[] = []
+  const backgroundPixels: number[] = []
   
-  // 采样检测（不需要检查所有像素）
   const step = 2
+  
+  // 高alpha阈值（水印星形的中心部分）
+  const HIGH_ALPHA_THRESHOLD = 0.3
+  // 低alpha阈值（用于区分背景区域）
+  const LOW_ALPHA_THRESHOLD = 0.05
   
   for (let y = 0; y < size; y += step) {
     for (let x = 0; x < size; x += step) {
@@ -107,35 +113,106 @@ function calculateSimilarity(
       const pixelIdx = idx * 4
       
       const alpha = alphaMap[idx]
+      const r = region[pixelIdx]
+      const g = region[pixelIdx + 1]
+      const b = region[pixelIdx + 2]
+      const brightness = (r + g + b) / 3
       
-      // 只检查 alpha > 0.05 的区域（水印实际存在的部分）
-      if (alpha > 0.05) {
-        const r = region[pixelIdx]
-        const g = region[pixelIdx + 1]
-        const b = region[pixelIdx + 2]
-        
-        // 计算亮度
-        const brightness = (r + g + b) / 3
-        
-        // 水印是白色的，所以在水印区域像素会被提亮
-        // alpha 越高，被提亮得越多
-        // 预期的提亮量：alpha * 255
-        const expectedBrightening = alpha * 255
-        
-        // 如果原始像素较暗，提亮效果更明显
-        // 检查亮度是否在合理范围内（考虑各种背景色）
-        // 水印区域的特征：亮度相对较高，且与 alpha 有正相关
-        if (brightness > 50 + expectedBrightening * 0.3) {
-          matchCount++
-        }
-        
-        totalChecked++
+      if (alpha >= HIGH_ALPHA_THRESHOLD) {
+        highAlphaPixels.push({ brightness, alpha })
+      } else if (alpha < LOW_ALPHA_THRESHOLD) {
+        // 背景区域（alpha ≈ 0）
+        backgroundPixels.push(brightness)
       }
+      // 中间alpha区域（边缘）不参与计算，减少噪声干扰
     }
   }
   
-  if (totalChecked === 0) return 0
+  // 需要足够的样本才能进行可靠检测
+  if (highAlphaPixels.length < 10 || backgroundPixels.length < 20) {
+    return 0
+  }
   
-  return matchCount / totalChecked
+  // 计算各区域的平均亮度
+  const avgHighBrightness = highAlphaPixels.reduce((sum, p) => sum + p.brightness, 0) / highAlphaPixels.length
+  const avgBackgroundBrightness = backgroundPixels.reduce((sum, b) => sum + b, 0) / backgroundPixels.length
+  
+  // 水印特征检测：
+  // 1. 高alpha区域相对于背景应该有明显的亮度提升
+  // 2. 这个提升量应该与预期的水印叠加效果一致
+  
+  // 计算实际的亮度差异
+  const actualDiff = avgHighBrightness - avgBackgroundBrightness
+  
+  // 计算高alpha区域的平均alpha值
+  const avgHighAlpha = highAlphaPixels.reduce((sum, p) => sum + p.alpha, 0) / highAlphaPixels.length
+  
+  // 预期的亮度提升量（基于水印混合公式：watermarked = α × 255 + (1 - α) × original）
+  // 预期提升 = α × (255 - original) ≈ α × (255 - avgBackgroundBrightness)
+  const expectedDiff = avgHighAlpha * (255 - avgBackgroundBrightness)
+  
+  // 检测条件：
+  // 1. 必须有正向的亮度差异（高alpha区更亮）
+  // 2. 差异量应该在预期范围内（允许一定误差）
+  // 3. 差异量不能太小（需要有可检测的水印效果）
+  
+  if (actualDiff <= 0) {
+    // 高alpha区域没有比背景更亮，肯定没有白色水印
+    return 0
+  }
+  
+  // 计算差异比率
+  const diffRatio = actualDiff / Math.max(expectedDiff, 1)
+  
+  // 检测相似度：差异应该接近预期值
+  // 允许的范围：预期值的 50% ~ 150%
+  if (diffRatio < 0.4 || diffRatio > 2.0) {
+    return 0
+  }
+  
+  // 进一步验证：检测亮度的相关性
+  // 如果确实有水印，alpha值和亮度应该有正相关
+  const correlation = calculateCorrelation(highAlphaPixels)
+  
+  // 相关性太低说明不是水印模式
+  if (correlation < 0.2) {
+    return 0
+  }
+  
+  // 综合评分
+  // 1. 差异比率越接近 1.0，得分越高
+  // 2. 相关性越高，得分越高
+  // 3. 实际差异越大，得分越高（水印更明显）
+  
+  const ratioScore = 1 - Math.abs(diffRatio - 1) * 0.5
+  const correlationScore = Math.min(correlation, 1)
+  const diffScore = Math.min(actualDiff / 30, 1) // 差异超过30视为满分
+  
+  return Math.max(0, Math.min(1, (ratioScore + correlationScore + diffScore) / 3))
+}
+
+/**
+ * 计算 alpha 值和亮度之间的相关系数
+ */
+function calculateCorrelation(pixels: { brightness: number; alpha: number }[]): number {
+  if (pixels.length < 5) return 0
+  
+  const n = pixels.length
+  let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0
+  
+  for (const p of pixels) {
+    sumX += p.alpha
+    sumY += p.brightness
+    sumXY += p.alpha * p.brightness
+    sumX2 += p.alpha * p.alpha
+    sumY2 += p.brightness * p.brightness
+  }
+  
+  const numerator = n * sumXY - sumX * sumY
+  const denominator = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY))
+  
+  if (denominator === 0) return 0
+  
+  return numerator / denominator
 }
 
