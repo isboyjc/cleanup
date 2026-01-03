@@ -1,10 +1,11 @@
 "use client";
 
-import { Twitter, Youtube, Heart, ExternalLink, FileText } from "lucide-react"
+import { Twitter, Youtube, Heart, ExternalLink, FileText, ArrowRight } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/routing"
 import { Logo } from "./Logo"
 import { ProductName } from "./ProductName"
+import { RemoveBgLogo } from "./RemoveBgLogo"
 
 function BilibiliIcon({ className }: { className?: string }) {
   return (
@@ -51,52 +52,31 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-end gap-4">
             {/* 项目相关链接 */}
             <div className="flex flex-wrap justify-center md:justify-end items-center gap-3">
-              <a 
-                href="https://github.com/isboyjc/cleanup" 
-                target="_blank" 
+              <a
+                href="https://github.com/isboyjc/cleanup"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-card border-2 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] hover:shadow-[3px_3px_0_var(--foreground)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
               >
                 <GitHubIcon className="w-4 h-4" />
                 GitHub
               </a>
-              <Link 
+              <Link
                 href="/changelog"
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-card border-2 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] hover:shadow-[3px_3px_0_var(--foreground)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
               >
                 <FileText className="w-4 h-4" />
                 {t("changelog")}
               </Link>
-            </div>
-
-            {/* 友链 */}
-            <div className="flex flex-wrap justify-center md:justify-end items-center gap-2 text-xs text-muted-foreground">
-              <span>{t("friendLinks")}：</span>
               <a
-                href="https://github.com/advimman/lama"
+                href="https://rmbg.picgo.studio/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary transition-colors underline underline-offset-2"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-bold bg-accent text-accent-foreground border-2 border-foreground rounded-lg shadow-[2px_2px_0_var(--foreground)] hover:shadow-[3px_3px_0_var(--foreground)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
               >
-                LaMa
-              </a>
-              <span>·</span>
-              <a
-                href="https://onnxruntime.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors underline underline-offset-2"
-              >
-                ONNX Runtime
-              </a>
-              <span>·</span>
-              <a
-                href="https://github.com/journey-ad/gemini-watermark-remover"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors underline underline-offset-2"
-              >
-                gemini-watermark-remover
+                <RemoveBgLogo size={18} />
+                RemoveBG PicGo
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>

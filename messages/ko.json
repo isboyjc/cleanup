@@ -11,6 +11,9 @@
   },
   "hero": {
     "badge": "AI 기반 · 무료 사용",
+    "removebg": {
+      "text": "배경 제거"
+    },
     "title": {
       "line1": "이미지",
       "line2": "",

@@ -11,6 +11,9 @@
   },
   "hero": {
     "badge": "AI 驱动 · 免费使用",
+    "removebg": {
+      "text": "去除背景"
+    },
     "title": {
       "line1": "一键去除",
       "line2": "图片",

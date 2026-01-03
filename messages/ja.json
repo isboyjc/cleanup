@@ -11,6 +11,9 @@
   },
   "hero": {
     "badge": "AI搭載 · 無料",
+    "removebg": {
+      "text": "背景を除去"
+    },
     "title": {
       "line1": "画像の",
       "line2": "",

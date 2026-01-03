@@ -6,6 +6,7 @@ import { Upload, ImageIcon, Sparkles, Wand2, Zap } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { isModelCached } from "@/lib/lama-processor"
 import { GeminiDetectionToggle } from "./GeminiDetectionToggle"
+import { RemoveBgLogo } from "./RemoveBgLogo"
 
 const sampleImages = [
   {
@@ -84,7 +85,7 @@ export function Hero({ onImageSelect }: HeroProps) {
   }, [onImageSelect])
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 pt-28 pb-12 md:pt-32 md:pb-20 relative overflow-hidden">
       {/* 背景装饰 */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-32 h-32 bg-primary/30 rounded-full blur-3xl" />
@@ -111,7 +112,7 @@ export function Hero({ onImageSelect }: HeroProps) {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
-          <motion.div 
+          <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground border-3 border-foreground rounded-full shadow-[3px_3px_0_var(--foreground)]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -120,34 +121,21 @@ export function Hero({ onImageSelect }: HeroProps) {
             <Sparkles className="w-4 h-4" />
             <span className="text-sm font-bold">{t("badge")}</span>
           </motion.div>
-          
-          {/* 模型状态标识 */}
-          <AnimatePresence mode="wait">
-            {modelReady !== null && (
-              <motion.div
-                key={modelReady ? "ready" : "not-ready"}
-                initial={{ opacity: 0, scale: 0.8, x: -10 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
-                className={`
-                  inline-flex items-center gap-2 px-4 py-2
-                  border-3 border-foreground rounded-full
-                  shadow-[3px_3px_0_var(--foreground)]
-                  text-sm font-bold
-                  ${modelReady 
-                    ? "bg-primary text-primary-foreground" 
-                    : "bg-muted text-muted-foreground"
-                  }
-                `}
-              >
-                <Zap className={`w-4 h-4 ${modelReady ? "fill-current" : ""}`} />
-                <span>
-                  {modelReady ? t("modelStatus.ready") : t("modelStatus.notReady")}
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
+          {/* RemoveBG entrance */}
+          <motion.a
+            href="https://rmbg.picgo.studio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground border-3 border-foreground rounded-full shadow-[3px_3px_0_var(--foreground)] hover:shadow-[4px_4px_0_var(--foreground)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+          >
+            <RemoveBgLogo size={20} className="-ml-0.5" />
+            <span className="text-sm font-bold">{t("removebg.text")}</span>
+            <span className="text-sm">→</span>
+          </motion.a>
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -166,11 +154,39 @@ export function Hero({ onImageSelect }: HeroProps) {
           </span>
         </h1>
         
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4">
           {t("description")}
           <br className="hidden md:block" />
           {t("descriptionSub")}
         </p>
+
+        {/* 模型状态标识 */}
+        <AnimatePresence mode="wait">
+          {modelReady !== null && (
+            <motion.div
+              key={modelReady ? "ready" : "not-ready"}
+              initial={{ opacity: 0, scale: 0.8, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.3 }}
+              className={`
+                inline-flex items-center gap-2 px-3 py-1.5
+                border-2 border-foreground rounded-full
+                shadow-[2px_2px_0_var(--foreground)]
+                text-xs font-bold
+                ${modelReady
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground"
+                }
+              `}
+            >
+              <Zap className={`w-3.5 h-3.5 ${modelReady ? "fill-current" : ""}`} />
+              <span>
+                {modelReady ? t("modelStatus.ready") : t("modelStatus.notReady")}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* 上传区域 */}

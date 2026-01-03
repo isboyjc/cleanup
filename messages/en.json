@@ -11,6 +11,9 @@
   },
   "hero": {
     "badge": "AI Powered · Free to Use",
+    "removebg": {
+      "text": "Remove Background"
+    },
     "title": {
       "line1": "Remove Image",
       "line2": "",
